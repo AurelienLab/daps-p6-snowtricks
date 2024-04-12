@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,8 +15,9 @@
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
 </head>
-<body class="relative min-h-dvh">
+<body>
 {% include '_partials/navigation.html.twig' %}
+
 {% block body %}{% endblock %}
 </body>
 </html>
