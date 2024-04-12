@@ -1,11 +1,6 @@
 .hero {
   height: calc(100dvh - 52px);
-  @apply relative w-full flex justify-center overflow-hidden;
-
-  &:after {
-    content: "";
-    @apply absolute w-full h-full bg-gradient-to-b from-indigo-500 to-sky-600 opacity-60;
-  }
+  @apply relative w-full flex justify-center overflow-hidden overlay;
 
   img {
     height: 100%;

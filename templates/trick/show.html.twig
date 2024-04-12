@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto px-4 py-8 sm:py-24 sm:px-6 lg:px-8">
+        <div class="rounded-2xl w-full shadow-xl overflow-hidden">
+            {# HERO BANNER #}
+            <div class="relative flex w-full h-96 justify-center items-center overlay">
+                <img class="z-0 absolute h-full w-full object-cover"
+                     src="https://fastly.picsum.photos/id/175/1920/1920.jpg?hmac=BvELtMUAHaWFSHtjEGRaF85ghP8aK_vPygAJFeKuIAo">
+                <div class="bebas-neue-regular z-10 text-white text-3xl">
+                    titre du trick
+                </div>
+            </div>
+
+            <div class="py-6 px-4">
+                <div class="text-center mb-8">
+                    <button type="button"
+                            class="sm:hidden rounded-md bg-indigo-50 px-2.5 py-1.5 flex items-center gap-2 m-auto text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100">
+                        See medias {{ heroicon('arrow-down', 'w-3 h-3') }}
+                    </button>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <p>Phasellus laoreet lorem vel dolor tempus vehicula. Idque Caesaris facere voluntate liceret: sese
+                        habere. Ab illo tempore, ab est sed immemorabili. Mercedem aut nummos unde unde extricat,
+                        amaras.
+                        Praeterea iter est quasdam res quas ex communi.
+                    </p>
+                    <p>Fictum, deserunt mollit anim laborum astutumque! Quisque placerat facilisis egestas cillum
+                        dolore.
+                        Nec dubitamus multa iter quae et nos invenerat. Contra legem facit qui id facit quod lex
+                        prohibet.
+                        Quam diu etiam furor iste tuus nos eludet?</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
