@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -28,9 +29,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: 'snowtricks.form.email.not_blank')]
+    #[Assert\Email(message: 'snowtricks.form.email.valid')]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'snowtricks.form.name.not_blank')]
     private ?string $name = null;
 
     /**

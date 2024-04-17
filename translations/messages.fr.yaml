@@ -1,0 +1,7 @@
+snowtricks:
+    ui:
+        email: "Adresse e-mail"
+        name: "Nom"
+        password: "Mot de passe"
+        register: "Inscription"
+        register_button: "Enregistrer"
