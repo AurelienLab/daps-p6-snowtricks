@@ -1,0 +1,17 @@
+.hero {
+  height: calc(100dvh - 52px);
+  @apply relative w-full flex justify-center overflow-hidden overlay;
+
+  img {
+    height: 100%;
+    @apply absolute object-cover object-right w-full;
+  }
+
+  &__content {
+    @apply z-10 flex items-center justify-center text-center text-white text-4xl;
+  }
+
+  &__down-button {
+    @apply z-10 absolute bottom-8 right-8 text-white hover:translate-y-2 transition-transform;
+  }
+}
