@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'snowtricks.ui.login'|trans }}{% endblock %}
 
 {% block body %}
     <main class="px-4 py-8 sm:py-14 min-h-dvh sm:min-h-0 flex justify-center items-center">
@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="inline-flex items-center gap-2">
-                    <input type="checkbox" name="_remember_me">
-                    <label>
+                    <input type="checkbox" name="_remember_me" id="remember_me">
+                    <label for="remember_me">
                         {{ 'snowtricks.ui.remember_me'|trans }}
                     </label>
                 </div>
