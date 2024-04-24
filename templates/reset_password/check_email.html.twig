@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+    <main class="px-4 py-8 sm:py-14 min-h-dvh sm:min-h-0 flex justify-center items-center">
+        <div class="flex flex-col justify-center items-center w-full max-w-2xl m-auto rounded-2xl shadow-xl border py-10 sm:py-14 px-8 ">
+            <h1 class="text-4xl text-bold mb-8 bebas-neue-regular">{{ 'snowtricks.ui.forgot_password'|trans }}</h1>
+
+            <p>
+                If an account matching your email exists, then an email was just sent that contains a link that you can
+                use
+                to reset your password.
+                This link will expire
+                in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+            <p>If you don't receive an email please check your spam folder or <a
+                        href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+        </div>
+    </main>
+{% endblock %}

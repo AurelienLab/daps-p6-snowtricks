@@ -10,3 +10,9 @@ snowtricks:
         register: "Inscription"
         register_button: "Enregistrer"
         remember_me: "Se souvenir de moi"
+        reset_password:
+            email_help: "Indiquez votre adresse email, nous vous enverrons un lien pour réinitialiser votre mot de passe"
+            new_password: "Nouveau mot de passe"
+            repeat_password: "Répétez le mot de passe"
+            request_button: "Réinitialiser mon mot de passe"
+            reset_header: "Réintialiser mon mot de passe"
