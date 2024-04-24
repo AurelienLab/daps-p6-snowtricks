@@ -1,7 +1,12 @@
 snowtricks:
     ui:
+        create_account: "Créer un compte"
         email: "Adresse e-mail"
+        forgot_password: "Mot de passe oublié"
         name: "Nom"
+        not_subscribed_yet: "Pas encore inscrit ?"
+        login: "Connexion"
         password: "Mot de passe"
         register: "Inscription"
         register_button: "Enregistrer"
+        remember_me: "Se souvenir de moi"
