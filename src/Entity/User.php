@@ -9,13 +9,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Entity\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[Vich\Uploadable]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
@@ -35,6 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'snowtricks.form.name.not_blank')]
+    #[Assert\Length(min: 3)]
     private ?string $name = null;
 
     /**
@@ -49,14 +47,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\Column]
     private ?string $password = null;
 
-    #[Vich\UploadableField(mapping: 'users', fileNameProperty: 'profilePictureName', size: 'profilePictureSize')]
-    private ?File $profilePictureFile = null;
-
     #[ORM\Column(nullable: true)]
-    private ?string $profilePictureName = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $profilePictureSize = null;
+    private ?string $profilePicture = null;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
@@ -167,29 +159,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         }
     }
 
-    public function getProfilePictureFile(): ?File
+    public function getProfilePicture(): ?string
     {
-        return $this->profilePictureFile;
+        return $this->profilePicture;
     }
 
-    public function setProfilePictureName(?string $profilePictureName): void
+    public function setProfilePicture(?string $profilePicture): User
     {
-        $this->profilePictureName = $profilePictureName;
-    }
-
-    public function getProfilePictureName(): ?string
-    {
-        return $this->profilePictureName;
-    }
-
-    public function setProfilePictureSize(?int $profilePictureSize): void
-    {
-        $this->profilePictureSize = $profilePictureSize;
-    }
-
-    public function getProfilePictureSize(): ?int
-    {
-        return $this->profilePictureSize;
+        $this->profilePicture = $profilePicture;
+        return $this;
     }
 
     public function isVerified(): bool
