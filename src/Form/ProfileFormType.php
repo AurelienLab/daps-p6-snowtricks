@@ -18,7 +18,10 @@ class ProfileFormType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'snowtricks.ui.name'
             ])
-            ->add('profilePicture', FileType::class);
+            ->add('profilePictureFile', FileType::class, [
+                'mapped' => false,
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
