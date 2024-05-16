@@ -11,6 +11,7 @@ use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,9 +20,9 @@ class ProfileController extends AbstractController
 {
 
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly FileUploader           $fileUploader,
-        private readonly FileResolver           $fileResolver
+        private readonly EntityManagerInterface      $entityManager,
+        private readonly FileUploader                $fileUploader,
+        private readonly UserPasswordHasherInterface $passwordHasher
     )
     {
     }
@@ -46,6 +47,22 @@ class ProfileController extends AbstractController
             }
 
             $this->entityManager->flush();
+
+            $this->addFlash('success', 'snowtricks.flashes.profile_updated');
+        }
+
+        $passwordUpdateForm->handleRequest($request);
+
+        if ($passwordUpdateForm->isSubmitted() && $passwordUpdateForm->isValid()) {
+            $encodedPassword = $this->passwordHasher->hashPassword(
+                $this->getUser(),
+                $passwordUpdateForm->get('plainPassword')->getData()
+            );
+
+            $this->getUser()->setPassword($encodedPassword);
+            $this->entityManager->flush();
+            
+            $this->addFlash('success', 'snowtricks.flashes.password_updated');
         }
 
         return $this->render('profile/edit.html.twig', [

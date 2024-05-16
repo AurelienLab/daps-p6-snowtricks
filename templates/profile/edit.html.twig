@@ -6,6 +6,11 @@
 {% block body %}
     <main class="px-4 py-8 sm:py-14 min-h-dvh sm:min-h-0 flex justify-center items-center">
         <div class="flex flex-col justify-center items-center w-full max-w-2xl m-auto rounded-2xl shadow-xl border py-10 sm:py-14 px-8 ">
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    {% include 'components/_alert.html.twig' with { message, type } %}
+                {% endfor %}
+            {% endfor %}
             <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">Mes informations</h2>
             {{ form_start(profileForm, { attr: {class: "flex flex-col gap-6 w-full m-auto max-w-96", novalidate: 'novalidate'} }) }}
 
@@ -45,10 +50,16 @@
 
             {{ form_end(profileForm) }}
 
-            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular mt-12">Mot de passe</h2>
+            <hr class="w-48 h-1 mx-auto my-24 bg-gray-100 border-0 rounded">
+
+            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">Mot de passe</h2>
             {{ form_start(passwordForm, { attr: {class: "flex flex-col gap-6 w-full m-auto max-w-96", novalidate: 'novalidate'} }) }}
             {{ form_row(passwordForm.currentPassword) }}
             {{ form_row(passwordForm.plainPassword) }}
+            <button type="submit"
+                    class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                {{ 'snowtricks.ui.save'|trans }}
+            </button>
             {{ form_end(passwordForm) }}
         </div>
     </main>
