@@ -19,6 +19,7 @@ class UpdatePasswordFormType extends AbstractType
     {
         $builder
             ->add('currentPassword', PasswordType::class, [
+                'label' => 'snowtricks.ui.current_password',
                 'mapped' => false,
                 'constraints' => new UserPassword()
             ])

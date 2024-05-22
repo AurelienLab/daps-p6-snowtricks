@@ -1,14 +1,19 @@
 snowtricks:
   ui:
+    click_to_upload: "Cliquer pour uploader"
     create_account: "Créer un compte"
+    current_password: "Mot de passe actuel"
     email: "Adresse e-mail"
     forgot_password: "Mot de passe oublié"
     name: "Nom"
     not_subscribed_yet: "Pas encore inscrit ?"
     login: "Connexion"
     logout: "Déconnexion"
+    or_drag_and_drop: "ou glisser-desposer"
+    or: 'ou'
     password: "Mot de passe"
     profile: "Profil"
+    profile_picture: "Photo de profil"
     register: "Inscription"
     register_button: "Enregistrer"
     remember_me: "Se souvenir de moi"

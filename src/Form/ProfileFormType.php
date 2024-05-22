@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ProfileFormType extends AbstractType
 {
@@ -19,7 +20,15 @@ class ProfileFormType extends AbstractType
                 'label' => 'snowtricks.ui.name'
             ])
             ->add('profilePictureFile', FileType::class, [
+                'label' => 'snowtricks.ui.profile_picture',
                 'mapped' => false,
+                'constraints' => [
+                    new Image([
+                        'maxHeight' => 400,
+                        'maxWidth' => 600,
+                        'mimeTypes' => ['image/jpeg', 'image/png']
+                    ])
+                ]
             ])
         ;
     }
