@@ -12,12 +12,25 @@
                        class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900">Home</a>
                     <a href="#"
                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Tricks</a>
-                    <a href="#"
-                       class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Sign
-                        in</a>
-                    <a href="#"
-                       class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Sign
-                        up</a>
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}"
+                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            {{ 'snowtricks.ui.logout'|trans }}
+                        </a>
+                        <a href="{{ path('app_profile') }}"
+                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            {{ 'snowtricks.ui.profile'|trans }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}"
+                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            {{ 'snowtricks.ui.login'|trans }}
+                        </a>
+                        <a href="{{ path('app_register') }}"
+                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            {{ 'snowtricks.ui.register'|trans }}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -34,9 +47,16 @@
            class="flex-grow py-3 hover:bg-indigo-50/50 border-t-4 border-transparent hover:border-indigo-200 transition-all">
             {{ heroicon('bookmark', 'h-6 w-6 text-gray-400 m-auto') }}
         </a>
-        <a href="#"
-           class="flex-grow py-3 hover:bg-indigo-50/50 border-t-4 border-transparent hover:border-indigo-200 transition-all">
-            {{ heroicon('login', 'h-6 w-6 text-gray-400 m-auto', 'outline') }}
-        </a>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" aria-label="{{ 'snowtricks.ui.logout'|trans }}"
+               class="flex-grow py-3 hover:bg-indigo-50/50 border-t-4 border-transparent hover:border-indigo-200 transition-all">
+                {{ heroicon('logout', 'h-6 w-6 text-gray-400 m-auto', 'outline') }}
+            </a>
+        {% else %}
+            <a href="{{ path('app_login') }}" aria-label="{{ 'snowtricks.ui.login'|trans }}"
+               class="flex-grow py-3 hover:bg-indigo-50/50 border-t-4 border-transparent hover:border-indigo-200 transition-all">
+                {{ heroicon('login', 'h-6 w-6 text-gray-400 m-auto', 'outline') }}
+            </a>
+        {% endif %}
     </div>
 </nav>

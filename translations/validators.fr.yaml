@@ -1,0 +1,9 @@
+snowtricks:
+    form:
+        name:
+            not_blank: "Merci d'entrer un nom"
+        email:
+            not_blank: "Merci d'entrer une adresse"
+            valid: "L'adresse indiquée n'est pas valide"
+        password:
+            not_blank: "Merci d'entrer un mot de passe"
