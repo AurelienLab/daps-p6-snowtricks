@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Entity\Trait\Timestampable;
 use App\Repository\TrickRepository;
+use Doctrine\Common\EventArgs;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: TrickRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_SLUG', fields: ['slug'])]
+#[UniqueEntity(fields: ['slug'], message: 'Un trick existe déjà avec ce nom')]
+#[ORM\HasLifecycleCallbacks]
 class Trick
 {
     use Timestampable;
@@ -54,11 +59,11 @@ class Trick
 
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
-    public function setSlug(?string $slug): Trick
+    public function setSlug(string|EventArgs|null $slug): Trick
     {
         $slugger = new AsciiSlugger();
 
-        $newSlug = $slug ?? $this->name;
+        $newSlug = $slug instanceof EventArgs ? $this->name : $slug;
 
         $this->slug = strtolower($slugger->slug($newSlug));
 
