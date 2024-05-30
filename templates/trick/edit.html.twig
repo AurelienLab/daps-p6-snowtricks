@@ -5,9 +5,22 @@
     <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-24 sm:px-6 lg:px-8">
         <div class="rounded-2xl w-full shadow-xl overflow-hidden">
             {# HERO BANNER #}
-            <div class="relative flex w-full h-96 justify-center items-center overlay">
-                <img class="z-0 absolute h-full w-full object-cover"
-                     src="{{ asset('images/placeholder-hero.jpg') }}">
+
+            <div class="relative flex w-full h-96 justify-center items-center">
+                <label for="trick_form_featuredPictureFile" id="trick-featured-dropzone"
+                       class="z-0 absolute h-full flex flex-col items-start justify-start w-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dropzone overlay">
+                    <div class="z-50 px-3 py-2 text-white bg-gray-800/80 m-4 rounded flex gap-2 items-center">
+                        {{ heroicon('cloud-upload', 'w-6 h-6') }}
+                        Cliquer sur l'image de fond pour la modifier
+                    </div>
+                    <div class="w-full h-full pt-5 pb-6">
+                        <img src="{{ get_file_path(trick, 'trick_featured_picture') }}"
+                             class="z-0 absolute top-0 left-0 w-full h-full object-cover {% if not trick.featuredPicture|default %}hidden{% endif %}"
+                             id="preview">
+                    </div>
+                    {{ form_errors(form.featuredPictureFile) }}
+                    {{ form_widget(form.featuredPictureFile, { attr: { class: 'hidden' }}) }}
+                </label>
                 <div class="z-10">
                     <div class="text-white text-lg">{{ form_label(form.name) }}</div>
                     {{ form_widget(form.name, { attr : { class : "bebas-neue-regular text-3xl"}}) }}

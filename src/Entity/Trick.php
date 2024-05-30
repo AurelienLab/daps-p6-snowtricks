@@ -48,6 +48,9 @@ class Trick implements TimestampableInterface
     #[ORM\OneToMany(targetEntity: TrickMedia::class, mappedBy: 'trick', orphanRemoval: true)]
     private Collection $medias;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $featuredPicture = null;
+
     public function __construct()
     {
         $this->medias = new ArrayCollection();
@@ -150,6 +153,18 @@ class Trick implements TimestampableInterface
                 $media->setTrick(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFeaturedPicture(): ?string
+    {
+        return $this->featuredPicture;
+    }
+
+    public function setFeaturedPicture(?string $featuredPicture): static
+    {
+        $this->featuredPicture = $featuredPicture;
 
         return $this;
     }

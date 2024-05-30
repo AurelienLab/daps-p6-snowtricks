@@ -9,6 +9,10 @@ parameters:
       entity: App\Entity\User
       property: 'profilePicture'
       directory: 'uploads/user'
+    trick_featured_picture:
+      entity: App\Entity\Trick
+      property: 'featuredPicture'
+      directory: 'uploads/trick/featured'
 
 
 services:

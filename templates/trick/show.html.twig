@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% set featuredPictureSrc = trick.featuredPicture is empty ? asset('images/placeholder-hero.jpg') : get_file_path(trick, 'trick_featured_picture') %}
+
 {% block body %}
     <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-24 sm:px-6 lg:px-8">
         <div class="rounded-2xl w-full shadow-xl overflow-hidden">
             {# HERO BANNER #}
             <div class="relative flex w-full h-96 justify-center items-center overlay">
                 <img class="z-0 absolute h-full w-full object-cover"
-                     src="{{ asset('images/placeholder-hero.jpg') }}">
+                     src="{{ featuredPictureSrc }}">
                 <div class="bebas-neue-regular z-10 text-white text-3xl">
                     {{ trick.name }}
                 </div>

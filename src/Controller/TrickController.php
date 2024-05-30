@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\TrickFormType;
 use App\Repository\TrickRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ class TrickController extends AbstractController
     public function __construct(
         private EntityManagerInterface $entityManager,
         private TrickRepository        $trickRepository,
+        private FileUploader           $fileUploader
     )
     {
     }
@@ -48,8 +50,15 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Upload profile picture if exists
+            $featuredPicture = $form->get('featuredPictureFile')->getData();
+            if (!empty($featuredPicture)) {
+                $this->fileUploader->upload($featuredPicture, $trick, 'trick_featured_picture');
+            }
+
             $this->entityManager->flush();
-            
+
             return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug()]);
         }
 

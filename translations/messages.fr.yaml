@@ -1,9 +1,11 @@
 snowtricks:
   ui:
     cancel: "Annuler"
+    category: "Catégorie"
     click_to_upload: "Cliquer pour uploader"
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"
+    description: "Description"
     email: "Adresse e-mail"
     forgot_password: "Mot de passe oublié"
     home: "Home"
