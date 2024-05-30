@@ -1,5 +1,6 @@
 snowtricks:
   ui:
+    cancel: "Annuler"
     click_to_upload: "Cliquer pour uploader"
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"

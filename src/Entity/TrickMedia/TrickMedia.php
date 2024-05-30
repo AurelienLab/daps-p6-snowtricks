@@ -14,7 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\DiscriminatorColumn(name: 'media_type', type: 'string')]
 #[ORM\DiscriminatorMap([
     'embed' => TrickMediaEmbed::class,
-    'image' => TrickMediaImage::class])]
+    'image' => TrickMediaImage::class,
+])]
 class TrickMedia implements TimestampableInterface
 {
 
