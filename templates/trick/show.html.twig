@@ -8,7 +8,7 @@
                 <img class="z-0 absolute h-full w-full object-cover"
                      src="https://fastly.picsum.photos/id/175/1920/1920.jpg?hmac=BvELtMUAHaWFSHtjEGRaF85ghP8aK_vPygAJFeKuIAo">
                 <div class="bebas-neue-regular z-10 text-white text-3xl">
-                    titre du trick
+                    {{ trick.name }}
                 </div>
             </div>
 
@@ -29,22 +29,17 @@
                 </div>
 
                 <div class="flex flex-col gap-6">
-                    <p>Phasellus laoreet lorem vel dolor tempus vehicula. Idque Caesaris facere voluntate liceret: sese
-                        habere. Ab illo tempore, ab est sed immemorabili. Mercedem aut nummos unde unde extricat,
-                        amaras.
-                        Praeterea iter est quasdam res quas ex communi.
+                    <p>
+                        {{ trick.description|nl2br }}
                     </p>
-                    <p>Fictum, deserunt mollit anim laborum astutumque! Quisque placerat facilisis egestas cillum
-                        dolore.
-                        Nec dubitamus multa iter quae et nos invenerat. Contra legem facit qui id facit quod lex
-                        prohibet.
-                        Quam diu etiam furor iste tuus nos eludet?</p>
                 </div>
                 <div class="flex flex-row w-full justify-center gap-3 mt-8">
-                    <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">Badge</span>
-                    <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">Badge</span>
-                    <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">Badge</span>
-                    <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">Badge</span>
+                    {% include 'components/_badge.html.twig' with {
+                        content: trick.trickCategory.name
+                    } %}
+                    {% include 'components/_badge.html.twig' with {
+                        content: trick.createdAt|format_datetime('medium', 'none', locale='fr')
+                    } %}
                 </div>
                 <hr class="w-5/6 m-auto my-10 max-w-2xl">
 

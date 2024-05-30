@@ -22,11 +22,9 @@
                     illo tempore, ab est sed immemorabili.</p>
             </div>
             <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                {% include '_partials/trick-card.html.twig' %}
-                {% include '_partials/trick-card.html.twig' %}
-                {% include '_partials/trick-card.html.twig' %}
-                {% include '_partials/trick-card.html.twig' %}
-                {% include '_partials/trick-card.html.twig' %}
+                {% for trick in tricks %}
+                    {% include '_partials/trick-card.html.twig' with { trick } %}
+                {% endfor %}
             </div>
         </div>
     </div>
