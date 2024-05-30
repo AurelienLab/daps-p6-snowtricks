@@ -14,7 +14,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_SLUG', fields: ['slug'])]
 #[UniqueEntity(fields: ['slug'], message: 'Un trick existe déjà avec ce nom')]
 #[ORM\HasLifecycleCallbacks]
-class Trick
+class Trick implements TimestampableInterface
 {
     use Timestampable;
 
@@ -34,6 +34,10 @@ class Trick
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     private ?User $author = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tricks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TrickCategory $trickCategory = null;
 
     public function getId(): ?int
     {
@@ -90,6 +94,18 @@ class Trick
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getTrickCategory(): ?TrickCategory
+    {
+        return $this->trickCategory;
+    }
+
+    public function setTrickCategory(?TrickCategory $trickCategory): static
+    {
+        $this->trickCategory = $trickCategory;
 
         return $this;
     }
