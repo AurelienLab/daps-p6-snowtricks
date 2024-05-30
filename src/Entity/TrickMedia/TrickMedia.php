@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrickMediaRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: 'media_type', type: 'string')]
 #[ORM\DiscriminatorMap([
     'embed' => TrickMediaEmbed::class,
@@ -28,9 +29,6 @@ class TrickMedia implements TimestampableInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Trick $trick = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mediaType = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -44,18 +42,6 @@ class TrickMedia implements TimestampableInterface
     public function setTrick(?Trick $trick): static
     {
         $this->trick = $trick;
-
-        return $this;
-    }
-
-    public function getMediaType(): ?string
-    {
-        return $this->mediaType;
-    }
-
-    public function setMediaType(string $mediaType): static
-    {
-        $this->mediaType = $mediaType;
 
         return $this;
     }

@@ -7,20 +7,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrickMediaEmbedRepository::class)]
-class TrickMediaEmbed
+class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getContent(): ?string
     {
@@ -32,5 +22,10 @@ class TrickMediaEmbed
         $this->content = $content;
 
         return $this;
+    }
+
+    public function getTemplate(): string
+    {
+        return '_partials/trick-media/embed.html.twig';
     }
 }

@@ -6,23 +6,13 @@ use App\Repository\TrickMedia\TrickMediaImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrickMediaImageRepository::class)]
-class TrickMediaImage
+class TrickMediaImage extends TrickMedia implements TrickMediaInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alt = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getImage(): ?string
     {
@@ -46,5 +36,10 @@ class TrickMediaImage
         $this->alt = $alt;
 
         return $this;
+    }
+
+    public function getTemplate(): string
+    {
+        return '_partials/trick-media/image.html.twig';
     }
 }
