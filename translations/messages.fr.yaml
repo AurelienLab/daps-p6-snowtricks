@@ -33,6 +33,8 @@ snowtricks:
       reset_header: "Réinitialiser mon mot de passe"
     save: "Enregistrer"
     tricks: "Tricks"
+    trick_edit:
+      click_background_update: "Cliquer sur l'image de fond pour la modifier"
   flashes:
     profile_updated: "Votre profil a bien été mis à jour"
     password_updated: "Votre mot de passe a été mis à jour"
