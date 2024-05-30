@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Entity\Trait\Timestampable;
+use App\Entity\TrickMedia\TrickMedia;
 use App\Repository\TrickRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\EventArgs;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,6 +41,17 @@ class Trick implements TimestampableInterface
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TrickCategory $trickCategory = null;
+
+    /**
+     * @var Collection<int, TrickMedia>
+     */
+    #[ORM\OneToMany(targetEntity: TrickMedia::class, mappedBy: 'trick', orphanRemoval: true)]
+    private Collection $medias;
+
+    public function __construct()
+    {
+        $this->medias = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +120,36 @@ class Trick implements TimestampableInterface
     public function setTrickCategory(?TrickCategory $trickCategory): static
     {
         $this->trickCategory = $trickCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrickMedia>
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias;
+    }
+
+    public function addMedia(TrickMedia $media): static
+    {
+        if (!$this->medias->contains($media)) {
+            $this->medias->add($media);
+            $media->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(TrickMedia $media): static
+    {
+        if ($this->medias->removeElement($media)) {
+            // set the owning side to null (unless already changed)
+            if ($media->getTrick() === $this) {
+                $media->setTrick(null);
+            }
+        }
 
         return $this;
     }
