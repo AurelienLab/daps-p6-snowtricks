@@ -28,8 +28,8 @@
 
                 {% if not trick.medias.empty %}
                     <div class="trick-media justify-center flex-wrap mb-8 gap-4 hidden sm:flex trick-medias">
-                        {% for media in medias %}
-                            {% include media.tempate with { media } %}
+                        {% for media in trick.medias %}
+                            {% include media.template with { media } %}
                         {% endfor %}
                     </div>
                     <div class="text-center mb-8">

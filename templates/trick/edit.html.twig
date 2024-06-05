@@ -33,17 +33,8 @@
                 {# --------------- #}
                 {#  MEDIA SECTION  #}
                 {# --------------- #}
-
-                {% if not trick.medias.empty %}
-                    <div class="trick-media justify-center flex-wrap mb-8 gap-4 hidden sm:flex trick-medias">
-                        {% for media in medias %}
-                            {% include media.tempate with { media } %}
-                        {% endfor %}
-                    </div>
-                    <div class="text-center mb-8">
-                        
-                    </div>
-                {% endif %}
+                
+                {% include 'trick/edit/_medias.html.twig' %}
 
                 {# -------------- #}
                 {#  DATA SECTION  #}
@@ -68,6 +59,6 @@
 
             </div>
         </div>
-        {{ form_end(form) }}
+        {{ form_end(form, { render_rest: true }) }}
     </main>
 {% endblock %}

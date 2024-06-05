@@ -2,6 +2,7 @@
 
 namespace App\Entity\TrickMedia;
 
+use App\Form\TrickMedia\TrickMediaEmbedType;
 use App\Repository\TrickMedia\TrickMediaEmbedRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

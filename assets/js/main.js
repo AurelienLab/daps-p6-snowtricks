@@ -74,4 +74,31 @@ document.addEventListener('DOMContentLoaded', function () {
             displayPreview(file);
         });
     })
+
+    //------------------------------------------------------------
+    //--------------------- TRICK FORM MEDIA  --------------------
+    //------------------------------------------------------------
+
+
+    // ADD BUTTONS
+    document.querySelectorAll('.js-media-add').forEach((el) => {
+        el.addEventListener('click', e => {
+            const target = document.getElementById('form-trick-medias')
+
+            const item = document.createElement('div');
+            item.innerHTML = e.currentTarget.dataset.prototype.replace(/__name__/g, e.currentTarget.dataset.index);
+
+            target.appendChild(item)
+
+            e.currentTarget.dataset.index++
+        })
+    })
+
+    // REMOVE BUTTONS
+    document.querySelectorAll('.js-delete-media').forEach((el) => {
+        el.addEventListener('click', e => {
+            const domTarget = document.getElementById(e.currentTarget.dataset.targetId)
+            domTarget.remove()
+        })
+    })
 })

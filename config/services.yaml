@@ -13,6 +13,10 @@ parameters:
       entity: App\Entity\Trick
       property: 'featuredPicture'
       directory: 'uploads/trick/featured'
+    trick_media_image:
+      entity: App\Entity\TrickMedia\TrickMediaImage
+      property: 'image'
+      directory: 'uploads/trick/media/image'
 
 
 services:

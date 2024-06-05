@@ -51,6 +51,8 @@ class TrickController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+//            dd($trick);
+
             // Upload profile picture if exists
             $featuredPicture = $form->get('featuredPictureFile')->getData();
             if (!empty($featuredPicture)) {

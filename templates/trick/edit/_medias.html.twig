@@ -1,0 +1,31 @@
+{% set mediaTypes = constant('App\\Form\\TrickFormType::MEDIA_TYPES') %}
+
+{# INITIALIZE FORM PROTOTYPES AND MEDIA TYPES NAME (INDEX) ARRAYS #}
+{% set prototypes = [] %}
+{% set childrenNames = [] %}
+{% for mediaClass, mediaFormData in mediaTypes %}
+    {% set prototype = {(mediaFormData.form_name) : form_widget(form[mediaFormData['form_name']].vars.prototype)} %}
+    {% set prototypes = prototypes|merge(prototype) %}
+
+    {% set childrenNames = childrenNames|merge({(mediaFormData.form_name) : 0}) %}
+{% endfor %}
+
+{# LIST CURRENT MEDIAS #}
+<div id="form-trick-medias" class="trick-media flex justify-center flex-wrap mb-8 gap-4 trick-medias">
+    {% for media in form.vars.data.medias %}
+        {% include 'trick/edit/_media.html.twig' %}
+    {% endfor %}
+</div>
+
+{# GENERATE ADD BUTTONS #}
+<div class="text-center mb-8">
+    {% for mediaClass, mediaFormData in mediaTypes %}
+        <button type="button"
+                class="js-media-add rounded-full bg-white px-4 py-2.5 text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                data-prototype="{{ prototypes[mediaFormData.form_name]|e('html_attr') }}"
+                data-index="{{ childrenNames[mediaFormData.form_name] + 1 }}"
+        >
+            Ajouter {{ mediaFormData['form_name'] }}
+        </button>
+    {% endfor %}
+</div>

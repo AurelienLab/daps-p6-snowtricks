@@ -2,6 +2,7 @@
 
 namespace App\Entity\TrickMedia;
 
+use App\Form\TrickMedia\TrickMediaImageType;
 use App\Repository\TrickMedia\TrickMediaImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
