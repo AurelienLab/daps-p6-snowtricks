@@ -1,9 +1,6 @@
 <div class="relative aspect-video w-40 h-auto rounded-2xl shadow-xl overflow-hidden js-trick-media-modal"
      data-media-modal="#trick-media-modal-2">
-    <iframe width="160" height="90" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=gd53UyMwYrMT2LOe"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    {{ media.content|raw }}
     <div class="absolute w-full h-full top-0 left-0 z-30"></div>
 </div>
 
@@ -11,10 +8,7 @@
     <div class="media-modal__overlay"></div>
     <div class="media-modal__content w-full">
         <div class="aspect-video w-full h-auto">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=gd53UyMwYrMT2LOe"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            {{ media.content|raw }}
         </div>
     </div>
 </div>
