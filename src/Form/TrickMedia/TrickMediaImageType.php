@@ -28,7 +28,9 @@ class TrickMediaImageType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add('alt', TextType::class)
+            ->add('alt', TextType::class, [
+                'required' => false,
+            ])
         ;
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
