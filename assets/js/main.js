@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const target = document.getElementById('form-trick-medias')
 
             const container = document.createElement('div');
+            container.classList.add('media-form-container');
 
             // Append form
             const item = document.createElement('div');
