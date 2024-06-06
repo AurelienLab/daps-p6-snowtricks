@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Trait\Timestampable;
 use App\Entity\TrickMedia\TrickMedia;
+use App\Entity\TrickMedia\TrickMediaImage;
 use App\Repository\TrickRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -47,6 +48,9 @@ class Trick implements TimestampableInterface
      */
     #[ORM\OneToMany(targetEntity: TrickMedia::class, mappedBy: 'trick', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $medias;
+
+    #[ORM\OneToMany(targetEntity: TrickMediaImage::class, mappedBy: 'trick', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $mediaImages;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $featuredPicture = null;
@@ -184,5 +188,10 @@ class Trick implements TimestampableInterface
         $this->featuredPicture = $featuredPicture;
 
         return $this;
+    }
+
+    public function getMediaImages(): Collection
+    {
+        return $this->mediaImages;
     }
 }
