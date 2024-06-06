@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Trick;
 use App\Form\TrickFormType;
 use App\Repository\TrickRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,10 +52,7 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-//            dd($trick);
-
-            // Upload profile picture if exists
+            // Upload featured picture if exists
             $featuredPicture = $form->get('featuredPictureFile')->getData();
             if (!empty($featuredPicture)) {
                 $this->fileUploader->upload($featuredPicture, $trick, 'trick_featured_picture');
@@ -70,5 +69,33 @@ class TrickController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws ORMException
+     */
+    #[Route('/tricks/create', name: 'app_trick_create', priority: 20)]
+    public function create(Request $request): Response
+    {
+        $trick = new Trick();
 
+        $form = $this->createForm(TrickFormType::class, $trick);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Upload featured picture if exists
+            $featuredPicture = $form->get('featuredPictureFile')->getData();
+            if (!empty($featuredPicture)) {
+                $this->fileUploader->upload($featuredPicture, $trick, 'trick_featured_picture');
+            }
+            $this->entityManager->persist($trick);
+            $this->entityManager->flush();
+            
+            return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug()]);
+        }
+
+        return $this->render('trick/edit.html.twig', [
+            'trick' => $trick,
+            'form' => $form->createView(),
+        ]);
+    }
 }

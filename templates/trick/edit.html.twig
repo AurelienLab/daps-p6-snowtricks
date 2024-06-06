@@ -44,7 +44,8 @@
                 {{ form_row(form.trickCategory, {attr : {class: 'flex flex-col w-full sm:w-64'}}) }}
 
                 <div class="flex gap-3 flex-wrap justify-end w-full mt-10">
-                    <a href="{{ path('app_trick_show', { slug: trick.slug }) }}"
+                    {% set cancelPath = trick.id ? path('app_trick_show', { slug: trick.slug }) : path('app_homepage') ~ '#tricks' %}
+                    <a href="{{ cancelPath }}"
                        class="rounded-full bg-white w-full sm:w-auto px-4 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         {{ 'snowtricks.ui.cancel'|trans }}
                     </a>

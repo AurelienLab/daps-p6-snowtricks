@@ -1,5 +1,6 @@
 snowtricks:
   ui:
+    add_trick: "Ajouter un trick"
     cancel: "Annuler"
     category: "Catégorie"
     click_to_upload: "Cliquer pour uploader"
