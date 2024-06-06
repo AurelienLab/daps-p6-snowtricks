@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-24 sm:px-6 lg:px-8">
-        <div class="rounded-2xl w-full shadow-xl overflow-hidden">
+    <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                {% include 'components/_alert.html.twig' with { message, type } %}
+            {% endfor %}
+        {% endfor %}
+
+        <div class="rounded-2xl w-full shadow-xl overflow-hidden mt-8">
             {# HERO BANNER #}
             <div class="relative flex w-full h-96 justify-center items-center overlay">
                 <img class="z-0 absolute h-full w-full object-cover"

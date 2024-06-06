@@ -60,7 +60,13 @@ class TrickController extends AbstractController
 
             $this->entityManager->flush();
 
+            $this->addFlash('success', 'snowtricks.flashes.trick_updated');
+
             return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug()]);
+        }
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'snowtricks.flashes.form_errors');
         }
 
         return $this->render('trick/edit.html.twig', [
@@ -89,8 +95,14 @@ class TrickController extends AbstractController
             }
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
-            
+
+            $this->addFlash('success', 'snowtricks.flashes.trick_created');
+
             return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug()]);
+        }
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'snowtricks.flashes.form_errors');
         }
 
         return $this->render('trick/edit.html.twig', [
