@@ -40,21 +40,19 @@
                 {#  DATA SECTION  #}
                 {# -------------- #}
 
-                {{ form_row(form.description, { attr: { class: "flex flex-col w-full mt-4", rows: 8}}) }}
+                {{ form_row(form.description, { attr: { class: "flex flex-col w-full mt-4 mb-4", rows: 8}}) }}
+                {{ form_row(form.trickCategory, {attr : {class: 'flex flex-col w-full sm:w-64'}}) }}
 
-                <div class="flex flex-row w-full items-center justify-between gap-3 mt-8">
-                    {{ form_row(form.trickCategory, {attr : {class: 'flex flex-col'}}) }}
-                    <div class="flex gap-3">
-                        <a href="{{ path('app_trick_show', { slug: trick.slug }) }}"
-                           class="rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                            {{ 'snowtricks.ui.cancel'|trans }}
-                        </a>
+                <div class="flex gap-3 flex-wrap justify-end w-full mt-10">
+                    <a href="{{ path('app_trick_show', { slug: trick.slug }) }}"
+                       class="rounded-full bg-white w-full sm:w-auto px-4 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        {{ 'snowtricks.ui.cancel'|trans }}
+                    </a>
 
-                        <button type="submit"
-                                class="rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            {{ 'snowtricks.ui.save'|trans }}
-                        </button>
-                    </div>
+                    <button type="submit"
+                            class="rounded-full w-full sm:w-auto bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        {{ 'snowtricks.ui.save'|trans }}
+                    </button>
                 </div>
 
             </div>

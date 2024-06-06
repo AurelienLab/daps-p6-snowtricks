@@ -53,7 +53,7 @@
                         {{ trick.description|nl2br }}
                     </p>
                 </div>
-                <div class="flex flex-row w-full justify-center gap-3 mt-8">
+                <div class="flex flex-row flex-wrap w-full justify-center gap-3 mt-8">
                     {% include 'components/_badge.html.twig' with {
                         content: trick.trickCategory.name
                     } %}
