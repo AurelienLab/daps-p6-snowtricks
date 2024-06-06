@@ -56,6 +56,13 @@
                         {{ 'snowtricks.ui.cancel'|trans }}
                     </a>
 
+                    {% if trick.id is not empty %}
+                        <button type="button"
+                                data-trick-id="{{ trick.id }}"
+                                class="js-remove-trick rounded-full w-full sm:w-auto bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            {{ 'snowtricks.ui.remove_trick'|trans }}
+                        </button>
+                    {% endif %}
                     <button type="submit"
                             class="rounded-full w-full sm:w-auto bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         {{ 'snowtricks.ui.save'|trans }}
@@ -67,4 +74,5 @@
         {{ form_row(form._token) }}
         {{ form_end(form, { render_rest: false }) }}
     </main>
+    {% include 'trick/_remove-modal.html.twig' %}
 {% endblock %}

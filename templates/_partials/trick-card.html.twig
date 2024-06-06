@@ -21,14 +21,14 @@
     <div class="flex gap-4 justify-between">
         <h3 class="mt-3 text-lg font-semibold leading-6 text-white">
             <a href="{{ path('app_trick_show', { 'slug': trick.slug}) }}">
-                <span class="absolute inset-0"></span>
+                <span class="z-0 absolute inset-0"></span>
                 {{ trick.name }}
             </a>
         </h3>
-        {#        TODO: Only when logged in #}
-        {#        <div class="flex text-white gap-3 items-center"> #}
-        {#            <a href="#">{{ heroicon('trash', 'w-5 h-6') }}</a> #}
-        {#            <a href="#">{{ heroicon('pencil', 'w-5 h-6') }}</a> #}
-        {#        </div> #}
+        {# TODO: Only when logged in #}
+        <div class="z-10 flex text-white gap-3 items-center">
+            <a href="#" class="js-remove-trick" data-trick-id="{{ trick.id }}">{{ heroicon('trash', 'w-5 h-6') }}</a>
+            <a href="{{ path('app_trick_edit', { slug: trick.slug }) }}">{{ heroicon('pencil', 'w-5 h-6') }}</a>
+        </div>
     </div>
 </article>

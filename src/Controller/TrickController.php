@@ -17,9 +17,9 @@ class TrickController extends AbstractController
 {
 
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private TrickRepository        $trickRepository,
-        private FileUploader           $fileUploader
+        private readonly EntityManagerInterface $entityManager,
+        private readonly TrickRepository        $trickRepository,
+        private readonly FileUploader           $fileUploader
     )
     {
     }
@@ -109,5 +109,25 @@ class TrickController extends AbstractController
             'trick' => $trick,
             'form' => $form->createView(),
         ]);
+    }
+
+
+    #[Route('/tricks/remove', name: 'app_trick_remove', methods: 'POST', priority: 20)]
+    public function delete(Request $request): Response
+    {
+        $trickId = $request->getPayload()->get('trick_id');
+        
+        $trick = $this->trickRepository->findOneBy(['id' => $trickId]);
+
+        if (!$trick) {
+            throw $this->createNotFoundException();
+        }
+
+        $this->entityManager->remove($trick);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'snowtricks.flashes.trick_removed');
+
+        return $this->redirectToRoute('app_homepage', ['_fragment' => 'tricks']);
     }
 }

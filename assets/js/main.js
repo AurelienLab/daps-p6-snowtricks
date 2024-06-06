@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     //------------------------------------------------------------
-    //-------------------- MEDIAS INTERACTIONS -------------------
+    //-------------------- MODAL INTERACTIONS --------------------
     //------------------------------------------------------------
 
     document.querySelectorAll('[data-modal]').forEach((el) => {
@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
         el.querySelector('.modal__overlay').addEventListener('click', function (e) {
             e.currentTarget.parentNode.classList.remove('open')
         })
-    })
 
+        el.querySelectorAll('.js-modal-close').forEach((el) => el.addEventListener('click', function (e) {
+            e.currentTarget.closest('.modal').classList.remove('open')
+        }))
+    })
 
     const showMediasButton = document.querySelector('.js-show-medias')
     if (showMediasButton) {
@@ -133,6 +136,23 @@ document.addEventListener('DOMContentLoaded', function () {
             domTarget.querySelector('.js-edit-media').classList.add('hidden')
             domTarget.querySelector('.media-display').classList.add('hidden')
             domTarget.querySelector('.media-form').classList.remove('hidden')
+        })
+    })
+
+    //------------------------------------------------------------
+    //----------------------- TRICK REMOVE -----------------------
+    //------------------------------------------------------------
+
+
+    document.querySelectorAll('.js-remove-trick').forEach((el) => {
+        el.addEventListener('click', e => {
+            e.preventDefault()
+            const trickId = e.currentTarget.dataset.trickId
+            const modal = document.getElementById('trick-remove-modal')
+
+            document.getElementById('remove_trick_form_id').value = trickId
+
+            modal.classList.add('open')
         })
     })
 })
