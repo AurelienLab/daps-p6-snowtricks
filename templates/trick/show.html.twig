@@ -58,8 +58,13 @@
                         content: trick.trickCategory.name
                     } %}
                     {% include 'components/_badge.html.twig' with {
-                        content: trick.createdAt|format_datetime('medium', 'none', locale='fr')
+                        content: 'snowtricks.ui.created_at'|trans({ '%date%': trick.createdAt|format_datetime('medium', 'none', locale='fr')})
                     } %}
+                    {% if trick.updatedAt is not empty and trick.updatedAt != trick.createdAt %}
+                        {% include 'components/_badge.html.twig' with {
+                            content: 'snowtricks.ui.updated_at'|trans({ '%date%': trick.updatedAt|format_datetime('medium', 'none', locale='fr')})
+                        } %}
+                    {% endif %}
                 </div>
                 <hr class="w-5/6 m-auto my-10 max-w-2xl">
 
