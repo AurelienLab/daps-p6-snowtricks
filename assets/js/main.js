@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
     //-------------------- MEDIAS INTERACTIONS -------------------
     //------------------------------------------------------------
 
-    document.querySelectorAll('[data-media-modal]').forEach((el) => {
+    document.querySelectorAll('[data-modal]').forEach((el) => {
         el.addEventListener('click', function (e) {
             e.preventDefault()
-            const modal = e.currentTarget.dataset.mediaModal
+            const modal = e.currentTarget.dataset.modal
             document.querySelector(modal).classList.add('open')
         })
     })
 
-    document.querySelectorAll('.media-modal').forEach((el) => {
-        el.querySelector('.media-modal__overlay').addEventListener('click', function (e) {
+    document.querySelectorAll('.modal').forEach((el) => {
+        el.querySelector('.modal__overlay').addEventListener('click', function (e) {
             e.currentTarget.parentNode.classList.remove('open')
         })
     })

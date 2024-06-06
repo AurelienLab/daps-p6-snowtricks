@@ -1,12 +1,12 @@
-<div class="relative aspect-video w-40 h-auto rounded-2xl shadow-xl overflow-hidden js-trick-media-modal"
-     data-media-modal="#trick-media-modal-2">
+<div class="relative cursor-pointer aspect-video w-40 h-auto rounded-2xl shadow-xl overflow-hidden js-trick-media-modal"
+     data-modal="#trick-media-modal-2">
     {{ media.content|raw }}
     <div class="absolute w-full h-full top-0 left-0 z-30"></div>
 </div>
 
-<div class="media-modal" id="trick-media-modal-2">
-    <div class="media-modal__overlay"></div>
-    <div class="media-modal__content w-full">
+<div class="modal media-modal" id="trick-media-modal-2">
+    <div class="modal__overlay"></div>
+    <div class="modal__content w-full">
         <div class="aspect-video w-full h-auto">
             {{ media.content|raw }}
         </div>
