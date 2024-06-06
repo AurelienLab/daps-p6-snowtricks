@@ -1,7 +1,7 @@
 {% set image_url = get_file_path(media, 'trick_media_image') %}
 
 <div class="aspect-video w-40 h-auto rounded-2xl shadow-xl overflow-hidden cursor-pointer"
-     data-media-modal="#trick-media-modal-1">
+     data-media-modal="#trick-media-modal-{{ media.id }}">
     <img src="{{ image_url }}"
          class="w-full h-full object-cover"
             {% if media.alt is not empty %}
@@ -10,7 +10,7 @@
     >
 </div>
 
-<div class="media-modal" id="trick-media-modal-1">
+<div class="media-modal" id="trick-media-modal-{{ media.id }}">
     <div class="media-modal__overlay"></div>
     <div class="media-modal__content">
         <img src="{{ image_url }}"

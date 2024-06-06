@@ -5,6 +5,7 @@ namespace App\Entity\TrickMedia;
 use App\Form\TrickMedia\TrickMediaImageType;
 use App\Repository\TrickMedia\TrickMediaImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TrickMediaImageRepository::class)]
 class TrickMediaImage extends TrickMedia implements TrickMediaInterface

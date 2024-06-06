@@ -1,32 +1,30 @@
-{# Form information of the current media (collection name) #}
-{% set mediaFormData = mediaTypes[constant('class', media)] %}
-
-{# Index of the current media in the corresponding collection #}
-{% set mediaFormChildName = childrenNames[mediaFormData.form_name] %}
-
-{# Edition form view #}
-{% set mediaForm = form.children[mediaFormData.form_name].children[mediaFormChildName] %}
-
-<div id="media{{ media.id }}container">
+<div id="media{{ media.id }}container" class="media-form-container">
     <div class="edit-media-target">
         {# Show media #}
-        {% include media.template with { media } %}
+        {% if media.id is not empty and mediaForm.vars.valid %}
+            <div class="media-display">
+                {% include media.template with { media } %}
+            </div>
 
-        {# Show media form #}
-        {{ form_widget(mediaForm) }}
+            {# Show media form #}
+            {{ form_widget(mediaForm, { attr : { class : 'media-form hidden' } }) }}
+
+        {% else %}
+            {{ form_widget(mediaForm, { attr : { class : 'media-form' } }) }}
+        {% endif %}
     </div>
 
     {# Edit & Remove buttons #}
     <div class="flex gap-2 justify-center mt-2">
-        <button type="button"
-                class="text-gray-700 js-edit-media"
-                data-target-id="media{{ media.id }}container"
-        >{{ heroicon('pencil', 'w-6 h-6') }}</button>
+        {% if media.id is not empty and mediaForm.vars.valid %}
+            <button type="button"
+                    class="text-gray-700 js-edit-media"
+                    data-target-id="media{{ media.id }}container"
+            >{{ heroicon('pencil', 'w-6 h-6') }}</button>
+        {% endif %}
         <button type="button"
                 class="text-gray-700 js-delete-media"
                 data-target-id="media{{ media.id }}container"
         >{{ heroicon('trash', 'w-6 h-6') }}</button>
     </div>
 </div>
-
-{% set childrenNames = childrenNames|merge({(mediaFormData.form_name) : mediaFormChildName + 1 }) %}

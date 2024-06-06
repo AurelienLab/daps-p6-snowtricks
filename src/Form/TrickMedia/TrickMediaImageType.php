@@ -10,7 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TrickMediaImageType extends AbstractType
 {
@@ -21,12 +24,17 @@ class TrickMediaImageType extends AbstractType
 
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
+                'constraints' => [
+                    new NotBlank(groups: ['new_image']),
+                    new Image(
+                        maxSize: '4096k',
+                    )]
             ])
             ->add('alt', TextType::class, [
                 'required' => false,
@@ -45,10 +53,18 @@ class TrickMediaImageType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => TrickMediaImage::class
+            'data_class' => TrickMediaImage::class,
+            'validation_groups' => function (FormInterface $form): array {
+                $data = $form->getData();
+
+                if (empty($data->getImage())) {
+                    return ['new_image'];
+                }
+                return [];
+            }
         ]);
     }
 }

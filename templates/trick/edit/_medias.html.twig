@@ -4,7 +4,7 @@
 {% set prototypes = [] %}
 {% set childrenNames = [] %}
 {% for mediaClass, mediaFormData in mediaTypes %}
-    {% set prototype = {(mediaFormData.form_name) : form_widget(form[mediaFormData['form_name']].vars.prototype)} %}
+    {% set prototype = {(mediaFormData.form_name) : form_widget(form[mediaFormData.form_name].vars.prototype)} %}
     {% set prototypes = prototypes|merge(prototype) %}
 
     {% set childrenNames = childrenNames|merge({(mediaFormData.form_name) : 0}) %}
@@ -13,7 +13,18 @@
 {# LIST CURRENT MEDIAS #}
 <div id="form-trick-medias" class="trick-media flex justify-center flex-wrap mb-8 gap-4 trick-medias">
     {% for media in form.vars.data.medias %}
+        {# Form information of the current media (collection name) #}
+        {% set mediaFormData = mediaTypes[constant('class', media)] %}
+
+        {# Index of the current media in the corresponding collection #}
+        {% set mediaFormChildName = childrenNames[mediaFormData.form_name] %}
+
+        {# Edition form view #}
+        {% set mediaForm = form.children[mediaFormData.form_name].children[mediaFormChildName] %}
+
         {% include 'trick/edit/_media.html.twig' %}
+
+        {% set childrenNames = childrenNames|merge({(mediaFormData.form_name) : mediaFormChildName + 1 }) %}
     {% endfor %}
 </div>
 
@@ -23,7 +34,7 @@
         <button type="button"
                 class="js-media-add rounded-full bg-white px-4 py-2.5 text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 data-prototype="{{ prototypes[mediaFormData.form_name]|e('html_attr') }}"
-                data-index="{{ childrenNames[mediaFormData.form_name] + 1 }}"
+                data-index="{{ childrenNames[mediaFormData.form_name] }}"
         >
             Ajouter {{ mediaFormData['form_name'] }}
         </button>

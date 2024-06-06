@@ -24,10 +24,7 @@ use Symfony\Component\Validator\Constraints\Image;
 class TrickFormType extends AbstractType
 {
     const MEDIA_TYPES = [
-        TrickMediaImage::class => [
-            'form_name' => 'mediasImages',
-            'form_type' => TrickMediaImageType::class
-        ],
+        TrickMediaImage::class => ['form_name' => 'mediasImages', 'form_type' => TrickMediaImageType::class],
         TrickMediaEmbed::class => ['form_name' => 'mediasEmbeds', 'form_type' => TrickMediaEmbedType::class],
     ];
 
@@ -81,11 +78,24 @@ class TrickFormType extends AbstractType
             }
         });
 
+        // Rename media fields to get continuous ids
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+
+            foreach (self::MEDIA_TYPES as $mediaFormData) {
+                if (!empty($data[$mediaFormData['form_name']])) {
+                    $data[$mediaFormData['form_name']] = array_values($data[$mediaFormData['form_name']]);
+                }
+            }
+
+            $event->setData($data);
+        });
+
         // Merge media collections into Trick media collection
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             $form = $event->getForm();
-            
+
             $medias = [];
 
             foreach (self::MEDIA_TYPES as $mediaFormData) {
