@@ -33,7 +33,7 @@
                 {# --------------- #}
                 {#  MEDIA SECTION  #}
                 {# --------------- #}
-                
+
                 {% include 'trick/edit/_medias.html.twig' %}
 
                 {# -------------- #}
@@ -59,6 +59,7 @@
 
             </div>
         </div>
-        {{ form_end(form, { render_rest: true }) }}
+        {{ form_row(form._token) }}
+        {{ form_end(form, { render_rest: false }) }}
     </main>
 {% endblock %}
