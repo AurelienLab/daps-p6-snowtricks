@@ -28,6 +28,7 @@ class TrickMediaImageType extends AbstractType
     {
         $builder
             ->add('imageFile', FileType::class, [
+                'label' => 'snowtricks.ui.trick_media.image.file',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -37,6 +38,7 @@ class TrickMediaImageType extends AbstractType
                     )]
             ])
             ->add('alt', TextType::class, [
+                'label' => 'snowtricks.ui.trick_media.image.alt',
                 'required' => false,
             ])
         ;

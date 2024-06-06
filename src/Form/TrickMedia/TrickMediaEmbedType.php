@@ -17,9 +17,10 @@ class TrickMediaEmbedType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
+                'label' => 'snowtricks.ui.trick_media.embed.content',
                 'constraints' => new Regex([
                     'pattern' => "/^<iframe[^>]*>\s*<\/iframe>/",
-                    'message' => "Please enter a valid iFrame tag",
+                    'message' => 'snowtricks.form.trick_media.embed.regex',
                 ])
             ])
         ;

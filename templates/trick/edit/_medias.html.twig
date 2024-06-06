@@ -36,7 +36,7 @@
                 data-prototype="{{ prototypes[mediaFormData.form_name]|e('html_attr') }}"
                 data-index="{{ childrenNames[mediaFormData.form_name] }}"
         >
-            Ajouter {{ mediaFormData['form_name'] }}
+            {{ ('snowtricks.ui.trick_media.button_add.' ~ mediaFormData['form_name'])|trans }}
         </button>
     {% endfor %}
 </div>
