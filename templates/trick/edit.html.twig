@@ -28,7 +28,7 @@
                 </label>
                 {% if form.featuredPictureFile.vars.errors|length %}
                     <div class="absolute bottom-3 left-3 mr-3 py-2 px-4 mt-2 bg-red-200 rounded-lg text-red-800 text-sm ">
-                        <span class="font-bold">Image de fond:</span> {{ form_errors(form.featuredPictureFile) }}
+                        <span class="font-bold">{{ 'snowtricks.ui.trick_edit.background_image'|trans }}:</span> {{ form_errors(form.featuredPictureFile) }}
                     </div>
                 {% endif %}
                 <div class="z-10">
