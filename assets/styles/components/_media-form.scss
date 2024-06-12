@@ -1,0 +1,15 @@
+.media-form {
+  @apply flex flex-col gap-1 w-40 min-h-24 shadow-lg px-4 py-2 rounded-xl;
+
+  & > div {
+    @apply flex flex-col gap-1 text-xs;
+  }
+
+  ul {
+    @apply text-red-700;
+  }
+
+  input, textarea {
+    @apply text-xs w-full p-1;
+  }
+}

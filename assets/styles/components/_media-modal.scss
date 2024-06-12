@@ -1,21 +1,5 @@
 .media-modal {
-  transition: opacity 200ms ease-in-out, z-index 0ms 250ms;
-  @apply w-dvw h-dvh fixed top-0 left-0 -z-10 flex items-center justify-center p-4 opacity-0;
-
-  &__overlay {
-    @apply w-full h-full absolute bg-indigo-800 top-0 left-0 opacity-35;
-  }
-
-  &__content {
-    @apply z-10 w-fit h-fit p-4 bg-white max-w-full;
-
-    iframe {
-      @apply w-full h-full;
-    }
-  }
-
-  &.open {
-    transition: opacity 200ms ease-in-out, z-index 0ms 1ms;
-    @apply z-50 opacity-100;
+  iframe {
+    @apply w-full h-full;
   }
 }
