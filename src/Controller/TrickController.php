@@ -6,8 +6,10 @@ use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\CommentFormType;
 use App\Form\TrickFormType;
+use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use App\Service\FileUploader;
+use App\Service\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +23,7 @@ class TrickController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly TrickRepository        $trickRepository,
+        private readonly CommentRepository      $commentRepository,
         private readonly FileUploader           $fileUploader
     )
     {
@@ -30,6 +33,10 @@ class TrickController extends AbstractController
     public function show(Request $request, string $slug): Response
     {
         $trick = $this->trickRepository->findOneBy(['slug' => $slug]);
+
+        if (!$trick) {
+            throw $this->createNotFoundException();
+        }
 
         $commentForm = null;
 
@@ -54,13 +61,15 @@ class TrickController extends AbstractController
 
         }
 
-        if (!$trick) {
-            throw $this->createNotFoundException();
-        }
+        $comments = new Paginator($this->commentRepository->getCommentPaginatorQuery($trick), $request);
+        $comments
+            ->perPage(2)
+        ;
 
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
             'commentForm' => $commentForm?->createView(),
+            'comments' => $comments
         ]);
     }
 
