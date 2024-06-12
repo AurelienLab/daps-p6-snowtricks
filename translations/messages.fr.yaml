@@ -36,6 +36,7 @@ snowtricks:
       request_button: "Réinitialiser mon mot de passe"
       reset_header: "Réinitialiser mon mot de passe"
     save: "Enregistrer"
+    select: "Selectionner"
     tricks: "Tricks"
     trick_edit:
       click_background_update: "Cliquer sur l'image de fond pour la modifier"

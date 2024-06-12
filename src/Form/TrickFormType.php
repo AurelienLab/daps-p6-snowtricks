@@ -20,6 +20,8 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class TrickFormType extends AbstractType
 {
@@ -33,20 +35,30 @@ class TrickFormType extends AbstractType
         // Form base
         $builder
             ->add('name', TextType::class, [
-                'label' => 'snowtricks.ui.name'
+                'label' => 'snowtricks.ui.name',
+                'constraints' => [new NotBlank()],
+                'empty_data' => ''
             ])
             ->add('featuredPictureFile', FileType::class, [
                 'mapped' => false,
-                'constraints' => [new Image()],
+                'constraints' => [new Image(
+                    maxSize: '4000k'
+                )],
                 'required' => false
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'snowtricks.ui.description'
+                'label' => 'snowtricks.ui.description',
+                'constraints' => [new NotBlank()],
+                'empty_data' => ''
             ])
             ->add('trickCategory', EntityType::class, [
                 'label' => 'snowtricks.ui.category',
                 'class' => TrickCategory::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'required' => false,
+                'constraints' => [new NotBlank(), new NotNull()],
+                'placeholder' => 'snowtricks.ui.select',
+                'placeholder_attr' => ['disabled' => true, 'selected' => true]
             ])
         ;
 

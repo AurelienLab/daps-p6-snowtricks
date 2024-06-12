@@ -16,7 +16,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: TrickRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_SLUG', fields: ['slug'])]
-#[UniqueEntity(fields: ['slug'], message: 'Un trick existe déjà avec ce nom')]
+#[UniqueEntity(fields: ['name'], message: 'snowtricks.entity.trick.unique')]
 #[ORM\HasLifecycleCallbacks]
 class Trick implements TimestampableInterface
 {

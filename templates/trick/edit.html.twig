@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
+    {{ form_start(form, { attr: { novalidate: "novalidate"}}) }}
     <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
@@ -24,13 +24,21 @@
                              class="z-0 absolute top-0 left-0 w-full h-full object-cover {% if not trick.featuredPicture|default %}hidden{% endif %}"
                              id="preview">
                     </div>
-                    {{ form_errors(form.featuredPictureFile) }}
                     {{ form_widget(form.featuredPictureFile, { attr: { class: 'hidden' }}) }}
                 </label>
+                {% if form.featuredPictureFile.vars.errors|length %}
+                    <div class="absolute bottom-3 left-3 mr-3 py-2 px-4 mt-2 bg-red-200 rounded-lg text-red-800 text-sm ">
+                        <span class="font-bold">Image de fond:</span> {{ form_errors(form.featuredPictureFile) }}
+                    </div>
+                {% endif %}
                 <div class="z-10">
                     <div class="text-white text-lg">{{ form_label(form.name) }}</div>
                     {{ form_widget(form.name, { attr : { class : "bebas-neue-regular text-3xl"}}) }}
-                    {{ form_errors(form.name) }}
+                    {% if form.name.vars.errors|length %}
+                        <div class="py-2 px-4 mt-2 bg-red-200 rounded-lg text-red-800 text-sm ">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 

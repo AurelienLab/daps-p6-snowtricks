@@ -10,3 +10,6 @@ snowtricks:
     trick_media:
       embed:
         regex: "Veuillez entre un code iframe valide"
+  entity:
+    trick:
+      unique: "Un trick avec ce nom existe déjà"
