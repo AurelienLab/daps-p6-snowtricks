@@ -4,6 +4,9 @@ snowtricks:
     cancel: "Annuler"
     category: "Catégorie"
     click_to_upload: "Cliquer pour uploader"
+    comment:
+      message_placeholder: "Bonjour, ..."
+      button: "Envoyer"
     confirm: "Confirmer"
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"
@@ -59,3 +62,4 @@ snowtricks:
     trick_created: "Le nouveau trick a été ajouté"
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
+    comment_created: "Le commentaire a été enregistré"

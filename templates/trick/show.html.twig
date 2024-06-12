@@ -80,22 +80,28 @@
 
 
                 {#  LEAVE A COMMENT #}
-                <div class="flex flex-col justify-center gap-4 sm:flex-row max-w-5xl mx-auto">
-                    <div class="flex-grow">
-                        <label for="email" class="sr-only">Email</label>
-                        <input type="email" name="email" id="email"
-                               class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                               placeholder="Hello, ...">
-                    </div>
-                    <div>
-                        <button type="button"
-                                class="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Leave a comment
-                        </button>
+                {% if commentForm is not empty %}
+                    {{ form_start(commentForm, { attr: { class : 'comment-form'}}) }}
+                    <div class="flex flex-col justify-center gap-4 sm:flex-row max-w-5xl mx-auto">
+                        <div class="flex-grow">
+                            {{ form_widget(commentForm.message) }}
+                        </div>
+                        <div>
+                            <button type="submit">
+                                {{ 'snowtricks.ui.comment.button'|trans }}
+                            </button>
 
+                        </div>
                     </div>
-                </div>
-
+                    {{ form_end(commentForm) }}
+                {% else %}
+                    <p class="text-center italic font-light">
+                        Vous devez être connecté pour poster un commentaire. <a href="{{ path('app_login') }}"
+                                                                                class="text-indigo-500 hover:underline">
+                            Se
+                            connecter</a>
+                    </p>
+                {% endif %}
                 <hr class="w-5/6 m-auto my-10 max-w-2xl">
 
                 {# COMMENTS LIST #}

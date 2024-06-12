@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Form\CommentFormType;
 use App\Form\TrickFormType;
 use App\Repository\TrickRepository;
 use App\Service\FileUploader;
@@ -25,9 +27,32 @@ class TrickController extends AbstractController
     }
 
     #[Route('/tricks/{slug}', name: 'app_trick_show')]
-    public function show(string $slug): Response
+    public function show(Request $request, string $slug): Response
     {
         $trick = $this->trickRepository->findOneBy(['slug' => $slug]);
+
+        $commentForm = null;
+
+        if ($this->getUser() !== null) {
+            $comment = new Comment();
+            $commentForm = $this->createForm(CommentFormType::class, $comment);
+
+            $commentForm->handleRequest($request);
+
+            if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+                $comment
+                    ->setTrick($trick)
+                    ->setAuthor($this->getUser())
+                ;
+                $this->entityManager->persist($comment);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', 'snowtricks.flashes.comment_created');
+
+                return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug()]);
+            }
+
+        }
 
         if (!$trick) {
             throw $this->createNotFoundException();
@@ -35,6 +60,7 @@ class TrickController extends AbstractController
 
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
+            'commentForm' => $commentForm?->createView(),
         ]);
     }
 
@@ -116,7 +142,7 @@ class TrickController extends AbstractController
     public function delete(Request $request): Response
     {
         $trickId = $request->getPayload()->get('trick_id');
-        
+
         $trick = $this->trickRepository->findOneBy(['id' => $trickId]);
 
         if (!$trick) {
