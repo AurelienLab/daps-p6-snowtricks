@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -20,6 +21,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/users', name: 'app_user')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
     {
         $users = $this->userRepository->findBy([], ['name' => 'ASC']);
@@ -30,6 +32,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/{id}', name: 'app_user_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(User $user, Request $request): Response
     {
         $form = $this->createForm(UserType::class, $user);

@@ -18,11 +18,13 @@
                         active: app.current_route starts with 'app_trick'
                     } %}
                     {% if app.user %}
-                        {% include '_partials/navigation/_item.html.twig' with {
-                            target: path('app_user'),
-                            name: 'snowtricks.ui.users'|trans,
-                            active: app.current_route starts with 'app_user'
-                        } %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {% include '_partials/navigation/_item.html.twig' with {
+                                target: path('app_user'),
+                                name: 'snowtricks.ui.users'|trans,
+                                active: app.current_route starts with 'app_user'
+                            } %}
+                        {% endif %}
                         {% include '_partials/navigation/_item.html.twig' with {
                             target: path('app_logout'),
                             name: 'snowtricks.ui.logout'|trans,
