@@ -1,0 +1,20 @@
+<div class="modal" id="trick-remove-modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content p-12">
+        <form class="max-w-[800px]" method="POST" action="{{ path('app_trick_remove') }}">
+            <p>{{ 'snowtricks.ui.remove_trick_confirm'|trans }}</p>
+            <div class="w-full flex justify-end gap-3 mt-8">
+                <input type="hidden" id="remove_trick_form_id" name="trick_id"/>
+                <button type="button"
+                        class="js-modal-close rounded-full bg-white w-full sm:w-auto px-4 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    {{ 'snowtricks.ui.cancel'|trans }}
+                </button>
+
+                <button type="submit"
+                        class="rounded-full w-full sm:w-auto bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    {{ 'snowtricks.ui.confirm'|trans }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

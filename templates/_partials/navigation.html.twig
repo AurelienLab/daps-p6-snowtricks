@@ -7,29 +7,38 @@
                          alt="Your Company">
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                    <a href="#"
-                       class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900">Home</a>
-                    <a href="#"
-                       class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Tricks</a>
+                    {% include '_partials/navigation/_item.html.twig' with {
+                        target: path('app_homepage'),
+                        name: 'snowtricks.ui.home'|trans,
+                        active: app.current_route == 'app_homepage'
+                    } %}
+                    {% include '_partials/navigation/_item.html.twig' with {
+                        target: path('app_homepage') ~ '#tricks',
+                        name: 'snowtricks.ui.tricks'|trans,
+                        active: app.current_route starts with 'app_trick'
+                    } %}
                     {% if app.user %}
-                        <a href="{{ path('app_logout') }}"
-                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                            {{ 'snowtricks.ui.logout'|trans }}
-                        </a>
-                        <a href="{{ path('app_profile') }}"
-                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                            {{ 'snowtricks.ui.profile'|trans }}
-                        </a>
+                        {% include '_partials/navigation/_item.html.twig' with {
+                            target: path('app_logout'),
+                            name: 'snowtricks.ui.logout'|trans,
+                            active: false
+                        } %}
+                        {% include '_partials/navigation/_item.html.twig' with {
+                            target: path('app_profile'),
+                            name: 'snowtricks.ui.profile'|trans,
+                            active: app.current_route == 'app_profile'
+                        } %}
                     {% else %}
-                        <a href="{{ path('app_login') }}"
-                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                            {{ 'snowtricks.ui.login'|trans }}
-                        </a>
-                        <a href="{{ path('app_register') }}"
-                           class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                            {{ 'snowtricks.ui.register'|trans }}
-                        </a>
+                        {% include '_partials/navigation/_item.html.twig' with {
+                            target: path('app_login'),
+                            name: 'snowtricks.ui.login'|trans,
+                            active: app.current_route == 'app_login'
+                        } %}
+                        {% include '_partials/navigation/_item.html.twig' with {
+                            target: path('app_register'),
+                            name: 'snowtricks.ui.register'|trans,
+                            active: app.current_route == 'app_register'
+                        } %}
                     {% endif %}
                 </div>
             </div>
@@ -39,11 +48,11 @@
 
 <nav class="fixed bottom-0 w-full border-t-2 sm:hidden bg-white z-50">
     <div class="flex flex-row w-full justify-center items-center">
-        <a href="#"
+        <a href="{{ path('app_homepage') }}"
            class="flex-grow py-3 hover:bg-indigo-50/20 transition-all border-t-4 border-indigo-400 bg-indigo-50">
             {{ heroicon('home', 'h-6 w-6 text-indigo-400 m-auto') }}
         </a>
-        <a href="#"
+        <a href="{{ path('app_homepage') }}#tricks"
            class="flex-grow py-3 hover:bg-indigo-50/50 border-t-4 border-transparent hover:border-indigo-200 transition-all">
             {{ heroicon('bookmark', 'h-6 w-6 text-gray-400 m-auto') }}
         </a>

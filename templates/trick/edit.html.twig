@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form, { attr: { novalidate: "novalidate"}}) }}
+    <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                {% include 'components/_alert.html.twig' with { message, type } %}
+            {% endfor %}
+        {% endfor %}
+
+        <div class="rounded-2xl w-full shadow-xl overflow-hidden mt-8">
+            {# HERO BANNER #}
+
+            <div class="relative flex w-full h-96 justify-center items-center">
+                <label for="trick_form_featuredPictureFile" id="trick-featured-dropzone"
+                       class="z-0 absolute h-full flex flex-col items-start justify-start w-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dropzone overlay">
+                    <div class="z-50 px-3 py-2 text-white bg-gray-800/80 m-4 rounded flex gap-2 items-center">
+                        {{ heroicon('cloud-upload', 'w-6 h-6') }}
+                        {{ 'snowtricks.ui.trick_edit.click_background_update'|trans }}
+                    </div>
+                    <div class="w-full h-full pt-5 pb-6">
+                        <img src="{{ get_file_path(trick, 'trick_featured_picture') }}"
+                             class="z-0 absolute top-0 left-0 w-full h-full object-cover {% if not trick.featuredPicture|default %}hidden{% endif %}"
+                             id="preview">
+                    </div>
+                    {{ form_widget(form.featuredPictureFile, { attr: { class: 'hidden' }}) }}
+                </label>
+                {% if form.featuredPictureFile.vars.errors|length %}
+                    <div class="absolute bottom-3 left-3 mr-3 py-2 px-4 mt-2 bg-red-200 rounded-lg text-red-800 text-sm ">
+                        <span class="font-bold">{{ 'snowtricks.ui.trick_edit.background_image'|trans }}:</span> {{ form_errors(form.featuredPictureFile) }}
+                    </div>
+                {% endif %}
+                <div class="z-10">
+                    <div class="text-white text-lg">{{ form_label(form.name) }}</div>
+                    {{ form_widget(form.name, { attr : { class : "bebas-neue-regular text-3xl"}}) }}
+                    {% if form.name.vars.errors|length %}
+                        <div class="py-2 px-4 mt-2 bg-red-200 rounded-lg text-red-800 text-sm ">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="py-6 px-4 sm:px-8">
+
+                {# --------------- #}
+                {#  MEDIA SECTION  #}
+                {# --------------- #}
+
+                {% include 'trick/edit/_medias.html.twig' %}
+
+                {# -------------- #}
+                {#  DATA SECTION  #}
+                {# -------------- #}
+
+                {{ form_row(form.description, { attr: { class: "flex flex-col w-full mt-4 mb-4", rows: 8}}) }}
+                {{ form_row(form.trickCategory, {attr : {class: 'flex flex-col w-full sm:w-64'}}) }}
+
+                <div class="flex gap-3 flex-wrap justify-end w-full mt-10">
+                    {% set cancelPath = trick.id ? path('app_trick_show', { slug: trick.slug }) : path('app_homepage') ~ '#tricks' %}
+                    <a href="{{ cancelPath }}"
+                       class="rounded-full bg-white w-full sm:w-auto px-4 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        {{ 'snowtricks.ui.cancel'|trans }}
+                    </a>
+
+                    {% if trick.id is not empty %}
+                        <button type="button"
+                                data-trick-id="{{ trick.id }}"
+                                class="js-remove-trick rounded-full w-full sm:w-auto bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            {{ 'snowtricks.ui.remove_trick'|trans }}
+                        </button>
+                    {% endif %}
+                    <button type="submit"
+                            class="rounded-full w-full sm:w-auto bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        {{ 'snowtricks.ui.save'|trans }}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        {{ form_row(form._token) }}
+        {{ form_end(form, { render_rest: false }) }}
+    </main>
+    {% include 'trick/_remove-modal.html.twig' %}
+{% endblock %}

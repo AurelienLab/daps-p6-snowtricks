@@ -1,14 +1,20 @@
 snowtricks:
   ui:
+    add_trick: "Ajouter un trick"
+    cancel: "Annuler"
+    category: "Catégorie"
     click_to_upload: "Cliquer pour uploader"
+    confirm: "Confirmer"
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"
+    description: "Description"
     email: "Adresse e-mail"
     forgot_password: "Mot de passe oublié"
-    name: "Nom"
-    not_subscribed_yet: "Pas encore inscrit ?"
+    home: "Home"
     login: "Connexion"
     logout: "Déconnexion"
+    name: "Nom"
+    not_subscribed_yet: "Pas encore inscrit ?"
     or_drag_and_drop: "ou glisser-desposer"
     or: 'ou'
     password: "Mot de passe"
@@ -17,6 +23,8 @@ snowtricks:
     register: "Inscription"
     register_button: "Enregistrer"
     remember_me: "Se souvenir de moi"
+    remove_trick_confirm: "Voulez-vous vraiment supprimer ce trick ? Cette action est irréversible"
+    remove_trick: "Supprimer le trick"
     reset_password:
       confirm_message: "Si un compte existe avec l'adresse email renseignée, un email contenant un lien de réinitialisation de votre mot de passe vient de vous être envoyé."
       confirm_expiration: "Le lien expirera dans"
@@ -28,6 +36,26 @@ snowtricks:
       request_button: "Réinitialiser mon mot de passe"
       reset_header: "Réinitialiser mon mot de passe"
     save: "Enregistrer"
+    select: "Selectionner"
+    tricks: "Tricks"
+    trick_edit:
+      click_background_update: "Cliquer sur l'image de fond pour la modifier"
+      background_image: "Image de fond"
+    trick_media:
+      image:
+        alt: "Texte alternatif"
+        file: "Image"
+      embed:
+        content: "Contenu iframe"
+      button_add:
+        mediasImages: "Ajouter une image"
+        mediasEmbeds: "Ajouter un contenu externe"
+    created_at: "Créé le %date%"
+    updated_at: "Modifié le %date%"
   flashes:
+    form_errors: "Le formulaire contient des erreurs, merci de vérifier votre saisie"
     profile_updated: "Votre profil a bien été mis à jour"
     password_updated: "Votre mot de passe a été mis à jour"
+    trick_created: "Le nouveau trick a été ajouté"
+    trick_removed: "Le trick a été supprimé"
+    trick_updated: "Le trick a correctement été mis à jour"

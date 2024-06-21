@@ -1,0 +1,30 @@
+<div id="media{{ media.id }}container" class="media-form-container">
+    <div class="edit-media-target">
+        {# Show media #}
+        {% if media.id is not empty and mediaForm.vars.valid %}
+            <div class="media-display">
+                {% include media.template with { media } %}
+            </div>
+
+            {# Show media form #}
+            {{ form_widget(mediaForm, { attr : { class : 'media-form hidden' } }) }}
+
+        {% else %}
+            {{ form_widget(mediaForm, { attr : { class : 'media-form' } }) }}
+        {% endif %}
+    </div>
+
+    {# Edit & Remove buttons #}
+    <div class="flex gap-2 justify-center mt-2">
+        {% if media.id is not empty and mediaForm.vars.valid %}
+            <button type="button"
+                    class="text-gray-700 js-edit-media"
+                    data-target-id="media{{ media.id }}container"
+            >{{ heroicon('pencil', 'w-6 h-6') }}</button>
+        {% endif %}
+        <button type="button"
+                class="text-gray-700 js-delete-media"
+                data-target-id="media{{ media.id }}container"
+        >{{ heroicon('trash', 'w-6 h-6') }}</button>
+    </div>
+</div>
