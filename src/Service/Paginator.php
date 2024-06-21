@@ -95,6 +95,10 @@ class Paginator extends BasePaginator
         return $basePath . '?' . http_build_query(array_merge($query, [$this->queryString => min($totalPages, $this->currentPage + 1)]));
     }
 
+    public function hasMultiplePages(): bool
+    {
+        return $this->getTotalPages() > 1;
+    }
 
     private function resolveCurrentPage(): void
     {

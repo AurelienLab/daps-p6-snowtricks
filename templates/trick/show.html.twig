@@ -111,50 +111,50 @@
                     {% endfor %}
                 </div>
 
-                <nav class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
-
-                    <div class="-mt-px flex w-0 flex-1">
-                        {% if comments.isFirstPage %}
-                            <p class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 cursor-default">
-                                {{ heroicon('arrow-narrow-left', 'mr-3 h-5 w-5 text-gray-400') }}
-                                Previous
-                            </p>
-                        {% else %}
-                            <a href="{{ comments.previous }}"
-                               class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                {{ heroicon('arrow-narrow-left', 'mr-3 h-5 w-5 text-gray-400') }}
-                                Previous
-                            </a>
-                        {% endif %}
-                    </div>
-                    <div class="hidden md:-mt-px md:flex">
-                        {% for link in comments.links %}
-                            {% if link.active %}
-                                <a href="#"
-                                   class="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
-                                   aria-current="page">{{ link.page }}</a>
+                {% if comments.hasMultiplePages %}
+                    <nav class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
+                        <div class="-mt-px flex w-0 flex-1">
+                            {% if comments.isFirstPage %}
+                                <p class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 cursor-default">
+                                    {{ heroicon('arrow-narrow-left', 'mr-3 h-5 w-5 text-gray-400') }}
+                                    Previous
+                                </p>
                             {% else %}
-                                <a href="{{ link.url }}"
-                                   class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">{{ link.page }}</a>
+                                <a href="{{ comments.previous }}"
+                                   class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    {{ heroicon('arrow-narrow-left', 'mr-3 h-5 w-5 text-gray-400') }}
+                                    Previous
+                                </a>
                             {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="-mt-px flex w-0 flex-1 justify-end">
-                        {% if comments.isLastPage %}
-                            <p class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 cursor-default">
-                                Next
-                                {{ heroicon('arrow-narrow-right', 'ml-3 h-5 w-5 text-gray-400') }}
-                            </p>
-                        {% else %}
-                            <a href="{{ comments.next }}"
-                               class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                Next
-                                {{ heroicon('arrow-narrow-right', 'ml-3 h-5 w-5 text-gray-400') }}
-                            </a>
-                        {% endif %}
-                    </div>
-                </nav>
-
+                        </div>
+                        <div class="hidden md:-mt-px md:flex">
+                            {% for link in comments.links %}
+                                {% if link.active %}
+                                    <a href="#"
+                                       class="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
+                                       aria-current="page">{{ link.page }}</a>
+                                {% else %}
+                                    <a href="{{ link.url }}"
+                                       class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">{{ link.page }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="-mt-px flex w-0 flex-1 justify-end">
+                            {% if comments.isLastPage %}
+                                <p class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 cursor-default">
+                                    Next
+                                    {{ heroicon('arrow-narrow-right', 'ml-3 h-5 w-5 text-gray-400') }}
+                                </p>
+                            {% else %}
+                                <a href="{{ comments.next }}"
+                                   class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    Next
+                                    {{ heroicon('arrow-narrow-right', 'ml-3 h-5 w-5 text-gray-400') }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </nav>
+                {% endif %}
                 {# ------------------- #}
                 {# END COMMENT SECTION #}
                 {# ------------------- #}

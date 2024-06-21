@@ -63,7 +63,7 @@ class TrickController extends AbstractController
 
         $comments = new Paginator($this->commentRepository->getCommentPaginatorQuery($trick), $request);
         $comments
-            ->perPage(2)
+            ->perPage(6)
         ;
 
         return $this->render('trick/show.html.twig', [
