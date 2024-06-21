@@ -35,7 +35,7 @@
                                 <p class="text-xs leading-5 text-gray-500">{{ user.updatedAt|format_datetime('medium', 'short', locale='fr') }}</p>
                             </div>
                             <span class="isolate inline-flex rounded-md shadow-sm">
-                              <a href="#"
+                              <a href="{{ path('app_user_edit', { id: user.id} ) }}"
                                  class="relative inline-flex items-center rounded-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
                                 <span class="sr-only">{{ 'snowtricks.ui.edit'|trans }}</span>
                                 {{ heroicon('pencil', 'h-5 w-5') }}

@@ -37,6 +37,7 @@ snowtricks:
       repeat_password: "Répétez le mot de passe"
       request_button: "Réinitialiser mon mot de passe"
       reset_header: "Réinitialiser mon mot de passe"
+    role: "Rôle"
     save: "Enregistrer"
     select: "Selectionner"
     tricks: "Tricks"
@@ -63,3 +64,4 @@ snowtricks:
     trick_created: "Le nouveau trick a été ajouté"
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
+    user_updated: "L'utilisateur a été modifié"
