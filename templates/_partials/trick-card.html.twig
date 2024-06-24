@@ -15,7 +15,9 @@
             </svg>
         </div>
         <div class="ml-4">
-            <a href="#">12 comments</a>
+            <a href="#">{{ trick.comments.count == 0 ?
+                'snowtricks.ui.comment.no_comment'|trans
+                : trick.comments.count ~ ' ' ~ (trick.comments.count > 1 ? 'snowtricks.ui.comment.comments'|trans : 'snowtricks.ui.comment.comment'|trans ) }} </a>
         </div>
     </div>
     <div class="flex gap-4 justify-between">

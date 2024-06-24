@@ -4,6 +4,12 @@ snowtricks:
     cancel: "Annuler"
     category: "Catégorie"
     click_to_upload: "Cliquer pour uploader"
+    comment:
+      no_comment: "Aucun commentaire"
+      comment: "commentaire"
+      comments: "commentaires"
+      message_placeholder: "Bonjour, ..."
+      button: "Envoyer"
     confirm: "Confirmer"
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"
@@ -14,6 +20,7 @@ snowtricks:
     login: "Connexion"
     logout: "Déconnexion"
     name: "Nom"
+    none: "Aucun"
     not_subscribed_yet: "Pas encore inscrit ?"
     or_drag_and_drop: "ou glisser-desposer"
     or: 'ou'
@@ -59,3 +66,4 @@ snowtricks:
     trick_created: "Le nouveau trick a été ajouté"
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
+    comment_created: "Le commentaire a été enregistré"
