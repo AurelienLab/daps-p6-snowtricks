@@ -1,0 +1,6 @@
+{% use 'tailwind_2_layout.html.twig' %}
+
+{%- block widget_attributes -%}
+    {%- set widget_class = widget_class|default('rounded w-full border-gray-400') -%}
+    {{- parent() -}}
+{%- endblock widget_attributes -%}
