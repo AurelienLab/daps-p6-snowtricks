@@ -75,6 +75,8 @@ snowtricks:
     trick_created: "Le nouveau trick a été ajouté"
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
+    registration_success: "Votre inscription a bien été prise en compte. Vous devez valider votre adresse mail avant de pouvoir vous connecter et rejoindre la communauté. Pensez à vérifier vos spams."
+    email_confirmation_success: "Votre adresse email est vérifiée ! Vous pouvez maintenant vous connecter."
     comment_created: "Le commentaire a été enregistré"
     user_updated: "L'utilisateur a été modifié"
   email:
