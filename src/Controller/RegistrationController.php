@@ -20,7 +20,10 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
 
-    public function __construct(private EmailVerifier $emailVerifier)
+    public function __construct(
+        private readonly EmailVerifier       $emailVerifier,
+        private readonly TranslatorInterface $translator
+    )
     {
     }
 
@@ -48,7 +51,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('snowtricks@aurelienlab.dev', 'SnowTricks'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject($this->translator->trans('snowtricks.email.email_confirmation.subject'))
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 

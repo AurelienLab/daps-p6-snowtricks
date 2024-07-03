@@ -82,11 +82,13 @@ snowtricks:
   email:
     cheers: "A bientôt !"
     reset_password:
+      subject: "Demande de réinitialisation de mot de passe"
       button: "Renouveler mon mot de passe"
       introduction: "Bonjour ! Vous avez perdu votre mot de passe ?"
       paragraph_reset: "Pour le renouveler, veuillez cliquer sur le lien ci-dessous."
       paragraph_expiration: "Le lien expirera dans"
     email_confirmation:
+      subject: "Veuilez confirmer votre adresse"
       button: "Confirmer mon adresse"
       introduction: "Bonjour ! Merci de confirmer votre adresse email"
       paragraph_confirm: "Pour cela, veuillez cliquer sur le bouton ci-dessous."
