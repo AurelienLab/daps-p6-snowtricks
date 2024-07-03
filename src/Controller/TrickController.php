@@ -88,7 +88,8 @@ class TrickController extends AbstractController
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
             'commentForm' => $commentForm?->createView(),
-            'comments' => $comments
+            'comments' => $comments,
+            'pageTitle' => $trick->getName()
         ]);
     }
 
@@ -121,6 +122,7 @@ class TrickController extends AbstractController
         return $this->render('trick/edit.html.twig', [
             'trick' => $trick,
             'form' => $form->createView(),
+            'pageTitle' => 'Editer ' . $trick->getName(),
         ]);
     }
 
@@ -160,6 +162,7 @@ class TrickController extends AbstractController
         return $this->render('trick/edit.html.twig', [
             'trick' => $trick,
             'form' => $form->createView(),
+            'pageTitle' => 'Nouveau trick'
         ]);
     }
 

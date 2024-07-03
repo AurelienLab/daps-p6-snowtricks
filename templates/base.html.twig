@@ -14,7 +14,7 @@
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="theme-color" content="#ffffff">
 
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% if pageTitle|default %}{{ pageTitle }} - {% endif %}Snowtricks</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
