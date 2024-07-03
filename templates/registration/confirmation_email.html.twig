@@ -1,11 +1,20 @@
-<h1>Hi! Please confirm your email!</h1>
+{% extends 'email/base.html.twig' %}
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+{% block content %}
+    {% include 'email/_intro.html.twig' with { text: 'Hi! Please confirm your email!'} %}
 
-<p>
-    Cheers!
-</p>
+    {% set paragraph %}
+        Please confirm your email address by clicking the following button. <br>
+        This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    {% endset %}
+
+    {% include 'email/_paragraph.html.twig' with { text: paragraph } %}
+
+    {% include 'email/_button.html.twig' with {
+        text : 'Confirm my Email',
+        url: signedUrl|raw
+    } %}
+
+    {% include 'email/_paragraph.html.twig' with { text: 'Cheers' } %}
+
+{% endblock %}
