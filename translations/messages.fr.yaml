@@ -50,6 +50,7 @@ snowtricks:
       ROLE_USER: "Utilisateur"
     save: "Enregistrer"
     select: "Selectionner"
+    show_more: "Afficher plus"
     tricks: "Tricks"
     trick_edit:
       click_background_update: "Cliquer sur l'image de fond pour la modifier"

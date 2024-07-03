@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    bindRemoveTrickButtons()
+})
+
+document.addEventListener('refreshRemoveTrickButtons', function () {
+    bindRemoveTrickButtons()
+})
+
+function bindRemoveTrickButtons() {
     document.querySelectorAll('.js-remove-trick').forEach((el) => {
         el.addEventListener('click', e => {
             e.preventDefault()
@@ -10,4 +18,4 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.classList.add('open')
         })
     })
-})
+}

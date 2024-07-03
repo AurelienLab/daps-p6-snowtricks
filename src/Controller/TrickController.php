@@ -13,6 +13,7 @@ use App\Service\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,6 +22,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class TrickController extends AbstractController
 {
 
+    public const PAGINATOR_TRICKS_PER_PAGE = 3;
+
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly TrickRepository        $trickRepository,
@@ -28,6 +31,21 @@ class TrickController extends AbstractController
         private readonly FileUploader           $fileUploader
     )
     {
+    }
+
+    #[Route('/ajax/tricks', name: 'app_ajax_trick_index', methods: ['GET'])]
+    public function index(Request $request): Response
+    {
+        $tricks = new Paginator($this->trickRepository->findAllQuery(), $request);
+        $tricks->perPage(self::PAGINATOR_TRICKS_PER_PAGE);
+
+        return new JsonResponse([
+            'paginator' => [
+                'is_last_page' => $tricks->isLastPage(),
+                'next_page_url' => $tricks->next()
+            ],
+            'content' => $this->renderView('trick/_index-ajax.html.twig', compact('tricks'))
+        ]);
     }
 
     #[Route('/tricks/{slug}', name: 'app_trick_show')]
