@@ -49,8 +49,8 @@ class UserType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Image([
-                        'maxHeight' => 400,
-                        'maxWidth' => 600,
+                        'maxHeight' => 1000,
+                        'maxWidth' => 1000,
                         'mimeTypes' => ['image/jpeg', 'image/png']
                     ])
                 ]

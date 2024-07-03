@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,7 +17,9 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class UserController extends AbstractController
 {
     public function __construct(
-        private readonly UserRepository $userRepository, private readonly EntityManagerInterface $entityManager
+        private readonly UserRepository         $userRepository,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly FileUploader           $fileUploader
     )
     {
     }
@@ -41,6 +45,12 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setRoles([$form->get('roles')->getData()]);
+
+            // Upload profile picture if exists
+            $profilePicture = $form->get('profilePictureFile')->getData();
+            if (!empty($profilePicture)) {
+                $this->fileUploader->upload($profilePicture, $this->getUser(), 'user_profile');
+            }
 
             $this->entityManager->flush();
             $this->addFlash('success', 'snowtricks.flashes.user_updated');

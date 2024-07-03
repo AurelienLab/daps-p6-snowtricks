@@ -20,7 +20,7 @@
                         {{ form_label(form.profilePictureFile) }}
                     </div>
                     <div class="w-full mt-2 sm:mt-0">
-                        <label for="profile_form_profilePictureFile" id="profile-dropzone"
+                        <label for="{{ form.profilePictureFile.vars.id }}" id="profile-dropzone"
                                class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dropzone p-4">
                             <div class="w-full flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true"
