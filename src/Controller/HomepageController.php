@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
+use App\Service\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 class HomepageController extends AbstractController
@@ -15,9 +17,16 @@ class HomepageController extends AbstractController
     }
 
     #[Route('/', name: 'app_homepage')]
-    public function index()
+    public function index(Request $request)
     {
-        $tricks = $this->entityManager->getRepository(Trick::class)->findAll();
+        $tricks = new Paginator(
+            $this->entityManager->getRepository(Trick::class)->findAllQuery(),
+            $request
+        );
+        $tricks
+            ->perPage(TrickController::PAGINATOR_TRICKS_PER_PAGE)
+            ->path($this->generateUrl('app_ajax_trick_index'))
+        ;
 
         return $this->render('homepage/index.html.twig', [
             'tricks' => $tricks,

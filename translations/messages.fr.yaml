@@ -50,6 +50,7 @@ snowtricks:
       ROLE_USER: "Utilisateur"
     save: "Enregistrer"
     select: "Selectionner"
+    show_more: "Afficher plus"
     tricks: "Tricks"
     trick_edit:
       click_background_update: "Cliquer sur l'image de fond pour la modifier"
@@ -74,5 +75,19 @@ snowtricks:
     trick_created: "Le nouveau trick a été ajouté"
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
+    registration_success: "Votre inscription a bien été prise en compte. Vous devez valider votre adresse mail avant de pouvoir vous connecter et rejoindre la communauté. Pensez à vérifier vos spams."
+    email_confirmation_success: "Votre adresse email est vérifiée ! Vous pouvez maintenant vous connecter."
     comment_created: "Le commentaire a été enregistré"
     user_updated: "L'utilisateur a été modifié"
+  email:
+    cheers: "A bientôt !"
+    reset_password:
+      button: "Renouveler mon mot de passe"
+      introduction: "Bonjour ! Vous avez perdu votre mot de passe ?"
+      paragraph_reset: "Pour le renouveler, veuillez cliquer sur le lien ci-dessous."
+      paragraph_expiration: "Le lien expirera dans"
+    email_confirmation:
+      button: "Confirmer mon adresse"
+      introduction: "Bonjour ! Merci de confirmer votre adresse email"
+      paragraph_confirm: "Pour cela, veuillez cliquer sur le bouton ci-dessous."
+      paragraph_expiration: "Le lien expirera dans"

@@ -1,9 +1,21 @@
-<h1>Hi!</h1>
+{% extends 'email/base.html.twig' %}
 
-<p>To reset your password, please visit the following link</p>
+{% block content %}
+    {% include 'email/_intro.html.twig' with { text: 'snowtricks.email.reset_password.introduction'|trans } %}
 
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+    {% include 'email/_paragraph.html.twig' with { text: 'snowtricks.email.reset_password.paragraph_reset'|trans } %}
 
-<p>This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+    {% include 'email/_button.html.twig' with {
+        text : 'snowtricks.email.reset_password.button'|trans,
+        url: url('app_reset_password', {token: resetToken.token})
+    } %}
 
-<p>Cheers!</p>
+    {% set paragraph %}
+        {{ 'snowtricks.email.reset_password.paragraph_expiration'|trans }}
+        {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        <br><br>
+        {{ 'snowtricks.email.cheers'|trans }}
+    {% endset %}
+
+    {% include 'email/_paragraph.html.twig' with { text: paragraph } %}
+{% endblock %}

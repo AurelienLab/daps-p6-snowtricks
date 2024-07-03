@@ -30,10 +30,24 @@
                 {% include 'components/_alert.html.twig' with { message, type } %}
             {% endfor %}
         {% endfor %}
-        <div class="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div
+                class="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 js-xhr-paginated"
+                data-next-page="{{ tricks.next }}"
+                data-trigger="#tricks-next-page-button"
+        >
             {% for trick in tricks %}
                 {% include '_partials/trick-card.html.twig' with { trick } %}
             {% endfor %}
+        </div>
+
+        <div class="w-full flex justify-center mt-6">
+            <button
+                    class="flex gap-2 items-center rounded-full bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    id="tricks-next-page-button"
+            >
+                {{ heroicon('arrow-down', 'w-5 h-5') }}
+                {{ 'snowtricks.ui.show_more'|trans }}
+            </button>
         </div>
     </div>
 </div>

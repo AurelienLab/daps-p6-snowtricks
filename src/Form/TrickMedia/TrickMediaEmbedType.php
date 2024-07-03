@@ -39,6 +39,9 @@ class TrickMediaEmbedType extends AbstractType
                     // Remove any existing width or height attributes
                     $attributes = preg_replace('/\s(width|height)\s*=\s*"\d*"/', '', $attributes);
 
+                    // Remove position:absolute from the style attribute if present
+                    $attributes = preg_replace('/style="([^"]*)position\s*:\s*absolute;?([^"]*)"/', 'style="$1$2"', $attributes);
+
                     // Add the new width and height attributes
                     return "<iframe$attributes width=\"160\" height=\"90\">";
                 }, $data['content']);
