@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container mx-auto mb-16 sm:mb-0 px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                {% include 'components/_alert.html.twig' with { message, type } %}
+            {% endfor %}
+        {% endfor %}
+
+        <div class="rounded-2xl w-full shadow-xl overflow-hidden mt-8 p-8">
+            <h1 class="text-xl font-bold">{{ 'snowtricks.ui.user_list'|trans }}</h1>
+
+            <ul role="list" class="divide-y divide-gray-100 border-t mt-8 ">
+                {% for user in users %}
+                    <li class="flex justify-between gap-x-6 py-5 px-8 hover:bg-gray-100 transition-colors">
+                        <div class="flex min-w-0 gap-x-4">
+                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover"
+                                 src="{{ profile_picture(user) }}"
+                                 alt="">
+                            <div class="min-w-0 flex-auto">
+                                <p class="text-sm font-semibold leading-6 text-gray-900">{{ user.name }}
+                                    {% for _role in user.roles %}
+                                        <span
+                                                class="ml-4 inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">{{ ('snowtricks.ui.roles.' ~ _role)|trans }}</span>
+                                    {% endfor %}
+                                </p>
+                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="shrink-0 flex gap-4 items-center justify-end">
+                            <div>
+                                <p class="mt-1 text-xs leading-5 text-gray-500">{{ 'snowtricks.ui.last_update'|trans }}</p>
+                                <p class="text-xs leading-5 text-gray-500">{{ user.updatedAt|format_datetime('medium', 'short', locale='fr') }}</p>
+                            </div>
+                            <span class="isolate inline-flex rounded-md shadow-sm">
+                              <a href="{{ path('app_user_edit', { id: user.id} ) }}"
+                                 class="relative inline-flex items-center rounded-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                                <span class="sr-only">{{ 'snowtricks.ui.edit'|trans }}</span>
+                                {{ heroicon('pencil', 'h-5 w-5') }}
+                              </a>
+                            </span>
+
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+{% endblock %}
+

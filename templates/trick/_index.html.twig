@@ -5,12 +5,25 @@
             <p class="mt-2 text-lg leading-8 text-gray-600">Plura mihi bona sunt, inclinet, amari petere vellent. Ab
                 illo tempore, ab est sed immemorabili.</p>
         </div>
-        <div class="w-full flex justify-center mt-8 mb-8">
-            <a href="{{ path('app_trick_create') }}"
-               class="flex justify-center items-center gap-3 rounded-full w-full max-w-96 bg-indigo-600 px-4 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                {{ heroicon('plus', 'h-7 w-7', 'outline') }}
-                {{ 'snowtricks.ui.add_trick'|trans }}
-            </a>
+        <div class="w-full flex justify-center mt-8 mb-8 flex-col items-center gap-5">
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('app_trick_create') }}"
+                   class="flex justify-center items-center gap-3 rounded-full w-full max-w-96 bg-indigo-600 px-4 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    {{ heroicon('plus', 'h-7 w-7', 'outline') }}
+                    {{ 'snowtricks.ui.add_trick'|trans }}
+                </a>
+            {% else %}
+                <button
+                        class="flex justify-center items-center gap-3 rounded-full w-full max-w-96 bg-indigo-300 cursor-default px-4 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    {{ heroicon('plus', 'h-7 w-7', 'outline') }}
+                    {{ 'snowtricks.ui.add_trick'|trans }}
+                </button>
+                <p class="text-gray-400 font-light">
+                    Vous devez être connecté pour contribuer avec un nouveau trick.
+                    <a href="{{ path('app_login') }}" class="text-indigo-500 font-normal hover:underline">Se
+                        connecter</a>
+                </p>
+            {% endif %}
         </div>
         {% for type, messages in app.flashes %}
             {% for message in messages %}
