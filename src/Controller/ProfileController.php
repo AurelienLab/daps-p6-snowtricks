@@ -15,6 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ProfileController extends AbstractController
 {
@@ -31,6 +32,7 @@ class ProfileController extends AbstractController
      * @throws Exception
      */
     #[Route('/profile', name: 'app_profile')]
+    #[IsGranted('ROLE_USER')]
     public function editAction(Request $request)
     {
         $profileForm = $this->createForm(ProfileFormType::class, $this->getUser());
@@ -61,7 +63,7 @@ class ProfileController extends AbstractController
 
             $this->getUser()->setPassword($encodedPassword);
             $this->entityManager->flush();
-            
+
             $this->addFlash('success', 'snowtricks.flashes.password_updated');
         }
 
