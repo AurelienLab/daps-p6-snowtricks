@@ -67,3 +67,15 @@ snowtricks:
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
     comment_created: "Le commentaire a été enregistré"
+  email:
+    cheers: "A bientôt !"
+    reset_password:
+      button: "Renouveler mon mot de passe"
+      introduction: "Bonjour ! Vous avez perdu votre mot de passe ?"
+      paragraph_reset: "Pour le renouveler, veuillez cliquer sur le lien ci-dessous."
+      paragraph_expiration: "Le lien expirera dans"
+    email_confirmation:
+      button: "Confirmer mon adresse"
+      introduction: "Bonjour ! Merci de confirmer votre adresse email"
+      paragraph_confirm: "Pour cela, veuillez cliquer sur le bouton ci-dessous."
+      paragraph_expiration: "Le lien expirera dans"
