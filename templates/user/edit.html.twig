@@ -33,7 +33,7 @@
                                             class="font-semibold">{{ 'snowtricks.ui.click_to_upload'|trans }}</span>
                                     {{ 'snowtricks.ui.or_drag_and_drop'|trans }}</p>
                                 <p class="text-xs text-gray-500">PNG {{ 'snowtricks.ui.or'|trans }} JPG (MAX.
-                                    800x400px)</p>
+                                    1000x1000px)</p>
 
                                 <img src="{{ get_file_path(user, 'user_profile') }}"
                                      class="mt-4 mx-auto h-16 w-16 rounded-full object-cover {% if not user.profilePicture|default %}hidden{% endif %}"

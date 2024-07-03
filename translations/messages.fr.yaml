@@ -45,6 +45,9 @@ snowtricks:
       request_button: "Réinitialiser mon mot de passe"
       reset_header: "Réinitialiser mon mot de passe"
     role: "Rôle"
+    roles:
+      ROLE_ADMIN: "Administrateur"
+      ROLE_USER: "Utilisateur"
     save: "Enregistrer"
     select: "Selectionner"
     tricks: "Tricks"

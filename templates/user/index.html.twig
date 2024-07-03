@@ -22,7 +22,7 @@
                                 <p class="text-sm font-semibold leading-6 text-gray-900">{{ user.name }}
                                     {% for _role in user.roles %}
                                         <span
-                                                class="ml-4 inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">{{ _role }}</span>
+                                                class="ml-4 inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">{{ ('snowtricks.ui.roles.' ~ _role)|trans }}</span>
                                     {% endfor %}
                                 </p>
                                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">
