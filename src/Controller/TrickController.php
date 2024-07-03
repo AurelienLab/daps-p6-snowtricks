@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TrickController extends AbstractController
 {
@@ -74,14 +75,9 @@ class TrickController extends AbstractController
     }
 
     #[Route('/tricks/{slug}/edit', name: 'app_trick_edit')]
-    public function edit(Request $request, string $slug): Response
+    #[IsGranted('edit', 'trick')]
+    public function edit(Request $request, Trick $trick): Response
     {
-        $trick = $this->trickRepository->findOneBy(['slug' => $slug]);
-
-        if (!$trick) {
-            throw $this->createNotFoundException();
-        }
-
         $form = $this->createForm(TrickFormType::class, $trick);
 
         $form->handleRequest($request);
@@ -114,6 +110,7 @@ class TrickController extends AbstractController
      * @throws ORMException
      */
     #[Route('/tricks/create', name: 'app_trick_create', priority: 20)]
+    #[IsGranted('ROLE_USER')]
     public function create(Request $request): Response
     {
         $trick = new Trick();
@@ -128,6 +125,8 @@ class TrickController extends AbstractController
             if (!empty($featuredPicture)) {
                 $this->fileUploader->upload($featuredPicture, $trick, 'trick_featured_picture');
             }
+
+            $trick->setAuthor($this->getUser());
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
 
@@ -148,6 +147,7 @@ class TrickController extends AbstractController
 
 
     #[Route('/tricks/remove', name: 'app_trick_remove', methods: 'POST', priority: 20)]
+    #[IsGranted('remove', 'trick')]
     public function delete(Request $request): Response
     {
         $trickId = $request->getPayload()->get('trick_id');

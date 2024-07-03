@@ -18,9 +18,13 @@
                 </div>
                 <div class="z-20 absolute top-5 right-5">
                     <div class="flex text-white gap-3 items-center">
-                        <a href="{{ path('app_trick_edit', { 'slug' : trick.slug }) }}">{{ heroicon('pencil', 'w-5 h-6') }}</a>
-                        <a href="#" class="js-remove-trick"
-                           data-trick-id="{{ trick.id }}">{{ heroicon('trash', 'w-5 h-6') }}</a>
+                        {% if is_granted('edit', trick) %}
+                            <a href="{{ path('app_trick_edit', { 'slug' : trick.slug }) }}">{{ heroicon('pencil', 'w-5 h-6') }}</a>
+                        {% endif %}
+                        {% if is_granted('delete', trick) %}
+                            <a href="#" class="js-remove-trick"
+                               data-trick-id="{{ trick.id }}">{{ heroicon('trash', 'w-5 h-6') }}</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

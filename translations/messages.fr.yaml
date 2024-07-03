@@ -14,9 +14,11 @@ snowtricks:
     create_account: "Créer un compte"
     current_password: "Mot de passe actuel"
     description: "Description"
+    edit: "Editer"
     email: "Adresse e-mail"
     forgot_password: "Mot de passe oublié"
     home: "Home"
+    last_update: "Dernière modification"
     login: "Connexion"
     logout: "Déconnexion"
     name: "Nom"
@@ -42,6 +44,7 @@ snowtricks:
       repeat_password: "Répétez le mot de passe"
       request_button: "Réinitialiser mon mot de passe"
       reset_header: "Réinitialiser mon mot de passe"
+    role: "Rôle"
     save: "Enregistrer"
     select: "Selectionner"
     tricks: "Tricks"
@@ -57,6 +60,8 @@ snowtricks:
       button_add:
         mediasImages: "Ajouter une image"
         mediasEmbeds: "Ajouter un contenu externe"
+    users: "Utilisateurs"
+    user_list: "Liste des utilisateurs"
     created_at: "Créé le %date%"
     updated_at: "Modifié le %date%"
   flashes:
@@ -67,3 +72,4 @@ snowtricks:
     trick_removed: "Le trick a été supprimé"
     trick_updated: "Le trick a correctement été mis à jour"
     comment_created: "Le commentaire a été enregistré"
+    user_updated: "L'utilisateur a été modifié"
