@@ -147,12 +147,13 @@ class TrickController extends AbstractController
 
 
     #[Route('/tricks/remove', name: 'app_trick_remove', methods: 'POST', priority: 20)]
-    #[IsGranted('remove', 'trick')]
     public function delete(Request $request): Response
     {
         $trickId = $request->getPayload()->get('trick_id');
 
         $trick = $this->trickRepository->findOneBy(['id' => $trickId]);
+
+        $this->denyAccessUnlessGranted('delete', $trick);
 
         if (!$trick) {
             throw $this->createNotFoundException();
