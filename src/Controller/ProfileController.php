@@ -69,7 +69,8 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/edit.html.twig', [
             'profileForm' => $profileForm->createView(),
-            'passwordForm' => $passwordUpdateForm->createView()
+            'passwordForm' => $passwordUpdateForm->createView(),
+            'pageTitle' => 'Mon profil'
         ]);
     }
 

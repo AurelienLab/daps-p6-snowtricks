@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Paginator extends BasePaginator
 {
 
+    private $path = null;
     private $queryString = 'page';
     private $perPage = 10;
 
@@ -25,6 +26,13 @@ class Paginator extends BasePaginator
         $this->resolveCurrentPage();
         $this->updateQuery();
 
+    }
+
+    public function path(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
     }
 
     public function queryString(string $parameter): self
@@ -53,7 +61,7 @@ class Paginator extends BasePaginator
 
         $pages = [];
 
-        $basePath = $this->request->getPathInfo();
+        $basePath = $this->path ?? $this->request->getPathInfo();
         $query = $this->request->query->all();
         foreach (range(1, $totalPages) as $page) {
             $pages[] = [
@@ -79,7 +87,7 @@ class Paginator extends BasePaginator
 
     public function previous(): string
     {
-        $basePath = $this->request->getPathInfo();
+        $basePath = $this->path ?? $this->request->getPathInfo();
         $query = $this->request->query->all();
 
         return $basePath . '?' . http_build_query(array_merge($query, [$this->queryString => max(0, $this->currentPage - 1)]));
@@ -89,7 +97,7 @@ class Paginator extends BasePaginator
     {
         $totalPages = $this->getTotalPages();
 
-        $basePath = $this->request->getPathInfo();
+        $basePath = $this->path ?? $this->request->getPathInfo();
         $query = $this->request->query->all();
 
         return $basePath . '?' . http_build_query(array_merge($query, [$this->queryString => min($totalPages, $this->currentPage + 1)]));

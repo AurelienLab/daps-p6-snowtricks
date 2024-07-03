@@ -12,6 +12,14 @@
                 {{ heroicon('arrow-down', 'w-9 h-9') }}
             </a>
         </div>
+
+        <div class="absolute py-5 z-50">
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    {% include 'components/_alert.html.twig' with { message, type } %}
+                {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 
     {% include 'trick/_index.html.twig' %}
