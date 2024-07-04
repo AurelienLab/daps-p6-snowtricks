@@ -16,6 +16,12 @@ class HomepageController extends AbstractController
     {
     }
 
+    /**
+     * Homepage Controller
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     #[Route('/', name: 'app_homepage')]
     public function index(Request $request)
     {

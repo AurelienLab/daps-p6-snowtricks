@@ -4,6 +4,7 @@ namespace App\Twig\Runtime;
 
 use App\Entity\User;
 use App\Service\FileResolver;
+use Exception;
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -17,7 +18,8 @@ class UserRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @throws \Exception
+     * Shorthand to get user profile picture or placeholder
+     * @throws Exception
      */
     public function getProfilePicture(User $user): string
     {

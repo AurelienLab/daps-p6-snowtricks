@@ -29,6 +29,8 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * Profile and password update form page
+     *
      * @throws Exception
      */
     #[Route('/profile', name: 'app_profile')]

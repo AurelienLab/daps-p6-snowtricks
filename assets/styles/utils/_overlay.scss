@@ -1,6 +1,7 @@
 .overlay {
-  &:after {
+  &::after {
     content: "";
+
     @apply absolute w-full h-full bg-gradient-to-b from-indigo-500 to-sky-600 opacity-60;
   }
 }

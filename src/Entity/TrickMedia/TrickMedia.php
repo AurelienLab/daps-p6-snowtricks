@@ -30,16 +30,26 @@ class TrickMedia implements TimestampableInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Trick $trick = null;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return Trick|null
+     */
     public function getTrick(): ?Trick
     {
         return $this->trick;
     }
 
+    /**
+     * @param Trick|null $trick
+     * @return $this
+     */
     public function setTrick(?Trick $trick): static
     {
         $this->trick = $trick;

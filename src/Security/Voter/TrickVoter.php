@@ -20,6 +20,10 @@ class TrickVoter extends Voter
     public const EDIT = 'edit';
     public const DELETE = 'delete';
 
+
+    /**
+     * @inheritDoc
+     */
     protected function supports(string $attribute, mixed $subject): bool
     {
 
@@ -27,6 +31,10 @@ class TrickVoter extends Voter
             && $subject instanceof Trick;
     }
 
+
+    /**
+     * @inheritDoc
+     */
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
@@ -42,12 +50,27 @@ class TrickVoter extends Voter
         };
     }
 
+    /**
+     * Is the user allowed to edit the trick
+     *
+     * @param Trick $trick
+     * @param User $user
+     * @return bool
+     */
     private function canEdit(Trick $trick, User $user): bool
     {
         return $this->security->isGranted('ROLE_ADMIN')
             || $trick->getAuthor() === $user;
     }
 
+
+    /**
+     * Is the user allowed to remove the trick
+     *
+     * @param Trick $trick
+     * @param User $user
+     * @return bool
+     */
     private function canDelete(Trick $trick, User $user): bool
     {
         return $this->security->isGranted('ROLE_ADMIN')

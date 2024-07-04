@@ -30,7 +30,11 @@ class TrickFormType extends AbstractType
         TrickMediaEmbed::class => ['form_name' => 'mediasEmbeds', 'form_type' => TrickMediaEmbedType::class],
     ];
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+
+    /**
+     * @inheritDoc
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // Form base
         $builder
@@ -122,6 +126,9 @@ class TrickFormType extends AbstractType
         });
     }
 
+    /**
+     * @inheritDoc
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

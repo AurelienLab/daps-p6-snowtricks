@@ -11,7 +11,7 @@
                     {% include 'components/_alert.html.twig' with { message, type } %}
                 {% endfor %}
             {% endfor %}
-            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">Mes informations</h2>
+            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">{{ 'snowtricks.ui.my_information'|trans }}</h2>
             {{ form_start(profileForm, { attr: {class: "flex flex-col gap-6 w-full m-auto max-w-96", novalidate: 'novalidate'} }) }}
 
             {{ form_row(profileForm.name) }}
@@ -53,7 +53,7 @@
 
             <hr class="w-48 h-1 mx-auto my-24 bg-gray-100 border-0 rounded">
 
-            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">Mot de passe</h2>
+            <h2 class="text-3xl text-bold mb-8 bebas-neue-regular">{{ 'snowtricks.ui.password'|trans }}</h2>
             {{ form_start(passwordForm, { attr: {class: "flex flex-col gap-6 w-full m-auto max-w-96", novalidate: 'novalidate'} }) }}
             {{ form_row(passwordForm.currentPassword) }}
             {{ form_row(passwordForm.plainPassword) }}

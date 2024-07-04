@@ -55,6 +55,18 @@
             "tests/bootstrap.php"
         ]
     },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "0f18b4decdf5695d692c1d0dfd65516a07a6adf1"
+        },
+        "files": [
+            "public/.htaccess"
+        ]
+    },
     "symfony/asset-mapper": {
         "version": "7.0",
         "recipe": {
@@ -136,6 +148,15 @@
         "files": [
             "config/packages/mailer.yaml"
         ]
+    },
+    "symfony/mailgun-mailer": {
+        "version": "7.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.4",
+            "ref": "addcb559b32d9dbb4843826b063565e1b15a2a57"
+        }
     },
     "symfony/maker-bundle": {
         "version": "1.58",

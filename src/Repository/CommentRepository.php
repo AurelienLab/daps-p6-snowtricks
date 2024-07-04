@@ -24,6 +24,12 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    /**
+     * Generate query to feed a Paginator with trick comments
+     *
+     * @param Trick $trick
+     * @return QueryBuilder
+     */
     public function getCommentPaginatorQuery(Trick $trick): QueryBuilder
     {
 
@@ -33,5 +39,4 @@ class CommentRepository extends ServiceEntityRepository
                     ->orderBy('c.createdAt', 'DESC')
         ;
     }
-
 }

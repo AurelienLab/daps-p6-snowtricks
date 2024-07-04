@@ -15,7 +15,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class UpdatePasswordFormType extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @inheritDoc
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('currentPassword', PasswordType::class, [
@@ -55,12 +58,13 @@ class UpdatePasswordFormType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * @inheritDoc
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class
         ]);
     }
-
-
 }

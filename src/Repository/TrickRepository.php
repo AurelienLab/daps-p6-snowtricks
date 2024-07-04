@@ -22,6 +22,11 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
+    /**
+     * Get a trick list query to feed a paginator
+     *
+     * @return QueryBuilder
+     */
     public function findAllQuery(): QueryBuilder
     {
 

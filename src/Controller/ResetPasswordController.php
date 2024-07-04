@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -27,14 +28,21 @@ class ResetPasswordController extends AbstractController
     use ResetPasswordControllerTrait;
 
     public function __construct(
-        private ResetPasswordHelperInterface $resetPasswordHelper,
-        private EntityManagerInterface       $entityManager
+        private readonly ResetPasswordHelperInterface $resetPasswordHelper,
+        private readonly EntityManagerInterface       $entityManager,
+        private readonly TranslatorInterface          $translator,
     )
     {
     }
 
     /**
      * Display & process form to request a password reset.
+     *
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @param TranslatorInterface $translator
+     * @return Response
+     * @throws TransportExceptionInterface
      */
     #[Route('', name: 'app_forgot_password_request')]
     public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
@@ -58,6 +66,8 @@ class ResetPasswordController extends AbstractController
 
     /**
      * Confirmation page after a user has requested a password reset.
+     *
+     * @return Response
      */
     #[Route('/check-email', name: 'app_check_email')]
     public function checkEmail(): Response
@@ -75,6 +85,12 @@ class ResetPasswordController extends AbstractController
 
     /**
      * Validates and process the reset URL that the user clicked in their email.
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param TranslatorInterface $translator
+     * @param string|null $token
+     * @return Response
      */
     #[Route('/reset/{token}', name: 'app_reset_password')]
     public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, string $token = null): Response
@@ -133,6 +149,15 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
+    /**
+     * Send a reset password link via email
+     *
+     * @param string $emailFormData
+     * @param MailerInterface $mailer
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse
+     * @throws TransportExceptionInterface
+     */
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer, TranslatorInterface $translator): RedirectResponse
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
@@ -163,7 +188,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('snowtricks@vmedias.fr', 'Snowtricks'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject($this->translator->trans('snowtricks.email.reset_password.subject'))
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,

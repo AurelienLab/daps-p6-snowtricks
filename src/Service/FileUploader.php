@@ -22,6 +22,8 @@ class FileUploader
     }
 
     /**
+     * Upload a file related to and entity / property according to the config
+     *
      * @throws Exception
      */
     public function upload(UploadedFile $file, mixed $object, string $uploadTarget): string
@@ -29,7 +31,7 @@ class FileUploader
         $targetConfig = $this->configResolver->resolve($uploadTarget);
 
         if ($object instanceof $targetConfig['entity'] === false) {
-            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', $uploadTarget, $targetConfig['entity'], get_class($object)));
+            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', htmlentities($uploadTarget), $targetConfig['entity'], get_class($object)));
         }
 
         $targetDirectory = $targetConfig['directory'];

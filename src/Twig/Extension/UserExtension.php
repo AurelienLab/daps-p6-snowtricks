@@ -8,12 +8,10 @@ use Twig\TwigFunction;
 
 class UserExtension extends AbstractExtension
 {
-    public function getFilters(): array
-    {
-        return [
-        ];
-    }
 
+    /**
+     * @return TwigFunction[]
+     */
     public function getFunctions(): array
     {
         return [

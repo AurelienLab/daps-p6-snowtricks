@@ -9,12 +9,10 @@ use Twig\TwigFunction;
 
 class TrickExtension extends AbstractExtension
 {
-    public function getFilters(): array
-    {
-        return [
-        ];
-    }
-
+    
+    /**
+     * @return TwigFunction[]
+     */
     public function getFunctions(): array
     {
         return [

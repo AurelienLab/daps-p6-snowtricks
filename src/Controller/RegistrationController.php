@@ -20,10 +20,21 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
 
-    public function __construct(private EmailVerifier $emailVerifier)
+    public function __construct(
+        private readonly EmailVerifier       $emailVerifier,
+        private readonly TranslatorInterface $translator
+    )
     {
     }
 
+    /**
+     * Registration page controller
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -48,7 +59,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('snowtricks@aurelienlab.dev', 'SnowTricks'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject($this->translator->trans('snowtricks.email.email_confirmation.subject'))
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
@@ -65,6 +76,15 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+    /**
+     * Email validation controller
+     * The user lands here after clicking on the address confirmation mail button
+     *
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @param UserRepository $userRepository
+     * @return Response
+     */
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {

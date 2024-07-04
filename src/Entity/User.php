@@ -66,16 +66,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         $this->tricks = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -83,11 +93,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string|null $name
+     * @return $this
+     */
     public function setName(?string $name): User
     {
         $this->name = $name;
@@ -138,6 +155,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -154,22 +175,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getProfilePicture(): ?string
     {
         return $this->profilePicture;
     }
 
+    /**
+     * @param string|null $profilePicture
+     * @return $this
+     */
     public function setProfilePicture(?string $profilePicture): User
     {
         $this->profilePicture = $profilePicture;
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
+    /**
+     * @param bool $isVerified
+     * @return $this
+     */
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
@@ -185,6 +220,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this->tricks;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function addTrick(Trick $trick): static
     {
         if (!$this->tricks->contains($trick)) {
@@ -195,6 +234,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function removeTrick(Trick $trick): static
     {
         if ($this->tricks->removeElement($trick)) {

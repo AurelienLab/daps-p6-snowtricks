@@ -20,13 +20,19 @@ snowtricks:
     home: "Home"
     last_update: "Dernière modification"
     login: "Connexion"
+    login_self: "Se connecter"
     logout: "Déconnexion"
+    must_login_to_comment: "Vous devez être connecté pour poster un commentaire."
+    must_login_to_post: "Vous devez être connecté pour contribuer avec un nouveau trick."
+    my_information: "Mes informations"
     name: "Nom"
+    next: "Suivant"
     none: "Aucun"
     not_subscribed_yet: "Pas encore inscrit ?"
     or_drag_and_drop: "ou glisser-desposer"
     or: 'ou'
     password: "Mot de passe"
+    previous: "Précédent"
     profile: "Profil"
     profile_picture: "Photo de profil"
     register: "Inscription"
@@ -55,6 +61,7 @@ snowtricks:
     trick_edit:
       click_background_update: "Cliquer sur l'image de fond pour la modifier"
       background_image: "Image de fond"
+    trick_list_introduction: "Ajoutez vos tricks, découvrez les figures les plus dingues, et partagez votre passion du snowboard avec la communauté !"
     trick_media:
       image:
         alt: "Texte alternatif"
@@ -82,11 +89,13 @@ snowtricks:
   email:
     cheers: "A bientôt !"
     reset_password:
+      subject: "Demande de réinitialisation de mot de passe"
       button: "Renouveler mon mot de passe"
       introduction: "Bonjour ! Vous avez perdu votre mot de passe ?"
       paragraph_reset: "Pour le renouveler, veuillez cliquer sur le lien ci-dessous."
       paragraph_expiration: "Le lien expirera dans"
     email_confirmation:
+      subject: "Veuilez confirmer votre adresse"
       button: "Confirmer mon adresse"
       introduction: "Bonjour ! Merci de confirmer votre adresse email"
       paragraph_confirm: "Pour cela, veuillez cliquer sur le bouton ci-dessous."

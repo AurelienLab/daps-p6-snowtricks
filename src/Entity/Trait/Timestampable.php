@@ -2,50 +2,68 @@
 
 namespace App\Entity\Trait;
 
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Timestampable
 {
 
     #[ORM\Column(nullable: false)]
-    private \DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: false)]
-    private \DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
-    public function getCreatedAt(): \DateTimeImmutable
+    /**
+     * @return DateTimeImmutable
+     */
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
         return $this;
     }
 
-    public function getUpdatedAt(): \DateTimeImmutable
+    /**
+     * @return DateTimeImmutable
+     */
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    /**
+     * @param DateTimeImmutable $updatedAt
+     */
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
         return $this;
     }
 
+    /**
+     * Automatically set createdAt value at persist
+     * @return void
+     */
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
-        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setCreatedAt(new DateTimeImmutable());
     }
 
+    /**
+     * Automatically set updatedAt value at persist and update
+     * @return void
+     */
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setUpdatedAtValue(): void
     {
-        $this->setUpdatedAt(new \DateTimeImmutable());
+        $this->setUpdatedAt(new DateTimeImmutable());
     }
 
 

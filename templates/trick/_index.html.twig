@@ -2,8 +2,9 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Catalogue de tricks</h2>
-            <p class="mt-2 text-lg leading-8 text-gray-600">Plura mihi bona sunt, inclinet, amari petere vellent. Ab
-                illo tempore, ab est sed immemorabili.</p>
+            <p class="mt-2 text-lg leading-8 text-gray-600">
+                {{ 'snowtricks.ui.trick_list_introduction'|trans }}
+            </p>
         </div>
         <div class="w-full flex justify-center mt-8 mb-8 flex-col items-center gap-5">
             {% if is_granted('ROLE_USER') %}
@@ -19,9 +20,10 @@
                     {{ 'snowtricks.ui.add_trick'|trans }}
                 </button>
                 <p class="text-gray-400 font-light">
-                    Vous devez être connecté pour contribuer avec un nouveau trick.
-                    <a href="{{ path('app_login') }}" class="text-indigo-500 font-normal hover:underline">Se
-                        connecter</a>
+                    {{ 'snowtricks.ui.must_login_to_post'|trans }}
+                    <a href="{{ path('app_login') }}" class="text-indigo-500 font-normal hover:underline">
+                        {{ 'snowtricks.ui.login_self'|trans }}
+                    </a>
                 </p>
             {% endif %}
         </div>
