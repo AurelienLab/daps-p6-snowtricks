@@ -26,7 +26,7 @@ class FileResolver
         $uploadConfig = $this->configResolver->resolve($uploadTarget);
 
         if ($object instanceof $uploadConfig['entity'] === false) {
-            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', $uploadTarget, $uploadConfig['entity'], get_class($object)));
+            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', htmlentities($uploadTarget), $uploadConfig['entity'], get_class($object)));
         }
 
         $filename = $this->propertyAccessor->getValue($object, $uploadConfig['property']);
@@ -39,7 +39,7 @@ class FileResolver
 
         $filesystem = new Filesystem();
         if ($filesystem->exists(ltrim($filePath, '/')) === false) {
-            throw new FileNotFoundException(sprintf('Unable to find file %s', $filePath));
+            throw new FileNotFoundException(sprintf('Unable to find file %s', htmlentities($filePath)));
         }
 
         return '/' . ltrim($filePath, '/');

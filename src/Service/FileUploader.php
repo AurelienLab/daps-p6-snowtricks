@@ -29,7 +29,7 @@ class FileUploader
         $targetConfig = $this->configResolver->resolve($uploadTarget);
 
         if ($object instanceof $targetConfig['entity'] === false) {
-            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', $uploadTarget, $targetConfig['entity'], get_class($object)));
+            throw new Exception(sprintf('Upload target %s expect an object of type %s, %s provided', htmlentities($uploadTarget), $targetConfig['entity'], get_class($object)));
         }
 
         $targetDirectory = $targetConfig['directory'];

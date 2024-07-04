@@ -22,7 +22,7 @@ class FileUploaderConfigResolver
         $availableTargets = $this->parameterBag->get('upload_targets');
 
         if (!isset($availableTargets[$uploadTarget])) {
-            throw new Exception(sprintf('No upload target found for %s in project parameters', $uploadTarget));
+            throw new Exception(sprintf('No upload target found for %s in project parameters', htmlentities($uploadTarget)));
         }
 
         return $availableTargets[$uploadTarget];

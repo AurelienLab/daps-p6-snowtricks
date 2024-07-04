@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.5.7",
+        "braces": "^3.0.3",
         "sass": "^1.74.1",
         "sass-loader": "^14.1.1"
     }
