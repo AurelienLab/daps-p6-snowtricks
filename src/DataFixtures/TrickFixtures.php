@@ -85,6 +85,7 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
                 'reference' => 'chickensalad',
                 'category' => TrickCategoryFixtures::CATEGORY_GRAB,
                 'name' => 'Chicken Salad',
+                'featured' => 'chicken-salad.jpg',
                 'description' => 'Prends ta planche derrière tes pieds avec la main avant, et fais comme si tu préparais une salade de poulet en plein air. Le chicken salad, c’est un trick fun avec un nom qui donne faim.' . PHP_EOL . PHP_EOL .
                     'Pour y arriver, prends de la vitesse et saute en fléchissant les genoux. Avec la main avant, attrape le côté de ta planche derrière tes pieds. Garde bien ton équilibre et profite de la sensation de voler tout en préparant ta "salade". Prépare-toi à atterrir avec style pour couronner le tout !'
             ],
@@ -96,6 +97,10 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
             $trick->setName($trickData['name']);
             $trick->setDescription($trickData['description']);
             $trick->setTrickCategory($this->getReference($trickData['category'], TrickCategory::class));
+            if (!empty($trickData['featured'])) {
+                $trick->setFeaturedPicture($trickData['featured']);
+            }
+
             $manager->persist($trick);
             $this->addReference($trickData['reference'], $trick);
         }
@@ -103,7 +108,7 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             TrickCategoryFixtures::class,
