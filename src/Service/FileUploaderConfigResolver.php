@@ -15,6 +15,8 @@ class FileUploaderConfigResolver
     }
 
     /**
+     * Retrieve upload configuration from its name
+     *
      * @throws Exception
      */
     public function resolve(string $uploadTarget): array

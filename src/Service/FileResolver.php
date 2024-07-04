@@ -18,6 +18,8 @@ class FileResolver
     }
 
     /**
+     * Retrieve a file path from uploaded file in entity according to config
+     *
      * @throws Exception
      */
     public function resolve(mixed $object, string $uploadTarget): ?string

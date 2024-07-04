@@ -12,6 +12,7 @@ use App\Service\FileUploader;
 use App\Service\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +34,13 @@ class TrickController extends AbstractController
     {
     }
 
+    /**
+     * Returns a json with pagination information and html of the tricks cards
+     * Used for ajax pagination in tricks list
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/ajax/tricks', name: 'app_ajax_trick_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
@@ -48,6 +56,13 @@ class TrickController extends AbstractController
         ]);
     }
 
+    /**
+     * Trick details page
+     *
+     * @param Request $request
+     * @param string $slug
+     * @return Response
+     */
     #[Route('/tricks/{slug}', name: 'app_trick_show')]
     public function show(Request $request, string $slug): Response
     {
@@ -93,6 +108,14 @@ class TrickController extends AbstractController
         ]);
     }
 
+    /**
+     * Trick edit page
+     *
+     * @param Request $request
+     * @param Trick $trick
+     * @return Response
+     * @throws Exception
+     */
     #[Route('/tricks/{slug}/edit', name: 'app_trick_edit')]
     #[IsGranted('edit', 'trick')]
     public function edit(Request $request, Trick $trick): Response
@@ -127,7 +150,11 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @throws ORMException
+     * Add a new trick
+     *
+     * @param Request $request
+     * @return Response
+     * @throws Exception
      */
     #[Route('/tricks/create', name: 'app_trick_create', priority: 20)]
     #[IsGranted('ROLE_USER')]
@@ -166,7 +193,12 @@ class TrickController extends AbstractController
         ]);
     }
 
-
+    /**
+     * Delete a trick (confirmation asked by modal before)
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/tricks/remove', name: 'app_trick_remove', methods: 'POST', priority: 20)]
     public function delete(Request $request): Response
     {

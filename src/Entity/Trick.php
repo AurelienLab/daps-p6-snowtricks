@@ -67,16 +67,26 @@ class Trick implements TimestampableInterface
         $this->comments = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -84,11 +94,18 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * @param string|EventArgs|null $slug
+     * @return $this
+     */
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setSlug(string|EventArgs|null $slug): Trick
@@ -102,11 +119,18 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param string $description
+     * @return $this
+     */
     public function setDescription(string $description): static
     {
         $this->description = $description;
@@ -114,11 +138,18 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * @param User|null $author
+     * @return $this
+     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
@@ -126,11 +157,18 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return TrickCategory|null
+     */
     public function getTrickCategory(): ?TrickCategory
     {
         return $this->trickCategory;
     }
 
+    /**
+     * @param TrickCategory|null $trickCategory
+     * @return $this
+     */
     public function setTrickCategory(?TrickCategory $trickCategory): static
     {
         $this->trickCategory = $trickCategory;
@@ -146,6 +184,10 @@ class Trick implements TimestampableInterface
         return $this->medias;
     }
 
+    /**
+     * @param TrickMedia $media
+     * @return $this
+     */
     public function addMedia(TrickMedia $media): static
     {
         if (!$this->medias->contains($media)) {
@@ -156,6 +198,10 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @param TrickMedia $media
+     * @return $this
+     */
     public function removeMedia(TrickMedia $media): static
     {
         if ($this->medias->removeElement($media)) {
@@ -168,6 +214,10 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @param Collection $medias
+     * @return $this
+     */
     public function setMedias(Collection $medias): Trick
     {
         // Remove all medias from current collection
@@ -185,11 +235,18 @@ class Trick implements TimestampableInterface
     }
 
 
+    /**
+     * @return string|null
+     */
     public function getFeaturedPicture(): ?string
     {
         return $this->featuredPicture;
     }
 
+    /**
+     * @param string|null $featuredPicture
+     * @return $this
+     */
     public function setFeaturedPicture(?string $featuredPicture): static
     {
         $this->featuredPicture = $featuredPicture;
@@ -197,6 +254,9 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return Collection
+     */
     public function getMediaImages(): Collection
     {
         return $this->mediaImages;
@@ -210,6 +270,10 @@ class Trick implements TimestampableInterface
         return $this->comments;
     }
 
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
     public function addComment(Comment $comment): static
     {
         if (!$this->comments->contains($comment)) {
@@ -220,6 +284,10 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {

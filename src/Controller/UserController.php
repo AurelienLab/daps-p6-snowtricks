@@ -24,6 +24,11 @@ class UserController extends AbstractController
     {
     }
 
+    /**
+     * List of users (for adin only)
+     *
+     * @return Response
+     */
     #[Route('/users', name: 'app_user')]
     #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
@@ -36,6 +41,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit a user (admin only)
+     *
+     * @param User $user
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     */
     #[Route('/user/{id}', name: 'app_user_edit')]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(User $user, Request $request): Response

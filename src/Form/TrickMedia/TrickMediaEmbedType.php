@@ -13,7 +13,10 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class TrickMediaEmbedType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @inheritDoc
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('content', TextareaType::class, [
@@ -51,7 +54,10 @@ class TrickMediaEmbedType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * @inheritDoc
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => TrickMediaEmbed::class

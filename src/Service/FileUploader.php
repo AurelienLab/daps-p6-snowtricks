@@ -22,6 +22,8 @@ class FileUploader
     }
 
     /**
+     * Upload a file related to and entity / property according to the config
+     *
      * @throws Exception
      */
     public function upload(UploadedFile $file, mixed $object, string $uploadTarget): string

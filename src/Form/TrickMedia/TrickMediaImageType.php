@@ -18,12 +18,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class TrickMediaImageType extends AbstractType
 {
     public function __construct(
-        private FileUploader $fileUploader
+        private readonly FileUploader $fileUploader
     )
     {
 
     }
 
+    /**
+     * @inheritDoc
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -55,6 +58,9 @@ class TrickMediaImageType extends AbstractType
         });
     }
 
+    /**
+     * @inheritDoc
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

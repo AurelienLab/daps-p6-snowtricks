@@ -4,6 +4,7 @@ namespace App\Twig\Runtime;
 
 use App\Entity\Trick;
 use App\Service\FileResolver;
+use Exception;
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -17,7 +18,9 @@ class TrickRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @throws \Exception
+     * Shorthand to get the trick banner picture or first media image or placeholder
+     *
+     * @throws Exception
      */
     public function getTrickBannerPicture(Trick $trick): string
     {

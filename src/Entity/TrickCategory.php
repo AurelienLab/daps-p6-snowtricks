@@ -38,16 +38,26 @@ class TrickCategory implements TimestampableInterface
         $this->tricks = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -55,11 +65,18 @@ class TrickCategory implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * @param string|EventArgs|null $slug
+     * @return $this
+     */
     #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setSlug(string|EventArgs|null $slug): TrickCategory
@@ -81,6 +98,10 @@ class TrickCategory implements TimestampableInterface
         return $this->tricks;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function addTrick(Trick $trick): static
     {
         if (!$this->tricks->contains($trick)) {
@@ -91,6 +112,10 @@ class TrickCategory implements TimestampableInterface
         return $this;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function removeTrick(Trick $trick): static
     {
         if ($this->tricks->removeElement($trick)) {
