@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Trick;
+use App\Entity\TrickCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -85,7 +86,7 @@ class TrickFixtures extends Fixture
             $trick = new Trick();
             $trick->setName($trickData['name']);
             $trick->setDescription($trickData['description']);
-            $trick->setTrickCategory($this->getReference($trickData['category']));
+            $trick->setTrickCategory($this->getReference($trickData['category'], TrickCategory::class));
             $manager->persist($trick);
         }
 
