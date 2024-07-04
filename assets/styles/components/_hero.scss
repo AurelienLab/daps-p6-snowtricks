@@ -8,7 +8,7 @@
   }
 
   &__content {
-    @apply z-10 flex items-center justify-center text-center text-white text-4xl;
+    @apply z-10 flex items-center justify-center text-center text-white text-5xl sm:text-8xl;
   }
 
   &__down-button {
