@@ -27,6 +27,7 @@ class UserFixtures extends Fixture
             ->setPassword($password)
         ;
         $manager->persist($admin);
+        $this->addReference('admin', $admin);
 
 
         // User
@@ -39,6 +40,7 @@ class UserFixtures extends Fixture
             ->setPassword($password)
         ;
         $manager->persist($user);
+        $this->addReference('user', $user);
 
         $manager->flush();
     }
