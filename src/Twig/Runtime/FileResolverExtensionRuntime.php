@@ -13,7 +13,6 @@ class FileResolverExtensionRuntime implements RuntimeExtensionInterface
         private readonly FileResolver $fileResolver
     )
     {
-        // Inject dependencies if needed
     }
 
     /**
