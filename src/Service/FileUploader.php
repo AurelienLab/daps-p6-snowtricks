@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Exception;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -57,9 +56,4 @@ class FileUploader
 
         return true;
     }
-
-    /**
-     * @throws Exception
-     */
-
 }

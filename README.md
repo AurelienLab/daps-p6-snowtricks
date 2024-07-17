@@ -65,6 +65,13 @@ You can prepopulate the database with categories, tricks and users:
 php bin/console doctrine:fixtures:load
 ```
 
+### Default credentials
+
+| login                | password     | role          |
+|----------------------|--------------|---------------|
+| admin@snowtricks.com | STadmin2k24# | Administrator |
+| user@snowtricks.com  | STuser2k24#  | User          |
+
 ### Build Assets
 
 Build the front-end assets using Yarn:
