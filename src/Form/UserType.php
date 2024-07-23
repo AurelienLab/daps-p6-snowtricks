@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class UserType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

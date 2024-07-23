@@ -10,6 +10,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class TrickFixtures extends Fixture implements DependentFixtureInterface
 {
+
+
     /**
      * @param ObjectManager $manager
      * @return void

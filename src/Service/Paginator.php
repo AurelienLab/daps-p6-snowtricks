@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Paginator extends BasePaginator
 {
 
+
     private $path = null;
     private $queryString = 'page';
     private $perPage = 10;

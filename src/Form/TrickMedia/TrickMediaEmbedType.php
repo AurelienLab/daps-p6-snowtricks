@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class TrickMediaEmbedType extends AbstractType
 {
+
+
     /**
      * @inheritDoc
      */

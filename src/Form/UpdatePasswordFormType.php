@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class UpdatePasswordFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

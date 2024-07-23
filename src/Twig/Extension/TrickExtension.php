@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 class TrickExtension extends AbstractExtension
 {
 
+
     /**
      * @return TwigFunction[]
      */

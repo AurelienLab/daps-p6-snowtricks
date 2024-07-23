@@ -18,6 +18,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CommentRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
@@ -32,7 +34,6 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function getCommentPaginatorQuery(Trick $trick): QueryBuilder
     {
-
         return $this->createQueryBuilder('c')
                     ->andWhere('c.trick = :trick')
                     ->setParameter('trick', $trick)

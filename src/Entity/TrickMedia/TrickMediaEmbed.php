@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TrickMediaEmbedRepository::class)]
 class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
 {
+
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 

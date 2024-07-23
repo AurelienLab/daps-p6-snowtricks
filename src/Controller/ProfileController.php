@@ -16,12 +16,13 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class ProfileController extends AbstractController
 {
 
+
     public function __construct(
         private readonly EntityManagerInterface      $entityManager,
         private readonly FileUploader                $fileUploader,
         private readonly UserPasswordHasherInterface $passwordHasher
-    )
-    {
+    ) {
+
     }
 
 
@@ -40,7 +41,6 @@ class ProfileController extends AbstractController
         $profileForm->handleRequest($request);
 
         if ($profileForm->isSubmitted() && $profileForm->isValid()) {
-
             // Upload profile picture if exists
             $profilePicture = $profileForm->get('profilePictureFile')->getData();
             if (!empty($profilePicture)) {

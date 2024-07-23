@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 class FileResolverExtension extends AbstractExtension
 {
 
+
     /**
      * @return TwigFunction[]
      */

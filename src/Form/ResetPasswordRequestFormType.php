@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ResetPasswordRequestFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

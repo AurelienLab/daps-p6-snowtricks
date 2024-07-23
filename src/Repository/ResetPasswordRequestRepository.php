@@ -20,6 +20,8 @@ use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepository
  */
 class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
 {
+
+
     use ResetPasswordRequestRepositoryTrait;
 
     public function __construct(ManagerRegistry $registry)

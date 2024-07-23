@@ -25,14 +25,15 @@ use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 class ResetPasswordController extends AbstractController
 {
 
+
     use ResetPasswordControllerTrait;
 
     public function __construct(
         private readonly ResetPasswordHelperInterface $resetPasswordHelper,
         private readonly EntityManagerInterface       $entityManager,
         private readonly TranslatorInterface          $translator,
-    )
-    {
+    ) {
+
     }
 
 
@@ -58,10 +59,11 @@ class ResetPasswordController extends AbstractController
         }
 
         return $this->render(
-            'reset_password/request.html.twig', [
-                                                  'requestForm' => $form,
-                                                  'pageTitle' => 'Mot de passe oublié'
-                                              ]
+            'reset_password/request.html.twig',
+            [
+                'requestForm' => $form,
+                'pageTitle' => 'Mot de passe oublié'
+            ]
         );
     }
 
@@ -81,9 +83,10 @@ class ResetPasswordController extends AbstractController
         }
 
         return $this->render(
-            'reset_password/check_email.html.twig', [
-                                                      'resetToken' => $resetToken,
-                                                  ]
+            'reset_password/check_email.html.twig',
+            [
+                'resetToken' => $resetToken,
+            ]
         );
     }
 
@@ -116,11 +119,12 @@ class ResetPasswordController extends AbstractController
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash(
-                'reset_password_error', sprintf(
-                                          '%s - %s',
-                                          $this->translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_VALIDATE, [], 'ResetPasswordBundle'),
-                                          $this->translator->trans($e->getReason(), [], 'ResetPasswordBundle')
-                                      )
+                'reset_password_error',
+                sprintf(
+                    '%s - %s',
+                    $this->translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_VALIDATE, [], 'ResetPasswordBundle'),
+                    $this->translator->trans($e->getReason(), [], 'ResetPasswordBundle')
+                )
             );
 
             return $this->redirectToRoute('app_forgot_password_request');

@@ -10,11 +10,12 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class TrickRuntime implements RuntimeExtensionInterface
 {
+
+
     public function __construct(
         private readonly FileResolver $fileResolver,
         private readonly Packages     $packages,
-    )
-    {
+    ) {
     }
 
 

@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TrickMediaImageRepository::class)]
 class TrickMediaImage extends TrickMedia implements TrickMediaInterface
 {
+
+
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 

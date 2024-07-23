@@ -7,6 +7,7 @@ use DateTimeImmutable;
 interface TimestampableInterface
 {
 
+
     /**
      * @return DateTimeImmutable
      */

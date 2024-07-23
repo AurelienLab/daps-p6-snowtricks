@@ -17,11 +17,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TrickMediaImageType extends AbstractType
 {
+
+
     public function __construct(
         private readonly FileUploader $fileUploader
-    )
-    {
-
+    ) {
     }
 
 

@@ -11,10 +11,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class TrickVoter extends Voter
 {
+
+
     public function __construct(
         private readonly Security $security,
-    )
-    {
+    ) {
     }
 
 
@@ -27,7 +28,6 @@ class TrickVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-
         return in_array($attribute, [self::EDIT, self::DELETE])
             && $subject instanceof Trick;
     }

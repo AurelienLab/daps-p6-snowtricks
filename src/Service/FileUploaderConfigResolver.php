@@ -8,10 +8,11 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class FileUploaderConfigResolver
 {
 
+
     public function __construct(
         private readonly ParameterBagInterface $parameterBag,
-    )
-    {
+    ) {
+
     }
 
 

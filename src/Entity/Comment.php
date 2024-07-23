@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Comment implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]

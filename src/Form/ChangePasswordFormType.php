@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ChangePasswordFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait Timestampable
 {
 
+
     #[ORM\Column(nullable: false)]
     private DateTimeImmutable $createdAt;
 

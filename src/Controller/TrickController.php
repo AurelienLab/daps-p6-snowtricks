@@ -22,6 +22,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class TrickController extends AbstractController
 {
 
+
     public const PAGINATOR_TRICKS_PER_PAGE = 3;
 
 
@@ -30,8 +31,7 @@ class TrickController extends AbstractController
         private readonly TrickRepository        $trickRepository,
         private readonly CommentRepository      $commentRepository,
         private readonly FileUploader           $fileUploader
-    )
-    {
+    ) {
     }
 
 

@@ -11,13 +11,14 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FileUploader
 {
+
+
     public function __construct(
         private readonly SluggerInterface           $slugger,
         private readonly FileUploaderConfigResolver $configResolver,
         private readonly PropertyAccessorInterface  $propertyAccessor,
         private readonly FileResolver               $fileResolver
-    )
-    {
+    ) {
     }
 
 

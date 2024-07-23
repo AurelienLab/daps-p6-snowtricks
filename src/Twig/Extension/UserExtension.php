@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 class UserExtension extends AbstractExtension
 {
 
+
     /**
      * @return TwigFunction[]
      */

@@ -16,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TrickMediaImageRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, TrickMediaImage::class);

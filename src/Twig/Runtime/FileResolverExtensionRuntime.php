@@ -9,10 +9,10 @@ use Twig\Extension\RuntimeExtensionInterface;
 class FileResolverExtensionRuntime implements RuntimeExtensionInterface
 {
 
+
     public function __construct(
         private readonly FileResolver $fileResolver
-    )
-    {
+    ) {
     }
 
 

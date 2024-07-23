@@ -20,6 +20,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\HasLifecycleCallbacks]
 class Trick implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]

@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class CommentFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

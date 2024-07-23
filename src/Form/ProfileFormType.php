@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\Image;
 class ProfileFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */

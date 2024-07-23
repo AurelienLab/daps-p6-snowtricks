@@ -23,6 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TrickMedia implements TimestampableInterface
 {
 
+
     use Timestampable;
 
     #[ORM\Id]

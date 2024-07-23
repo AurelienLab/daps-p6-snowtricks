@@ -14,6 +14,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\HasLifecycleCallbacks]
 class TrickCategory implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]
