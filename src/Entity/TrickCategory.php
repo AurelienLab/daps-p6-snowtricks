@@ -14,6 +14,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\HasLifecycleCallbacks]
 class TrickCategory implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]
@@ -33,10 +35,12 @@ class TrickCategory implements TimestampableInterface
     #[ORM\OneToMany(targetEntity: Trick::class, mappedBy: 'trickCategory')]
     private Collection $tricks;
 
+
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
     }
+
 
     /**
      * @return int|null
@@ -46,6 +50,7 @@ class TrickCategory implements TimestampableInterface
         return $this->id;
     }
 
+
     /**
      * @return string|null
      */
@@ -53,6 +58,7 @@ class TrickCategory implements TimestampableInterface
     {
         return $this->name;
     }
+
 
     /**
      * @param string $name
@@ -65,6 +71,7 @@ class TrickCategory implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -72,6 +79,7 @@ class TrickCategory implements TimestampableInterface
     {
         return $this->slug;
     }
+
 
     /**
      * @param string|EventArgs|null $slug
@@ -90,6 +98,7 @@ class TrickCategory implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return Collection<int, Trick>
      */
@@ -97,6 +106,7 @@ class TrickCategory implements TimestampableInterface
     {
         return $this->tricks;
     }
+
 
     /**
      * @param Trick $trick
@@ -111,6 +121,7 @@ class TrickCategory implements TimestampableInterface
 
         return $this;
     }
+
 
     /**
      * @param Trick $trick
@@ -127,4 +138,6 @@ class TrickCategory implements TimestampableInterface
 
         return $this;
     }
+
+
 }

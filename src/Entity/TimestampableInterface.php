@@ -2,32 +2,36 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
 
 interface TimestampableInterface
 {
 
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getCreatedAt(): \DateTimeImmutable;
 
     /**
-     * @param \DateTimeImmutable $createdAt
+     * @return DateTimeImmutable
+     */
+    public function getCreatedAt(): DateTimeImmutable;
+
+
+    /**
+     * @param DateTimeImmutable $createdAt
      * @return self
      */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self;
+    public function setCreatedAt(DateTimeImmutable $createdAt): self;
+
 
     /**
-     * @return \DateTimeImmutable
+     * @return DateTimeImmutable
      */
-    public function getUpdatedAt(): \DateTimeImmutable;
+    public function getUpdatedAt(): DateTimeImmutable;
+
 
     /**
-     * @param \DateTimeImmutable $updatedAt
+     * @param DateTimeImmutable $updatedAt
      * @return self
      */
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self;
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self;
 
 
 }

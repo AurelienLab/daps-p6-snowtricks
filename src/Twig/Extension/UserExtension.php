@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 class UserExtension extends AbstractExtension
 {
 
+
     /**
      * @return TwigFunction[]
      */
@@ -18,4 +19,6 @@ class UserExtension extends AbstractExtension
             new TwigFunction('profile_picture', [UserRuntime::class, 'getProfilePicture']),
         ];
     }
+
+
 }

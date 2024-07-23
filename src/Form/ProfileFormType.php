@@ -13,37 +13,47 @@ use Symfony\Component\Validator\Constraints\Image;
 class ProfileFormType extends AbstractType
 {
 
+
     /**
      * @inheritDoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'snowtricks.ui.name'
-            ])
-            ->add('profilePictureFile', FileType::class, [
-                'label' => 'snowtricks.ui.profile_picture',
-                'mapped' => false,
-                'constraints' => [
-                    new Image([
-                        'maxHeight' => 400,
-                        'maxWidth' => 600,
-                        'mimeTypes' => ['image/jpeg', 'image/png']
-                    ])
-                ]
-            ])
+            ->add(
+                'name', TextType::class, [
+                          'label' => 'snowtricks.ui.name'
+                      ]
+            )
+            ->add(
+                'profilePictureFile', FileType::class, [
+                                        'label' => 'snowtricks.ui.profile_picture',
+                                        'mapped' => false,
+                                        'constraints' => [
+                                            new Image(
+                                                [
+                                                    'maxHeight' => 400,
+                                                    'maxWidth' => 600,
+                                                    'mimeTypes' => ['image/jpeg', 'image/png']
+                                                ]
+                                            )
+                                        ]
+                                    ]
+            )
         ;
     }
+
 
     /**
      * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class
+            ]
+        );
     }
 
 

@@ -9,8 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TrickMediaEmbedRepository::class)]
 class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
 {
+
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
+
 
     /**
      * @return string|null
@@ -19,6 +22,7 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
     {
         return $this->content;
     }
+
 
     /**
      * @param string $content
@@ -31,6 +35,7 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
         return $this;
     }
 
+
     /**
      * @inheritDoc
      */
@@ -38,4 +43,6 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
     {
         return '_partials/trick-media/embed.html.twig';
     }
+
+
 }

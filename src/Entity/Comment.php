@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Comment implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]
@@ -29,6 +31,7 @@ class Comment implements TimestampableInterface
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
+
     /**
      * @return int|null
      */
@@ -37,6 +40,7 @@ class Comment implements TimestampableInterface
         return $this->id;
     }
 
+
     /**
      * @return Trick|null
      */
@@ -44,6 +48,7 @@ class Comment implements TimestampableInterface
     {
         return $this->trick;
     }
+
 
     /**
      * @param Trick|null $trick
@@ -56,6 +61,7 @@ class Comment implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return User|null
      */
@@ -63,6 +69,7 @@ class Comment implements TimestampableInterface
     {
         return $this->author;
     }
+
 
     /**
      * @param User|null $author
@@ -75,6 +82,7 @@ class Comment implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -82,6 +90,7 @@ class Comment implements TimestampableInterface
     {
         return $this->message;
     }
+
 
     /**
      * @param string $message
@@ -93,4 +102,6 @@ class Comment implements TimestampableInterface
 
         return $this;
     }
+
+
 }

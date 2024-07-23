@@ -11,11 +11,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class TrickVoter extends Voter
 {
+
+
     public function __construct(
         private readonly Security $security,
-    )
-    {
+    ) {
     }
+
 
     public const EDIT = 'edit';
     public const DELETE = 'delete';
@@ -26,7 +28,6 @@ class TrickVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-
         return in_array($attribute, [self::EDIT, self::DELETE])
             && $subject instanceof Trick;
     }
@@ -49,6 +50,7 @@ class TrickVoter extends Voter
             default => false
         };
     }
+
 
     /**
      * Is the user allowed to edit the trick
@@ -76,4 +78,6 @@ class TrickVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN')
             || $trick->getAuthor() === $user;
     }
+
+
 }

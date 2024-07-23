@@ -4,29 +4,27 @@ namespace App\Controller;
 
 use App\Form\ProfileFormType;
 use App\Form\UpdatePasswordFormType;
-use App\Service\FileResolver;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PropertyAccess\PropertyAccessor;
-use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ProfileController extends AbstractController
 {
 
+
     public function __construct(
         private readonly EntityManagerInterface      $entityManager,
         private readonly FileUploader                $fileUploader,
         private readonly UserPasswordHasherInterface $passwordHasher
-    )
-    {
+    ) {
+
     }
+
 
     /**
      * Profile and password update form page
@@ -43,7 +41,6 @@ class ProfileController extends AbstractController
         $profileForm->handleRequest($request);
 
         if ($profileForm->isSubmitted() && $profileForm->isValid()) {
-
             // Upload profile picture if exists
             $profilePicture = $profileForm->get('profilePictureFile')->getData();
             if (!empty($profilePicture)) {
@@ -69,11 +66,14 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'snowtricks.flashes.password_updated');
         }
 
-        return $this->render('profile/edit.html.twig', [
-            'profileForm' => $profileForm->createView(),
-            'passwordForm' => $passwordUpdateForm->createView(),
-            'pageTitle' => 'Mon profil'
-        ]);
+        return $this->render(
+            'profile/edit.html.twig',
+            [
+                'profileForm' => $profileForm->createView(),
+                'passwordForm' => $passwordUpdateForm->createView(),
+                'pageTitle' => 'Mon profil'
+            ]
+        );
     }
 
 

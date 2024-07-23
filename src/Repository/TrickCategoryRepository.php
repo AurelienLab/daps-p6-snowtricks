@@ -16,8 +16,12 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TrickCategoryRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, TrickCategory::class);
     }
+
+
 }

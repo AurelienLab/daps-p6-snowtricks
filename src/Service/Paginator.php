@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 class Paginator extends BasePaginator
 {
 
+
     private $path = null;
     private $queryString = 'page';
     private $perPage = 10;
 
     private $currentPage = 1;
+
 
     public function __construct(
         Query|QueryBuilder       $query,
@@ -27,6 +29,7 @@ class Paginator extends BasePaginator
         $this->updateQuery();
 
     }
+
 
     /**
      * Force a path to use to generate urls
@@ -42,6 +45,7 @@ class Paginator extends BasePaginator
         return $this;
     }
 
+
     /**
      * Update the page number query string parameter (default "page")
      *
@@ -56,6 +60,7 @@ class Paginator extends BasePaginator
         return $this;
     }
 
+
     /**
      * Set the amount of item per page (default 10)
      * @param int $perPage
@@ -68,6 +73,7 @@ class Paginator extends BasePaginator
         $this->updateQuery();
         return $this;
     }
+
 
     /**
      * Get an array of pages with for each:
@@ -100,6 +106,7 @@ class Paginator extends BasePaginator
         return $pages;
     }
 
+
     /**
      * Are we on the first page of the pagination
      *
@@ -109,6 +116,7 @@ class Paginator extends BasePaginator
     {
         return $this->currentPage == 1;
     }
+
 
     /**
      * Are we on the last page of the pagination
@@ -120,6 +128,7 @@ class Paginator extends BasePaginator
         $totalPages = $this->getTotalPages();
         return $this->currentPage == $totalPages;
     }
+
 
     /**
      * Get previous page url
@@ -133,6 +142,7 @@ class Paginator extends BasePaginator
 
         return $basePath . '?' . http_build_query(array_merge($query, [$this->queryString => max(0, $this->currentPage - 1)]));
     }
+
 
     /**
      * Get next page url
@@ -149,6 +159,7 @@ class Paginator extends BasePaginator
         return $basePath . '?' . http_build_query(array_merge($query, [$this->queryString => min($totalPages, $this->currentPage + 1)]));
     }
 
+
     /**
      * Are there multiple pages
      *
@@ -159,6 +170,7 @@ class Paginator extends BasePaginator
         return $this->getTotalPages() > 1;
     }
 
+
     /**
      * Update current page property from request (after a query string change for example)
      *
@@ -168,6 +180,7 @@ class Paginator extends BasePaginator
     {
         $this->currentPage = $this->request->query->getInt($this->queryString, 1);
     }
+
 
     /**
      * Adapt ORM query to get current page data
@@ -184,6 +197,7 @@ class Paginator extends BasePaginator
         ;
     }
 
+
     /**
      * Get the total amount of pages
      *
@@ -193,4 +207,6 @@ class Paginator extends BasePaginator
     {
         return (int)ceil($this->count() / $this->perPage);
     }
+
+
 }

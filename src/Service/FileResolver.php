@@ -3,19 +3,20 @@
 namespace App\Service;
 
 use Exception;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class FileResolver
 {
+
+
     public function __construct(
         private readonly PropertyAccessorInterface  $propertyAccessor,
         private readonly FileUploaderConfigResolver $configResolver
-    )
-    {
+    ) {
     }
+
 
     /**
      * Retrieve a file path from uploaded file in entity according to config
@@ -24,7 +25,6 @@ class FileResolver
      */
     public function resolve(mixed $object, string $uploadTarget): ?string
     {
-
         $uploadConfig = $this->configResolver->resolve($uploadTarget);
 
         if ($object instanceof $uploadConfig['entity'] === false) {
@@ -46,4 +46,6 @@ class FileResolver
 
         return '/' . ltrim($filePath, '/');
     }
+
+
 }

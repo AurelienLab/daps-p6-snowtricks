@@ -20,6 +20,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 #[ORM\HasLifecycleCallbacks]
 class Trick implements TimestampableInterface
 {
+
+
     use Timestampable;
 
     #[ORM\Id]
@@ -58,11 +60,13 @@ class Trick implements TimestampableInterface
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'trick', orphanRemoval: true)]
     private Collection $comments;
 
+
     public function __construct()
     {
         $this->medias = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
+
 
     /**
      * @return int|null
@@ -72,6 +76,7 @@ class Trick implements TimestampableInterface
         return $this->id;
     }
 
+
     /**
      * @return string|null
      */
@@ -79,6 +84,7 @@ class Trick implements TimestampableInterface
     {
         return $this->name;
     }
+
 
     /**
      * @param string $name
@@ -91,6 +97,7 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -98,6 +105,7 @@ class Trick implements TimestampableInterface
     {
         return $this->slug;
     }
+
 
     /**
      * @param string|EventArgs|null $slug
@@ -116,6 +124,7 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -123,6 +132,7 @@ class Trick implements TimestampableInterface
     {
         return $this->description;
     }
+
 
     /**
      * @param string $description
@@ -135,6 +145,7 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return User|null
      */
@@ -142,6 +153,7 @@ class Trick implements TimestampableInterface
     {
         return $this->author;
     }
+
 
     /**
      * @param User|null $author
@@ -154,6 +166,7 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return TrickCategory|null
      */
@@ -161,6 +174,7 @@ class Trick implements TimestampableInterface
     {
         return $this->trickCategory;
     }
+
 
     /**
      * @param TrickCategory|null $trickCategory
@@ -173,6 +187,7 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return Collection<int, TrickMedia>
      */
@@ -180,6 +195,7 @@ class Trick implements TimestampableInterface
     {
         return $this->medias;
     }
+
 
     /**
      * @param TrickMedia $media
@@ -194,6 +210,7 @@ class Trick implements TimestampableInterface
 
         return $this;
     }
+
 
     /**
      * @param TrickMedia $media
@@ -210,6 +227,7 @@ class Trick implements TimestampableInterface
 
         return $this;
     }
+
 
     /**
      * @param Collection $medias
@@ -240,6 +258,7 @@ class Trick implements TimestampableInterface
         return $this->featuredPicture;
     }
 
+
     /**
      * @param string|null $featuredPicture
      * @return $this
@@ -251,15 +270,19 @@ class Trick implements TimestampableInterface
         return $this;
     }
 
+
     /**
      * @return Collection
      */
     public function getMediaImages(): Collection
     {
-        return $this->medias->filter(function (TrickMedia $mediaImage) {
-            return $mediaImage instanceof TrickMediaImage;
-        });
+        return $this->medias->filter(
+            function (TrickMedia $mediaImage) {
+                return $mediaImage instanceof TrickMediaImage;
+            }
+        );
     }
+
 
     /**
      * @return Collection<int, Comment>
@@ -268,6 +291,7 @@ class Trick implements TimestampableInterface
     {
         return $this->comments;
     }
+
 
     /**
      * @param Comment $comment
@@ -282,6 +306,7 @@ class Trick implements TimestampableInterface
 
         return $this;
     }
+
 
     /**
      * @param Comment $comment
@@ -298,4 +323,6 @@ class Trick implements TimestampableInterface
 
         return $this;
     }
+
+
 }

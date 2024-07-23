@@ -10,12 +10,14 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class UserRuntime implements RuntimeExtensionInterface
 {
+
+
     public function __construct(
         private readonly FileResolver $fileResolver,
         private readonly Packages     $packages,
-    )
-    {
+    ) {
     }
+
 
     /**
      * Shorthand to get user profile picture or placeholder
@@ -29,4 +31,6 @@ class UserRuntime implements RuntimeExtensionInterface
 
         return $this->packages->getUrl('images/placeholder-profile.svg');
     }
+
+
 }

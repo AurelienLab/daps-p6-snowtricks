@@ -9,11 +9,12 @@ use Twig\Extension\RuntimeExtensionInterface;
 class FileResolverExtensionRuntime implements RuntimeExtensionInterface
 {
 
+
     public function __construct(
         private readonly FileResolver $fileResolver
-    )
-    {
+    ) {
     }
+
 
     /**
      * Returns the file path according to the config
@@ -27,4 +28,6 @@ class FileResolverExtensionRuntime implements RuntimeExtensionInterface
     {
         return $this->fileResolver->resolve($object, $uploadTarget);
     }
+
+
 }

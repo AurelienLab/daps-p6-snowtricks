@@ -17,12 +17,13 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TrickMediaImageType extends AbstractType
 {
+
+
     public function __construct(
         private readonly FileUploader $fileUploader
-    )
-    {
-
+    ) {
     }
+
 
     /**
      * @inheritDoc
@@ -30,23 +31,29 @@ class TrickMediaImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('imageFile', FileType::class, [
-                'label' => 'snowtricks.ui.trick_media.image.file',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new NotBlank(groups: ['new_image']),
-                    new Image(
-                        maxSize: '4096k',
-                    )]
-            ])
-            ->add('alt', TextType::class, [
-                'label' => 'snowtricks.ui.trick_media.image.alt',
-                'required' => false,
-            ])
+            ->add(
+                'imageFile', FileType::class, [
+                               'label' => 'snowtricks.ui.trick_media.image.file',
+                               'mapped' => false,
+                               'required' => false,
+                               'constraints' => [
+                                   new NotBlank(groups: ['new_image']),
+                                   new Image(
+                                       maxSize: '4096k',
+                                   )
+                               ]
+                           ]
+            )
+            ->add(
+                'alt', TextType::class, [
+                         'label' => 'snowtricks.ui.trick_media.image.alt',
+                         'required' => false,
+                     ]
+            )
         ;
 
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(
+            FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             $form = $event->getForm();
 
@@ -55,24 +62,30 @@ class TrickMediaImageType extends AbstractType
                 $this->fileUploader->upload($file, $data, 'trick_media_image');
             }
 
-        });
+        }
+        );
     }
+
 
     /**
      * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => TrickMediaImage::class,
-            'validation_groups' => function (FormInterface $form): array {
-                $data = $form->getData();
+        $resolver->setDefaults(
+            [
+                'data_class' => TrickMediaImage::class,
+                'validation_groups' => function (FormInterface $form): array {
+                    $data = $form->getData();
 
-                if (empty($data->getImage())) {
-                    return ['new_image'];
+                    if (empty($data->getImage())) {
+                        return ['new_image'];
+                    }
+                    return [];
                 }
-                return [];
-            }
-        ]);
+            ]
+        );
     }
+
+
 }

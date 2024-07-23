@@ -7,6 +7,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+
+
     /**
      * @param ObjectManager $manager
      * @return void
@@ -18,4 +20,6 @@ class AppFixtures extends Fixture
 
         $manager->flush();
     }
+
+
 }

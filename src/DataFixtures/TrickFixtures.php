@@ -10,6 +10,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class TrickFixtures extends Fixture implements DependentFixtureInterface
 {
+
+
     /**
      * @param ObjectManager $manager
      * @return void
@@ -108,10 +110,13 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+
     public function getDependencies(): array
     {
         return [
             TrickCategoryFixtures::class,
         ];
     }
+
+
 }

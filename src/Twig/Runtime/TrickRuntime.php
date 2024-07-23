@@ -10,12 +10,14 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 class TrickRuntime implements RuntimeExtensionInterface
 {
+
+
     public function __construct(
         private readonly FileResolver $fileResolver,
         private readonly Packages     $packages,
-    )
-    {
+    ) {
     }
+
 
     /**
      * Shorthand to get the trick banner picture or first media image or placeholder
@@ -34,4 +36,6 @@ class TrickRuntime implements RuntimeExtensionInterface
 
         return $this->packages->getUrl('images/placeholder-hero.jpg');
     }
+
+
 }

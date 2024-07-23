@@ -8,11 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TrickMediaImageRepository::class)]
 class TrickMediaImage extends TrickMedia implements TrickMediaInterface
 {
+
+
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alt = null;
+
 
     /**
      * @return string|null
@@ -21,6 +24,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return $this->image;
     }
+
 
     /**
      * @param string $image
@@ -33,6 +37,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -40,6 +45,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return $this->alt;
     }
+
 
     /**
      * @param string|null $alt
@@ -52,6 +58,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
         return $this;
     }
 
+
     /**
      * @inheritDoc
      */
@@ -59,4 +66,6 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return '_partials/trick-media/image.html.twig';
     }
+
+
 }

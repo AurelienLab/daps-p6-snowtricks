@@ -8,9 +8,12 @@ use Doctrine\Persistence\ObjectManager;
 
 class TrickCategoryFixtures extends Fixture
 {
+
+
     const CATEGORY_GRAB = 'grab';
     const CATEGORY_SPIN = 'spin';
     const CATEGORY_FLIP = 'flip';
+
 
     /**
      * @param ObjectManager $manager
@@ -35,4 +38,6 @@ class TrickCategoryFixtures extends Fixture
 
         $manager->flush();
     }
+
+
 }

@@ -13,30 +13,38 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class TrickMediaEmbedType extends AbstractType
 {
+
+
     /**
      * @inheritDoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', TextareaType::class, [
-                'label' => 'snowtricks.ui.trick_media.embed.content',
-                'constraints' => new Regex([
-                    'pattern' => "/^<iframe[^>]*>\s*<\/iframe>/",
-                    'message' => 'snowtricks.form.trick_media.embed.regex',
-                ])
-            ])
+            ->add(
+                'content', TextareaType::class, [
+                             'label' => 'snowtricks.ui.trick_media.embed.content',
+                             'constraints' => new Regex(
+                                 [
+                                     'pattern' => "/^<iframe[^>]*>\s*<\/iframe>/",
+                                     'message' => 'snowtricks.form.trick_media.embed.regex',
+                                 ]
+                             )
+                         ]
+            )
         ;
 
         // Force width and height in the iframe
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             if (isset($data['content'])) {
                 // Pattern to match an iframe tag and capture its attributes
                 $pattern = '/<iframe([^>]*)>/';
 
                 // Replace or add width and height attributes
-                $data['content'] = preg_replace_callback($pattern, function ($matches) {
+                $data['content'] = preg_replace_callback(
+                    $pattern, function ($matches) {
                     $attributes = $matches[1];
 
                     // Remove any existing width or height attributes
@@ -47,20 +55,27 @@ class TrickMediaEmbedType extends AbstractType
 
                     // Add the new width and height attributes
                     return "<iframe$attributes width=\"160\" height=\"90\">";
-                }, $data['content']);
+                },  $data['content']
+                );
             }
 
             $event->setData($data);
-        });
+        }
+        );
     }
+
 
     /**
      * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => TrickMediaEmbed::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => TrickMediaEmbed::class
+            ]
+        );
     }
+
+
 }

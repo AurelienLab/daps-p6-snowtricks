@@ -8,11 +8,13 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class FileUploaderConfigResolver
 {
 
+
     public function __construct(
         private readonly ParameterBagInterface $parameterBag,
-    )
-    {
+    ) {
+
     }
+
 
     /**
      * Retrieve upload configuration from its name
@@ -29,4 +31,6 @@ class FileUploaderConfigResolver
 
         return $availableTargets[$uploadTarget];
     }
+
+
 }

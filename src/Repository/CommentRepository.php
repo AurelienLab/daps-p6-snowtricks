@@ -6,7 +6,6 @@ use App\Entity\Comment;
 use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,10 +18,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CommentRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
     }
+
 
     /**
      * Generate query to feed a Paginator with trick comments
@@ -32,11 +34,12 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function getCommentPaginatorQuery(Trick $trick): QueryBuilder
     {
-
         return $this->createQueryBuilder('c')
                     ->andWhere('c.trick = :trick')
                     ->setParameter('trick', $trick)
                     ->orderBy('c.createdAt', 'DESC')
         ;
     }
+
+
 }

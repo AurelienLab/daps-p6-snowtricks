@@ -11,7 +11,6 @@ use App\Repository\TrickRepository;
 use App\Service\FileUploader;
 use App\Service\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Exception\ORMException;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,16 +22,18 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class TrickController extends AbstractController
 {
 
+
     public const PAGINATOR_TRICKS_PER_PAGE = 3;
+
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly TrickRepository        $trickRepository,
         private readonly CommentRepository      $commentRepository,
         private readonly FileUploader           $fileUploader
-    )
-    {
+    ) {
     }
+
 
     /**
      * Returns a json with pagination information and html of the tricks cards
@@ -47,14 +48,17 @@ class TrickController extends AbstractController
         $tricks = new Paginator($this->trickRepository->findAllQuery(), $request);
         $tricks->perPage(self::PAGINATOR_TRICKS_PER_PAGE);
 
-        return new JsonResponse([
-            'paginator' => [
-                'is_last_page' => $tricks->isLastPage(),
-                'next_page_url' => $tricks->next()
-            ],
-            'content' => $this->renderView('trick/_index-ajax.html.twig', compact('tricks'))
-        ]);
+        return new JsonResponse(
+            [
+                'paginator' => [
+                    'is_last_page' => $tricks->isLastPage(),
+                    'next_page_url' => $tricks->next()
+                ],
+                'content' => $this->renderView('trick/_index-ajax.html.twig', compact('tricks'))
+            ]
+        );
     }
+
 
     /**
      * Trick details page
@@ -100,13 +104,16 @@ class TrickController extends AbstractController
             ->perPage(6)
         ;
 
-        return $this->render('trick/show.html.twig', [
-            'trick' => $trick,
-            'commentForm' => $commentForm?->createView(),
-            'comments' => $comments,
-            'pageTitle' => $trick->getName()
-        ]);
+        return $this->render(
+            'trick/show.html.twig', [
+                                      'trick' => $trick,
+                                      'commentForm' => $commentForm?->createView(),
+                                      'comments' => $comments,
+                                      'pageTitle' => $trick->getName()
+                                  ]
+        );
     }
+
 
     /**
      * Trick edit page
@@ -142,12 +149,16 @@ class TrickController extends AbstractController
             $this->addFlash('danger', 'snowtricks.flashes.form_errors');
         }
 
-        return $this->render('trick/edit.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView(),
-            'pageTitle' => 'Editer ' . $trick->getName(),
-        ]);
+        return $this->render(
+            'trick/edit.html.twig',
+            [
+                'trick' => $trick,
+                'form' => $form->createView(),
+                'pageTitle' => 'Editer ' . $trick->getName(),
+            ]
+        );
     }
+
 
     /**
      * Add a new trick
@@ -186,12 +197,16 @@ class TrickController extends AbstractController
             $this->addFlash('danger', 'snowtricks.flashes.form_errors');
         }
 
-        return $this->render('trick/edit.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView(),
-            'pageTitle' => 'Nouveau trick'
-        ]);
+        return $this->render(
+            'trick/edit.html.twig',
+            [
+                'trick' => $trick,
+                'form' => $form->createView(),
+                'pageTitle' => 'Nouveau trick'
+            ]
+        );
     }
+
 
     /**
      * Delete a trick (confirmation asked by modal before)
@@ -219,4 +234,6 @@ class TrickController extends AbstractController
 
         return $this->redirectToRoute('app_homepage', ['_fragment' => 'tricks']);
     }
+
+
 }

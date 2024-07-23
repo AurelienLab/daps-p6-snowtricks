@@ -11,6 +11,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class CommentFixtures extends Fixture implements DependentFixtureInterface
 {
+
+
     public function load(ObjectManager $manager): void
     {
         $comments = [
@@ -80,6 +82,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+
     public function getDependencies(): array
     {
         return [
@@ -87,4 +90,6 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class,
         ];
     }
+
+
 }

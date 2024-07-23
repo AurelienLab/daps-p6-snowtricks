@@ -7,8 +7,8 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -16,13 +16,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
+
+
     public function __construct(
         private readonly UserRepository         $userRepository,
         private readonly EntityManagerInterface $entityManager,
         private readonly FileUploader           $fileUploader
-    )
-    {
+    ) {
     }
+
 
     /**
      * List of users (for adin only)
@@ -35,11 +37,15 @@ class UserController extends AbstractController
     {
         $users = $this->userRepository->findBy([], ['name' => 'ASC']);
 
-        return $this->render('user/index.html.twig', [
-            'users' => $users,
-            'pageTitle' => 'Utilisateurs'
-        ]);
+        return $this->render(
+            'user/index.html.twig',
+            [
+                'users' => $users,
+                'pageTitle' => 'Utilisateurs'
+            ]
+        );
     }
+
 
     /**
      * Edit a user (admin only)
@@ -47,7 +53,7 @@ class UserController extends AbstractController
      * @param User $user
      * @param Request $request
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route('/user/{id}', name: 'app_user_edit')]
     #[IsGranted('ROLE_ADMIN')]
@@ -70,10 +76,15 @@ class UserController extends AbstractController
             $this->addFlash('success', 'snowtricks.flashes.user_updated');
         }
 
-        return $this->render('user/edit.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user,
-            'pageTitle' => 'Editer ' . $user->getName()
-        ]);
+        return $this->render(
+            'user/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+                'pageTitle' => 'Editer ' . $user->getName()
+            ]
+        );
     }
+
+
 }
