@@ -21,21 +21,24 @@ class ProfileFormType extends AbstractType
         $builder
             ->add(
                 'name', TextType::class, [
-                'label' => 'snowtricks.ui.name'
-            ])
+                          'label' => 'snowtricks.ui.name'
+                      ]
+            )
             ->add(
                 'profilePictureFile', FileType::class, [
-                'label' => 'snowtricks.ui.profile_picture',
-                'mapped' => false,
-                'constraints' => [
-                    new Image(
-                        [
-                            'maxHeight' => 400,
-                            'maxWidth' => 600,
-                            'mimeTypes' => ['image/jpeg', 'image/png']
-                        ])
-                ]
-            ])
+                                        'label' => 'snowtricks.ui.profile_picture',
+                                        'mapped' => false,
+                                        'constraints' => [
+                                            new Image(
+                                                [
+                                                    'maxHeight' => 400,
+                                                    'maxWidth' => 600,
+                                                    'mimeTypes' => ['image/jpeg', 'image/png']
+                                                ]
+                                            )
+                                        ]
+                                    ]
+            )
         ;
     }
 
@@ -48,7 +51,8 @@ class ProfileFormType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => User::class
-            ]);
+            ]
+        );
     }
 
 

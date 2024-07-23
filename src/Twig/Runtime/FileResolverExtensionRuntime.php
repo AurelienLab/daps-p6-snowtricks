@@ -28,4 +28,6 @@ class FileResolverExtensionRuntime implements RuntimeExtensionInterface
     {
         return $this->fileResolver->resolve($object, $uploadTarget);
     }
+
+
 }

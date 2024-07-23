@@ -79,7 +79,8 @@ class RegistrationController extends AbstractController
             [
                 'registrationForm' => $form,
                 'pageTitle' => 'Inscription'
-            ]);
+            ]
+        );
     }
 
 
@@ -120,4 +121,6 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('app_login');
     }
+
+
 }

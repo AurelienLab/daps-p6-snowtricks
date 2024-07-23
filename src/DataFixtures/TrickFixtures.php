@@ -115,4 +115,6 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
             TrickCategoryFixtures::class,
         ];
     }
+
+
 }

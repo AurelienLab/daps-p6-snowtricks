@@ -35,4 +35,6 @@ class TrickRuntime implements RuntimeExtensionInterface
 
         return $this->packages->getUrl('images/placeholder-hero.jpg');
     }
+
+
 }

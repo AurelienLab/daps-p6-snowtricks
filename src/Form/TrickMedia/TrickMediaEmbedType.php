@@ -21,13 +21,15 @@ class TrickMediaEmbedType extends AbstractType
         $builder
             ->add(
                 'content', TextareaType::class, [
-                'label' => 'snowtricks.ui.trick_media.embed.content',
-                'constraints' => new Regex(
-                    [
-                        'pattern' => "/^<iframe[^>]*>\s*<\/iframe>/",
-                        'message' => 'snowtricks.form.trick_media.embed.regex',
-                    ])
-            ])
+                             'label' => 'snowtricks.ui.trick_media.embed.content',
+                             'constraints' => new Regex(
+                                 [
+                                     'pattern' => "/^<iframe[^>]*>\s*<\/iframe>/",
+                                     'message' => 'snowtricks.form.trick_media.embed.regex',
+                                 ]
+                             )
+                         ]
+            )
         ;
 
         // Force width and height in the iframe
@@ -51,11 +53,13 @@ class TrickMediaEmbedType extends AbstractType
 
                     // Add the new width and height attributes
                     return "<iframe$attributes width=\"160\" height=\"90\">";
-                },  $data['content']);
+                },  $data['content']
+                );
             }
 
             $event->setData($data);
-        });
+        }
+        );
     }
 
 
@@ -67,6 +71,9 @@ class TrickMediaEmbedType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => TrickMediaEmbed::class
-            ]);
+            ]
+        );
     }
+
+
 }

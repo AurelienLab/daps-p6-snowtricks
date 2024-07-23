@@ -18,4 +18,6 @@ class UserExtension extends AbstractExtension
             new TwigFunction('profile_picture', [UserRuntime::class, 'getProfilePicture']),
         ];
     }
+
+
 }

@@ -41,7 +41,8 @@ class UserController extends AbstractController
             [
                 'users' => $users,
                 'pageTitle' => 'Utilisateurs'
-            ]);
+            ]
+        );
     }
 
 
@@ -80,6 +81,9 @@ class UserController extends AbstractController
                 'form' => $form->createView(),
                 'user' => $user,
                 'pageTitle' => 'Editer ' . $user->getName()
-            ]);
+            ]
+        );
     }
+
+
 }

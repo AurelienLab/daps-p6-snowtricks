@@ -20,4 +20,6 @@ class TrickCategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, TrickCategory::class);
     }
+
+
 }

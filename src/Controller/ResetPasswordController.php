@@ -59,9 +59,10 @@ class ResetPasswordController extends AbstractController
 
         return $this->render(
             'reset_password/request.html.twig', [
-            'requestForm' => $form,
-            'pageTitle' => 'Mot de passe oublié'
-        ]);
+                                                  'requestForm' => $form,
+                                                  'pageTitle' => 'Mot de passe oublié'
+                                              ]
+        );
     }
 
 
@@ -81,8 +82,9 @@ class ResetPasswordController extends AbstractController
 
         return $this->render(
             'reset_password/check_email.html.twig', [
-            'resetToken' => $resetToken,
-        ]);
+                                                      'resetToken' => $resetToken,
+                                                  ]
+        );
     }
 
 
@@ -115,10 +117,11 @@ class ResetPasswordController extends AbstractController
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash(
                 'reset_password_error', sprintf(
-                '%s - %s',
-                $this->translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_VALIDATE, [], 'ResetPasswordBundle'),
-                $this->translator->trans($e->getReason(), [], 'ResetPasswordBundle')
-            ));
+                                          '%s - %s',
+                                          $this->translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_VALIDATE, [], 'ResetPasswordBundle'),
+                                          $this->translator->trans($e->getReason(), [], 'ResetPasswordBundle')
+                                      )
+            );
 
             return $this->redirectToRoute('app_forgot_password_request');
         }
@@ -151,7 +154,8 @@ class ResetPasswordController extends AbstractController
             [
                 'resetForm' => $form,
                 'pageTitle' => 'Mot de passe oublié'
-            ]);
+            ]
+        );
     }
 
 
@@ -168,7 +172,8 @@ class ResetPasswordController extends AbstractController
         $user = $this->entityManager->getRepository(User::class)->findOneBy(
             [
                 'email' => $emailFormData,
-            ]);
+            ]
+        );
 
         // Do not reveal whether a user account was found or not.
         if (!$user) {

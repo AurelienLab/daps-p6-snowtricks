@@ -78,4 +78,6 @@ class TrickVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN')
             || $trick->getAuthor() === $user;
     }
+
+
 }

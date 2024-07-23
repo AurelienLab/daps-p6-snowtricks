@@ -12,4 +12,6 @@ interface TrickMediaInterface
      * @return string
      */
     public function getTemplate(): string;
+
+
 }

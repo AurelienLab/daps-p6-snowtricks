@@ -38,8 +38,9 @@ class HomepageController extends AbstractController
 
         return $this->render(
             'homepage/index.html.twig',
-            [
-                'tricks' => $tricks,
-            ]);
+            ['tricks' => $tricks]
+        );
     }
+
+
 }

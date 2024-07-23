@@ -63,4 +63,6 @@ class TrickMedia implements TimestampableInterface
 
         return $this;
     }
+
+
 }

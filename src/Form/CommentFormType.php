@@ -20,10 +20,11 @@ class CommentFormType extends AbstractType
         $builder
             ->add(
                 'message', TextType::class, [
-                'constraints' => [new NotBlank()],
-                'empty_data' => '',
-                'attr' => ['placeholder' => 'snowtricks.ui.comment.message_placeholder']
-            ])
+                             'constraints' => [new NotBlank()],
+                             'empty_data' => '',
+                             'attr' => ['placeholder' => 'snowtricks.ui.comment.message_placeholder']
+                         ]
+            )
         ;
     }
 
@@ -36,6 +37,9 @@ class CommentFormType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => Comment::class,
-            ]);
+            ]
+        );
     }
+
+
 }

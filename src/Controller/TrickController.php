@@ -55,7 +55,8 @@ class TrickController extends AbstractController
                     'next_page_url' => $tricks->next()
                 ],
                 'content' => $this->renderView('trick/_index-ajax.html.twig', compact('tricks'))
-            ]);
+            ]
+        );
     }
 
 
@@ -105,11 +106,12 @@ class TrickController extends AbstractController
 
         return $this->render(
             'trick/show.html.twig', [
-            'trick' => $trick,
-            'commentForm' => $commentForm?->createView(),
-            'comments' => $comments,
-            'pageTitle' => $trick->getName()
-        ]);
+                                      'trick' => $trick,
+                                      'commentForm' => $commentForm?->createView(),
+                                      'comments' => $comments,
+                                      'pageTitle' => $trick->getName()
+                                  ]
+        );
     }
 
 
@@ -153,7 +155,8 @@ class TrickController extends AbstractController
                 'trick' => $trick,
                 'form' => $form->createView(),
                 'pageTitle' => 'Editer ' . $trick->getName(),
-            ]);
+            ]
+        );
     }
 
 
@@ -200,7 +203,8 @@ class TrickController extends AbstractController
                 'trick' => $trick,
                 'form' => $form->createView(),
                 'pageTitle' => 'Nouveau trick'
-            ]);
+            ]
+        );
     }
 
 
@@ -230,4 +234,6 @@ class TrickController extends AbstractController
 
         return $this->redirectToRoute('app_homepage', ['_fragment' => 'tricks']);
     }
+
+
 }

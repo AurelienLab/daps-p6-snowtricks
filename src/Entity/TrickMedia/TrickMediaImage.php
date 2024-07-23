@@ -64,4 +64,6 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return '_partials/trick-media/image.html.twig';
     }
+
+
 }

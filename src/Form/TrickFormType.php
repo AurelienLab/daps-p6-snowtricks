@@ -40,48 +40,53 @@ class TrickFormType extends AbstractType
         $builder
             ->add(
                 'name', TextType::class, [
-                'label' => 'snowtricks.ui.name',
-                'constraints' => [new NotBlank()],
-                'empty_data' => ''
-            ])
+                          'label' => 'snowtricks.ui.name',
+                          'constraints' => [new NotBlank()],
+                          'empty_data' => ''
+                      ]
+            )
             ->add(
                 'featuredPictureFile', FileType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new Image(
-                        maxSize: '4000k'
-                    )
-                ],
-                'required' => false
-            ])
+                                         'mapped' => false,
+                                         'constraints' => [
+                                             new Image(
+                                                 maxSize: '4000k'
+                                             )
+                                         ],
+                                         'required' => false
+                                     ]
+            )
             ->add(
                 'description', TextareaType::class, [
-                'label' => 'snowtricks.ui.description',
-                'constraints' => [new NotBlank()],
-                'empty_data' => ''
-            ])
+                                 'label' => 'snowtricks.ui.description',
+                                 'constraints' => [new NotBlank()],
+                                 'empty_data' => ''
+                             ]
+            )
             ->add(
                 'trickCategory', EntityType::class, [
-                'label' => 'snowtricks.ui.category',
-                'class' => TrickCategory::class,
-                'choice_label' => 'name',
-                'required' => false,
-                'constraints' => [new NotBlank(), new NotNull()],
-                'placeholder' => 'snowtricks.ui.select',
-                'placeholder_attr' => ['disabled' => true, 'selected' => true]
-            ])
+                                   'label' => 'snowtricks.ui.category',
+                                   'class' => TrickCategory::class,
+                                   'choice_label' => 'name',
+                                   'required' => false,
+                                   'constraints' => [new NotBlank(), new NotNull()],
+                                   'placeholder' => 'snowtricks.ui.select',
+                                   'placeholder_attr' => ['disabled' => true, 'selected' => true]
+                               ]
+            )
         ;
 
         // Generate media types collections
         foreach (self::MEDIA_TYPES as $mediaFormData) {
             $builder->add(
                 $mediaFormData['form_name'], CollectionType::class, [
-                'entry_type' => $mediaFormData['form_type'],
-                'mapped' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-            ]);
+                                               'entry_type' => $mediaFormData['form_type'],
+                                               'mapped' => false,
+                                               'allow_add' => true,
+                                               'allow_delete' => true,
+                                               'by_reference' => false,
+                                           ]
+            );
         }
 
         // Insert current media data in corresponding collections
@@ -100,7 +105,8 @@ class TrickFormType extends AbstractType
             foreach ($mediaData as $mediasFormName => $formData) {
                 $form->get($mediasFormName)->setData($formData);
             }
-        });
+        }
+        );
 
         // Rename media fields to get continuous ids
         $builder->addEventListener(
@@ -114,7 +120,8 @@ class TrickFormType extends AbstractType
             }
 
             $event->setData($data);
-        });
+        }
+        );
 
         // Merge media collections into Trick media collection
         $builder->addEventListener(
@@ -133,7 +140,8 @@ class TrickFormType extends AbstractType
             $data->setMedias(new ArrayCollection($medias));
 
             $event->setData($data);
-        });
+        }
+        );
     }
 
 
@@ -145,7 +153,9 @@ class TrickFormType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => Trick::class,
-            ]);
+            ]
+        );
     }
+
 
 }

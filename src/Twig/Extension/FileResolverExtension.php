@@ -18,4 +18,6 @@ class FileResolverExtension extends AbstractExtension
             new TwigFunction('get_file_path', [FileResolverExtensionRuntime::class, 'getFilePath']),
         ];
     }
+
+
 }

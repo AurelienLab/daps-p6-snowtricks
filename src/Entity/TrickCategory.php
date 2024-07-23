@@ -136,4 +136,6 @@ class TrickCategory implements TimestampableInterface
 
         return $this;
     }
+
+
 }

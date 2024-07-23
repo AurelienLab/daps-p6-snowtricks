@@ -33,21 +33,23 @@ class TrickMediaImageType extends AbstractType
         $builder
             ->add(
                 'imageFile', FileType::class, [
-                'label' => 'snowtricks.ui.trick_media.image.file',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new NotBlank(groups: ['new_image']),
-                    new Image(
-                        maxSize: '4096k',
-                    )
-                ]
-            ])
+                               'label' => 'snowtricks.ui.trick_media.image.file',
+                               'mapped' => false,
+                               'required' => false,
+                               'constraints' => [
+                                   new NotBlank(groups: ['new_image']),
+                                   new Image(
+                                       maxSize: '4096k',
+                                   )
+                               ]
+                           ]
+            )
             ->add(
                 'alt', TextType::class, [
-                'label' => 'snowtricks.ui.trick_media.image.alt',
-                'required' => false,
-            ])
+                         'label' => 'snowtricks.ui.trick_media.image.alt',
+                         'required' => false,
+                     ]
+            )
         ;
 
         $builder->addEventListener(
@@ -60,7 +62,8 @@ class TrickMediaImageType extends AbstractType
                 $this->fileUploader->upload($file, $data, 'trick_media_image');
             }
 
-        });
+        }
+        );
     }
 
 
@@ -80,6 +83,9 @@ class TrickMediaImageType extends AbstractType
                     }
                     return [];
                 }
-            ]);
+            ]
+        );
     }
+
+
 }

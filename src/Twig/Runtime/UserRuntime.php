@@ -30,4 +30,6 @@ class UserRuntime implements RuntimeExtensionInterface
 
         return $this->packages->getUrl('images/placeholder-profile.svg');
     }
+
+
 }

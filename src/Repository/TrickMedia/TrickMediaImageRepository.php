@@ -20,4 +20,6 @@ class TrickMediaImageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, TrickMediaImage::class);
     }
+
+
 }

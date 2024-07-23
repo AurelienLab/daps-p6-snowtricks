@@ -36,4 +36,6 @@ class TrickCategoryFixtures extends Fixture
 
         $manager->flush();
     }
+
+
 }

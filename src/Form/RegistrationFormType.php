@@ -23,33 +23,38 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add(
                 'email', EmailType::class, [
-                'label' => 'snowtricks.ui.email'
-            ])
+                           'label' => 'snowtricks.ui.email'
+                       ]
+            )
             ->add(
                 'name', TextType::class, [
-                'label' => 'snowtricks.ui.name'
-            ])
+                          'label' => 'snowtricks.ui.name'
+                      ]
+            )
             ->add(
                 'plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'label' => 'snowtricks.ui.password',
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank(
-                        [
-                            'message' => 'snowtricks.form.password.not_blank',
-                        ]),
-                    new Length(
-                        [
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
-                ],
-            ])
+                                   // instead of being set onto the object directly,
+                                   // this is read and encoded in the controller
+                                   'label' => 'snowtricks.ui.password',
+                                   'mapped' => false,
+                                   'attr' => ['autocomplete' => 'new-password'],
+                                   'constraints' => [
+                                       new NotBlank(
+                                           [
+                                               'message' => 'snowtricks.form.password.not_blank',
+                                           ]
+                                       ),
+                                       new Length(
+                                           [
+                                               'min' => 6,
+                                               'minMessage' => 'Your password should be at least {{ limit }} characters',
+                                               // max length allowed by Symfony for security reasons
+                                               'max' => 4096,
+                                           ]
+                                       ),
+                                   ],
+                               ]
+            )
         ;
     }
 
@@ -62,7 +67,8 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => User::class,
-            ]);
+            ]
+        );
     }
 
 

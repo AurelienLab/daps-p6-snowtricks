@@ -63,4 +63,6 @@ class EmailVerifier
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
+
+
 }

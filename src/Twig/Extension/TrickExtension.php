@@ -18,4 +18,6 @@ class TrickExtension extends AbstractExtension
             new TwigFunction('trick_banner_picture', [TrickRuntime::class, 'getTrickBannerPicture']),
         ];
     }
+
+
 }

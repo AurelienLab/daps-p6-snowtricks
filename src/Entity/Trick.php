@@ -277,7 +277,8 @@ class Trick implements TimestampableInterface
         return $this->medias->filter(
             function (TrickMedia $mediaImage) {
                 return $mediaImage instanceof TrickMediaImage;
-            });
+            }
+        );
     }
 
 
@@ -320,4 +321,6 @@ class Trick implements TimestampableInterface
 
         return $this;
     }
+
+
 }

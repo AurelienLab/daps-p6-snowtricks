@@ -72,7 +72,8 @@ class ProfileController extends AbstractController
                 'profileForm' => $profileForm->createView(),
                 'passwordForm' => $passwordUpdateForm->createView(),
                 'pageTitle' => 'Mon profil'
-            ]);
+            ]
+        );
     }
 
 

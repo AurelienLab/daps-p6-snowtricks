@@ -41,4 +41,6 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
     {
         return '_partials/trick-media/embed.html.twig';
     }
+
+
 }

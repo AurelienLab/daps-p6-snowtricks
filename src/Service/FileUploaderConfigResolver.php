@@ -30,4 +30,6 @@ class FileUploaderConfigResolver
 
         return $availableTargets[$uploadTarget];
     }
+
+
 }

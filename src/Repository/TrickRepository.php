@@ -36,4 +36,6 @@ class TrickRepository extends ServiceEntityRepository
             ->orderBy('t.createdAt', 'DESC')
         ;
     }
+
+
 }

@@ -25,43 +25,48 @@ class UserType extends AbstractType
         $builder
             ->add(
                 'email', EmailType::class, [
-                'label' => 'snowtricks.ui.email',
-                'constraints' => [
-                    new NotBlank(),
-                    new Email()
-                ]
-            ])
+                           'label' => 'snowtricks.ui.email',
+                           'constraints' => [
+                               new NotBlank(),
+                               new Email()
+                           ]
+                       ]
+            )
             ->add(
                 'name', TextType::class, [
-                'label' => 'snowtricks.ui.name',
-                'constraints' => [
-                    new NotBlank()
-                ]
-            ])
+                          'label' => 'snowtricks.ui.name',
+                          'constraints' => [
+                              new NotBlank()
+                          ]
+                      ]
+            )
             ->add(
                 'roles', ChoiceType::class, [
-                'label' => 'snowtricks.ui.role',
-                'choices' => [
-                    'Contributeur' => 'ROLE_USER',
-                    'Administrateur' => 'ROLE_ADMIN'
-                ],
-                'mapped' => false,
-                'data' => $builder->getData()->getRoles()[0],
-            ])
+                           'label' => 'snowtricks.ui.role',
+                           'choices' => [
+                               'Contributeur' => 'ROLE_USER',
+                               'Administrateur' => 'ROLE_ADMIN'
+                           ],
+                           'mapped' => false,
+                           'data' => $builder->getData()->getRoles()[0],
+                       ]
+            )
             ->add(
                 'profilePictureFile', FileType::class, [
-                'label' => 'snowtricks.ui.profile_picture',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new Image(
-                        [
-                            'maxHeight' => 1000,
-                            'maxWidth' => 1000,
-                            'mimeTypes' => ['image/jpeg', 'image/png']
-                        ])
-                ]
-            ])
+                                        'label' => 'snowtricks.ui.profile_picture',
+                                        'mapped' => false,
+                                        'required' => false,
+                                        'constraints' => [
+                                            new Image(
+                                                [
+                                                    'maxHeight' => 1000,
+                                                    'maxWidth' => 1000,
+                                                    'mimeTypes' => ['image/jpeg', 'image/png']
+                                                ]
+                                            )
+                                        ]
+                                    ]
+            )
         ;
     }
 
@@ -74,6 +79,9 @@ class UserType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => User::class,
-            ]);
+            ]
+        );
     }
+
+
 }

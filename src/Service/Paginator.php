@@ -206,4 +206,6 @@ class Paginator extends BasePaginator
     {
         return (int)ceil($this->count() / $this->perPage);
     }
+
+
 }
