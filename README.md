@@ -1,8 +1,4 @@
-<div style="margin: auto; width: fit-content">
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae0625a4d1449a3a0e64ed3c66ee654)](https://app.codacy.com/gh/AurelienLab/daps-p6-snowtricks/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-
-</div>
 
 # Snowtricks
 
