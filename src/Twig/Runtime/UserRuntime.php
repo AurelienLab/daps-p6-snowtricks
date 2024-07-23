@@ -17,6 +17,7 @@ class UserRuntime implements RuntimeExtensionInterface
     {
     }
 
+
     /**
      * Shorthand to get user profile picture or placeholder
      * @throws Exception

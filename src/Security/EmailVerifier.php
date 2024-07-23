@@ -21,6 +21,7 @@ class EmailVerifier
     {
     }
 
+
     /**
      *
      *
@@ -48,6 +49,7 @@ class EmailVerifier
 
         $this->mailer->send($email);
     }
+
 
     /**
      * @throws VerifyEmailExceptionInterface

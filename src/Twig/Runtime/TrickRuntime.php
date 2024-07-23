@@ -17,6 +17,7 @@ class TrickRuntime implements RuntimeExtensionInterface
     {
     }
 
+
     /**
      * Shorthand to get the trick banner picture or first media image or placeholder
      *

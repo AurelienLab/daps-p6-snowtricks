@@ -4,16 +4,12 @@ namespace App\Controller;
 
 use App\Form\ProfileFormType;
 use App\Form\UpdatePasswordFormType;
-use App\Service\FileResolver;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PropertyAccess\PropertyAccessor;
-use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -27,6 +23,7 @@ class ProfileController extends AbstractController
     )
     {
     }
+
 
     /**
      * Profile and password update form page
@@ -69,11 +66,13 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'snowtricks.flashes.password_updated');
         }
 
-        return $this->render('profile/edit.html.twig', [
-            'profileForm' => $profileForm->createView(),
-            'passwordForm' => $passwordUpdateForm->createView(),
-            'pageTitle' => 'Mon profil'
-        ]);
+        return $this->render(
+            'profile/edit.html.twig',
+            [
+                'profileForm' => $profileForm->createView(),
+                'passwordForm' => $passwordUpdateForm->createView(),
+                'pageTitle' => 'Mon profil'
+            ]);
     }
 
 

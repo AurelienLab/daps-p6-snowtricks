@@ -21,12 +21,14 @@ class UpdatePasswordFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('currentPassword', PasswordType::class, [
+            ->add(
+                'currentPassword', PasswordType::class, [
                 'label' => 'snowtricks.ui.current_password',
                 'mapped' => false,
                 'constraints' => new UserPassword()
             ])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add(
+                'plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'options' => [
                     'attr' => [
@@ -35,15 +37,17 @@ class UpdatePasswordFormType extends AbstractType
                 ],
                 'first_options' => [
                     'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 8,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
+                        new NotBlank(
+                            [
+                                'message' => 'Please enter a password',
+                            ]),
+                        new Length(
+                            [
+                                'min' => 8,
+                                'minMessage' => 'Your password should be at least {{ limit }} characters',
+                                // max length allowed by Symfony for security reasons
+                                'max' => 4096,
+                            ]),
                     ],
                     'label' => 'snowtricks.ui.reset_password.new_password',
                 ],
@@ -58,13 +62,15 @@ class UpdatePasswordFormType extends AbstractType
         ;
     }
 
+
     /**
      * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class
+            ]);
     }
 }

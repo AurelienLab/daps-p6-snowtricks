@@ -35,12 +35,12 @@ class ResetPasswordController extends AbstractController
     {
     }
 
+
     /**
      * Display & process form to request a password reset.
      *
      * @param Request $request
      * @param MailerInterface $mailer
-     * @param TranslatorInterface $translator
      * @return Response
      * @throws TransportExceptionInterface
      */
@@ -57,11 +57,13 @@ class ResetPasswordController extends AbstractController
             );
         }
 
-        return $this->render('reset_password/request.html.twig', [
+        return $this->render(
+            'reset_password/request.html.twig', [
             'requestForm' => $form,
             'pageTitle' => 'Mot de passe oublié'
         ]);
     }
+
 
     /**
      * Confirmation page after a user has requested a password reset.
@@ -77,17 +79,18 @@ class ResetPasswordController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
-        return $this->render('reset_password/check_email.html.twig', [
+        return $this->render(
+            'reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
         ]);
     }
+
 
     /**
      * Validates and process the reset URL that the user clicked in their email.
      *
      * @param Request $request
      * @param UserPasswordHasherInterface $passwordHasher
-     * @param TranslatorInterface $translator
      * @param string|null $token
      * @return Response
      */
@@ -110,7 +113,8 @@ class ResetPasswordController extends AbstractController
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
-            $this->addFlash('reset_password_error', sprintf(
+            $this->addFlash(
+                'reset_password_error', sprintf(
                 '%s - %s',
                 $this->translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_VALIDATE, [], 'ResetPasswordBundle'),
                 $this->translator->trans($e->getReason(), [], 'ResetPasswordBundle')
@@ -142,11 +146,14 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_homepage');
         }
 
-        return $this->render('reset_password/reset.html.twig', [
-            'resetForm' => $form,
-            'pageTitle' => 'Mot de passe oublié'
-        ]);
+        return $this->render(
+            'reset_password/reset.html.twig',
+            [
+                'resetForm' => $form,
+                'pageTitle' => 'Mot de passe oublié'
+            ]);
     }
+
 
     /**
      * Send a reset password link via email
@@ -158,9 +165,10 @@ class ResetPasswordController extends AbstractController
      */
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
     {
-        $user = $this->entityManager->getRepository(User::class)->findOneBy([
-            'email' => $emailFormData,
-        ]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(
+            [
+                'email' => $emailFormData,
+            ]);
 
         // Do not reveal whether a user account was found or not.
         if (!$user) {
@@ -188,9 +196,11 @@ class ResetPasswordController extends AbstractController
             ->to($user->getEmail())
             ->subject($this->translator->trans('snowtricks.email.reset_password.subject'))
             ->htmlTemplate('reset_password/email.html.twig')
-            ->context([
-                'resetToken' => $resetToken,
-            ])
+            ->context(
+                [
+                    'resetToken' => $resetToken,
+                ]
+            )
         ;
 
         $mailer->send($email);

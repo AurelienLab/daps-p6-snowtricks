@@ -17,17 +17,20 @@ class ResetPasswordRequestFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
+            ->add(
+                'email', EmailType::class, [
                 'label' => 'snowtricks.ui.email',
                 'attr' => ['autocomplete' => 'email'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter your email',
-                    ]),
+                    new NotBlank(
+                        [
+                            'message' => 'Please enter your email',
+                        ]),
                 ],
             ])
         ;
     }
+
 
     /**
      * @inheritDoc

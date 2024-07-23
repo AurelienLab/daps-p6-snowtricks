@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var string|null The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
@@ -61,10 +61,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\OneToMany(targetEntity: Trick::class, mappedBy: 'author')]
     private Collection $tricks;
 
+
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
     }
+
 
     /**
      * @return int|null
@@ -74,6 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this->id;
     }
 
+
     /**
      * @return string|null
      */
@@ -81,6 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->email;
     }
+
 
     /**
      * @param string $email
@@ -93,6 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -100,6 +105,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->name;
     }
+
 
     /**
      * @param string|null $name
@@ -122,6 +128,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return (string)$this->email;
     }
 
+
     /**
      * @return list<string>
      * @see UserInterface
@@ -137,6 +144,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return array_unique($roles);
     }
 
+
     /**
      * @param list<string> $roles
      */
@@ -147,6 +155,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+
     /**
      * @see PasswordAuthenticatedUserInterface
      */
@@ -154,6 +163,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->password;
     }
+
 
     /**
      * @param string $password
@@ -166,6 +176,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+
     /**
      * @see UserInterface
      */
@@ -175,6 +186,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         // $this->plainPassword = null;
     }
 
+
     /**
      * @return string|null
      */
@@ -182,6 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->profilePicture;
     }
+
 
     /**
      * @param string|null $profilePicture
@@ -193,6 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+
     /**
      * @return bool
      */
@@ -200,6 +214,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->isVerified;
     }
+
 
     /**
      * @param bool $isVerified
@@ -212,6 +227,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
         return $this;
     }
 
+
     /**
      * @return Collection<int, Trick>
      */
@@ -219,6 +235,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     {
         return $this->tricks;
     }
+
 
     /**
      * @param Trick $trick
@@ -233,6 +250,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
 
         return $this;
     }
+
 
     /**
      * @param Trick $trick

@@ -12,6 +12,7 @@ class TrickCategoryFixtures extends Fixture
     const CATEGORY_SPIN = 'spin';
     const CATEGORY_FLIP = 'flip';
 
+
     /**
      * @param ObjectManager $manager
      * @return void

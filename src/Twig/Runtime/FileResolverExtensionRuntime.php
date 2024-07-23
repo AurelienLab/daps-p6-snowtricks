@@ -15,6 +15,7 @@ class FileResolverExtensionRuntime implements RuntimeExtensionInterface
     {
     }
 
+
     /**
      * Returns the file path according to the config
      *

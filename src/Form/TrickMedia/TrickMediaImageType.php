@@ -24,13 +24,15 @@ class TrickMediaImageType extends AbstractType
 
     }
 
+
     /**
      * @inheritDoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('imageFile', FileType::class, [
+            ->add(
+                'imageFile', FileType::class, [
                 'label' => 'snowtricks.ui.trick_media.image.file',
                 'mapped' => false,
                 'required' => false,
@@ -38,15 +40,18 @@ class TrickMediaImageType extends AbstractType
                     new NotBlank(groups: ['new_image']),
                     new Image(
                         maxSize: '4096k',
-                    )]
+                    )
+                ]
             ])
-            ->add('alt', TextType::class, [
+            ->add(
+                'alt', TextType::class, [
                 'label' => 'snowtricks.ui.trick_media.image.alt',
                 'required' => false,
             ])
         ;
 
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(
+            FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             $form = $event->getForm();
 
@@ -58,21 +63,23 @@ class TrickMediaImageType extends AbstractType
         });
     }
 
+
     /**
      * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => TrickMediaImage::class,
-            'validation_groups' => function (FormInterface $form): array {
-                $data = $form->getData();
+        $resolver->setDefaults(
+            [
+                'data_class' => TrickMediaImage::class,
+                'validation_groups' => function (FormInterface $form): array {
+                    $data = $form->getData();
 
-                if (empty($data->getImage())) {
-                    return ['new_image'];
+                    if (empty($data->getImage())) {
+                        return ['new_image'];
+                    }
+                    return [];
                 }
-                return [];
-            }
-        ]);
+            ]);
     }
 }

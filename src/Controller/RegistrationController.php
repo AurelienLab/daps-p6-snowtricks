@@ -11,6 +11,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
@@ -27,6 +28,7 @@ class RegistrationController extends AbstractController
     {
     }
 
+
     /**
      * Registration page controller
      *
@@ -34,6 +36,7 @@ class RegistrationController extends AbstractController
      * @param UserPasswordHasherInterface $userPasswordHasher
      * @param EntityManagerInterface $entityManager
      * @return Response
+     * @throws TransportExceptionInterface
      */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
@@ -55,7 +58,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('snowtricks@aurelienlab.dev', 'SnowTricks'))
                     ->to($user->getEmail())
@@ -70,11 +74,14 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_homepage');
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-            'pageTitle' => 'Inscription'
-        ]);
+        return $this->render(
+            'registration/register.html.twig',
+            [
+                'registrationForm' => $form,
+                'pageTitle' => 'Inscription'
+            ]);
     }
+
 
     /**
      * Email validation controller

@@ -15,6 +15,7 @@ class UserFixtures extends Fixture
     {
     }
 
+
     public function load(ObjectManager $manager): void
     {
         // Admin

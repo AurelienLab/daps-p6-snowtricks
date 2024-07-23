@@ -14,6 +14,7 @@ class FileUploaderConfigResolver
     {
     }
 
+
     /**
      * Retrieve upload configuration from its name
      *

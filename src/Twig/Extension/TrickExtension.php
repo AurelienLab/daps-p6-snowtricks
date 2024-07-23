@@ -4,12 +4,11 @@ namespace App\Twig\Extension;
 
 use App\Twig\Runtime\TrickRuntime;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class TrickExtension extends AbstractExtension
 {
-    
+
     /**
      * @return TwigFunction[]
      */

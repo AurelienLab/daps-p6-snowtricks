@@ -12,6 +12,7 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+
     /**
      * @return string|null
      */
@@ -19,6 +20,7 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
     {
         return $this->content;
     }
+
 
     /**
      * @param string $content
@@ -30,6 +32,7 @@ class TrickMediaEmbed extends TrickMedia implements TrickMediaInterface
 
         return $this;
     }
+
 
     /**
      * @inheritDoc

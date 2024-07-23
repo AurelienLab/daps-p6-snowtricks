@@ -12,10 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: 'media_type', type: 'string')]
-#[ORM\DiscriminatorMap([
-    'embed' => TrickMediaEmbed::class,
-    'image' => TrickMediaImage::class,
-])]
+#[
+    ORM\DiscriminatorMap(
+        [
+            'embed' => TrickMediaEmbed::class,
+            'image' => TrickMediaImage::class,
+        ]
+    )
+]
 class TrickMedia implements TimestampableInterface
 {
 
@@ -30,6 +34,7 @@ class TrickMedia implements TimestampableInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Trick $trick = null;
 
+
     /**
      * @return int|null
      */
@@ -38,6 +43,7 @@ class TrickMedia implements TimestampableInterface
         return $this->id;
     }
 
+
     /**
      * @return Trick|null
      */
@@ -45,6 +51,7 @@ class TrickMedia implements TimestampableInterface
     {
         return $this->trick;
     }
+
 
     /**
      * @param Trick|null $trick

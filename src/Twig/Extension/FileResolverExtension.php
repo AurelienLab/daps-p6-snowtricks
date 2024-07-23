@@ -4,7 +4,6 @@ namespace App\Twig\Extension;
 
 use App\Twig\Runtime\FileResolverExtensionRuntime;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class FileResolverExtension extends AbstractExtension

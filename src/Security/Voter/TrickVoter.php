@@ -17,6 +17,7 @@ class TrickVoter extends Voter
     {
     }
 
+
     public const EDIT = 'edit';
     public const DELETE = 'delete';
 
@@ -49,6 +50,7 @@ class TrickVoter extends Voter
             default => false
         };
     }
+
 
     /**
      * Is the user allowed to edit the trick

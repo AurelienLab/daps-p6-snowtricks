@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Exception;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
@@ -16,6 +15,7 @@ class FileResolver
     )
     {
     }
+
 
     /**
      * Retrieve a file path from uploaded file in entity according to config

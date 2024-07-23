@@ -14,6 +14,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alt = null;
 
+
     /**
      * @return string|null
      */
@@ -21,6 +22,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return $this->image;
     }
+
 
     /**
      * @param string $image
@@ -33,6 +35,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
         return $this;
     }
 
+
     /**
      * @return string|null
      */
@@ -40,6 +43,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
     {
         return $this->alt;
     }
+
 
     /**
      * @param string|null $alt
@@ -51,6 +55,7 @@ class TrickMediaImage extends TrickMedia implements TrickMediaInterface
 
         return $this;
     }
+
 
     /**
      * @inheritDoc
