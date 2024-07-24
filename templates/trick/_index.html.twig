@@ -36,6 +36,7 @@
                 class="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 js-xhr-paginated"
                 data-next-page="{{ tricks.next }}"
                 data-trigger="#tricks-next-page-button"
+                id="trick-list"
         >
             {% for trick in tricks %}
                 {% include '_partials/trick-card.html.twig' with { trick } %}
@@ -52,6 +53,9 @@
             </button>
         </div>
     </div>
+    <button class="fixed right-0 bottom-40 bg-gray-800/60 p-2 opacity-0 invisible js-tricks-arrow-up transition-all">
+        {{ heroicon('arrow-up', 'w-8 h-8 text-white') }}
+    </button>
 </div>
 
 {% include 'trick/_remove-modal.html.twig' %}
